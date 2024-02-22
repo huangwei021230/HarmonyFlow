@@ -1,0 +1,49 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\PC\\.ohos\\config\\openharmony\\auto_ohos_default_HarmonyFlow_com.boogiepop.myapplication.cer",
+          "storePassword": "0000001B02881D2FCB86EDBE2532117A467EF833A4A045DB88E6A649B803090A17680E35A512C5921C6CDB",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B73F2F1D4B51A94F4F51CEF18BC6D1F5B7620C1D0207F97D0D9541E1E999022C4C30D20E7D89CD2",
+          "profile": "C:\\Users\\PC\\.ohos\\config\\openharmony\\auto_ohos_default_HarmonyFlow_com.boogiepop.myapplication.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\PC\\.ohos\\config\\openharmony\\auto_ohos_default_HarmonyFlow_com.boogiepop.myapplication.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 10,
+        "compatibleSdkVersion": 10,
+        "runtimeOS": "OpenHarmony",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
