@@ -7,46 +7,64 @@ import { Subtype } from 'your-subtype-library-path'; // 替换成你的子类型
 import { KeyData, KeyCode, KeyType } from 'your-key-data-library-path'; // 替换成你的按键数据库的路径
 import { KeyboardState, InputShiftState } from 'your-keyboard-state-library-path'; // 替换成你的键盘状态库的路径
 import { FlorisLocale } from 'your-locale-library-path'; // 替换成你的地区库的路径
+import resourceManager from '@ohos.resourceManager';
 
 export interface ComputingEvaluator {
   version: number;
+
   keyboard: Keyboard;
+
   editorInfo: FlorisEditorInfo;
+
   state: KeyboardState;
+
   subtype: Subtype;
+
   context(): Context| null;
+
   displayLanguageNamesIn(): DisplayLanguageNamesIn;
+
   evaluateEnabled(data: KeyData): boolean;
+
   evaluateVisible(data: KeyData): boolean;
+
   isSlot(data: KeyData): boolean;
+
   slotData(data: KeyData): KeyData | null;
 }
 
-export const DefaultComputingEvaluator: ComputingEvaluator = {
-  version: -1,
-  keyboard: PlaceholderLoadingKeyboard,
-  editorInfo: FlorisEditorInfo.Unspecified,
-  state: KeyboardState.new(),
-  subtype: Subtype.DEFAULT,
+export class DefaultComputingEvaluator implements ComputingEvaluator {
+  version: number = -1;
+  keyboard: Keyboard = PlaceholderLoadingKeyboard;
+  editorInfo: FlorisEditorInfo = FlorisEditorInfo.Unspecified;
+  state: KeyboardState = KeyboardState.new();
+  subtype: Subtype = Subtype.DEFAULT;
+
   context(): Context | null {
     return null;
-  },
+  }
+
   displayLanguageNamesIn(): DisplayLanguageNamesIn {
     return DisplayLanguageNamesIn.NATIVE_LOCALE;
-  },
+  }
+
   evaluateEnabled(data: KeyData): boolean {
     return true;
-  },
+  }
+
   evaluateVisible(data: KeyData): boolean {
     return true;
-  },
+  }
+
   isSlot(data: KeyData): boolean {
     return false;
-  },
+  }
+
   slotData(data: KeyData): KeyData | null {
     return null;
   }
-};
+}
+
 
 let cachedDisplayNameState: [FlorisLocale, DisplayLanguageNamesIn, string] = [FlorisLocale.ROOT, DisplayLanguageNamesIn.SYSTEM_LOCALE, ""];
 
@@ -68,30 +86,30 @@ export function computeLabel(evaluator: ComputingEvaluator, data: KeyData): stri
   } else {
     switch (data.code) {
       case KeyCode.PHONE_PAUSE:
-        return evaluator.context()?.getString(R.string.key__phone_pause) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__phone_pause')) ?? null;
       case KeyCode.PHONE_WAIT:
-        return evaluator.context()?.getString(R.string.key__phone_wait) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__phone_wait'))?? null;
       case KeyCode.SPACE:
       case KeyCode.CJK_SPACE:
         return evaluator.keyboard.mode === KeyboardMode.CHARACTERS ? computeLanguageDisplayName(evaluator.subtype.primaryLocale, evaluator.displayLanguageNamesIn()) : null;
       case KeyCode.IME_UI_MODE_TEXT:
       case KeyCode.VIEW_CHARACTERS:
-        return evaluator.context()?.getString(R.string.key__view_characters) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_characters')) ?? null;
       case KeyCode.VIEW_NUMERIC:
       case KeyCode.VIEW_NUMERIC_ADVANCED:
-        return evaluator.context()?.getString(R.string.key__view_numeric) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_numeric')) ?? null;
       case KeyCode.VIEW_PHONE:
-        return evaluator.context()?.getString(R.string.key__view_phone) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_phone')) ?? null;
       case KeyCode.VIEW_PHONE2:
-        return evaluator.context()?.getString(R.string.key__view_phone2) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_phone2')) ?? null;
       case KeyCode.VIEW_SYMBOLS:
-        return evaluator.context()?.getString(R.string.key__view_symbols) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_symbols')) ?? null;
       case KeyCode.VIEW_SYMBOLS2:
-        return evaluator.context()?.getString(R.string.key__view_symbols2) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_symbols2')) ?? null;
       case KeyCode.HALF_SPACE:
-        return evaluator.context()?.getString(R.string.key__view_half_space) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_half_space')) ?? null;
       case KeyCode.KESHIDA:
-        return evaluator.context()?.getString(R.string.key__view_keshida) ?? null;
+        return evaluator.context()?.resourceManager.getStringSync($r('app.string.key__view_keshida')) ?? null;
       default:
         return null;
     }

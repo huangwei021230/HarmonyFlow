@@ -1,0 +1,96 @@
+{
+  "string": [
+      {
+        "name": "florisboard__repo_url",
+        "value": "https://github.com/florisboard/florisboard"
+      },
+      {
+        "name": "florisboard__issue_tracker_url",
+        "value": "https://github.com/florisboard/florisboard/issues"
+      },
+      {
+        "name": "florisboard__privacy_policy_url",
+        "value": "https://florisboard.org/legal/privacy/"
+      },
+      {
+        "name": "florisboard__changelog_url",
+        "value": "https://github.com/florisboard/florisboard/releases/v{version}"
+      },
+      {
+        "name": "florisboard__commit_by_hash_url",
+        "value": "https://github.com/florisboard/florisboard/commit/{hash}"
+      },
+      {
+        "name": "florisboard__spell_checker_wiki_url",
+        "value": "https://github.com/florisboard/florisboard/wiki/System-spell-checker-service"
+      },
+      {
+        "name": "florisboard__theme_editor_wiki_url",
+        "value": "https://github.com/florisboard/florisboard/wiki/Using-the-new-Theme-Editor"
+      },
+      {
+        "name": "florisboard__internal_key_codes_url",
+        "value": "https://github.com/florisboard/florisboard/blob/master/app/src/main/kotlin/dev/patrickgold/florisboard/ime/text/key/KeyCode.kt"
+      },
+      {
+        "name": "florisboard__character_key_codes_url",
+        "value": "https://unicode-table.com/en"
+      },
+      {
+        "name": "general__system_string_placeholder",
+        "value": "%s"
+      },
+      {
+        "name": "general__empty_string",
+        "value": ""
+      },
+      {
+        "name": "general__invalid_fatal",
+        "value": "!! invalid !!"
+      },
+      {
+        "name": "key__view_characters",
+        "value": "ABC"
+      },
+      {
+        "name": "key__view_numeric",
+        "value": "1 2\n3 4"
+      },
+      {
+        "name": "key__view_phone",
+        "value": "123"
+      },
+      {
+        "name": "key__view_phone2",
+        "value": "* #"
+      },
+      {
+        "name": "key__view_symbols",
+        "value": "\\?123"
+      },
+      {
+        "name": "key__view_symbols2",
+        "value": "=\\&lt;"
+      },
+      {
+        "name": "key__view_half_space",
+        "value": "\u23CE"
+      },
+      {
+        "name": "key__view_keshida",
+        "value": "\"یــــ\""
+      },
+      {
+        "name": "key__dotted_circle",
+        "value": "\u25CC"
+      },
+      {
+        "name": "media__tab__emoticons_label",
+        "value": ";-)"
+      },
+      {
+        "name": "media__tab__kaomoji_label",
+        "value": "(^-^*)/"
+      }
+    ]
+}
