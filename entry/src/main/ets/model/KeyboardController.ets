@@ -97,6 +97,7 @@ export class InputHandler {
     })
   }
 
+  // 顶端的向下箭头，用来隐藏软键盘
   public hideKeyboardSelf(): void {
     this.addLog('hideKeyboardSelf');
     if (this.mKbController !== undefined) {
@@ -106,6 +107,7 @@ export class InputHandler {
     }
   }
 
+  // 发送功能键
   public sendKeyFunction(): void {
     this.addLog('sendKeyFunction')
     if (this.mTextInputClient && this.mEditorAttribute) {
@@ -115,6 +117,7 @@ export class InputHandler {
     }
   }
 
+  // 删除光标后固定长度的文本
   public deleteBackward(length: number): void {
     this.addLog('deleteBackward');
     if (this.mTextInputClient !== undefined) {
@@ -127,6 +130,7 @@ export class InputHandler {
     }
   }
 
+  // 删除光标前固定长度的文本
   public deleteForward(length: number): void {
     this.addLog('deleteForward');
     if (this.mTextInputClient !== undefined) {
@@ -139,6 +143,7 @@ export class InputHandler {
     }
   }
 
+  // 插入文本
   public insertText(text: string): void {
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
@@ -155,6 +160,7 @@ export class InputHandler {
     Log.showInfo(TAG, `kikaInput-js: ${message}`);
   }
 
+  // 移动光标
   public moveCursor(direction: inputMethodEngine.Direction): void {
     if (this.mTextInputClient !== undefined) {
       this.addLog(`moveCursor direction = ${direction}`);
@@ -164,11 +170,13 @@ export class InputHandler {
     }
   }
 
+
   public setCursorInfo(info: CursorInfo): void {
     this.addLog(`setCursorInfo info = ${JSON.stringify(info)}`);
     this.cursorInfo = info;
   }
 
+  // 发送扩展编辑操作
   public sendExtendAction(action: inputMethodEngine.ExtendAction): void {
     if (this.mTextInputClient !== undefined) {
       this.mTextInputClient.sendExtendAction(action);
@@ -217,8 +225,12 @@ export class InputHandler {
 export class KeyboardController {
   private barPosition: number = 0;
   private keyCodes: Array<number> = [];
+  // 启动、停止、绑定、解绑 Ability
   private mContext: InputMethodExtensionContext;
+
+  // 输入法面板
   private panel: inputMethodEngine.Panel | undefined;
+
   private isSpecialKeyPress: boolean = false;
   private isKeyboardShow: boolean = false;
   private inputHandle: InputHandler = InputHandler.getInstance();
@@ -254,10 +266,16 @@ export class KeyboardController {
     let dHeight = dis.height;
     let navigationbar_height = NAVIGATIONBAR_HEIGHT_DEFAULT;
     let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
+
+
     AppStorage.setOrCreate<number>('windowWidth', dis.width);
     AppStorage.setOrCreate<number>('windowHeight', dis.height);
+
+
     let isLandscape = false;
     let isRkDevice = false;
+
+
     if (dis.width > dis.height) {
       isLandscape = true;
       AppStorage.setOrCreate('isLandscape', true);
@@ -281,15 +299,21 @@ export class KeyboardController {
       navigationbar_height = 0;
       keyHeightRate = KEYBOARD_HEIGHT_RATE_BIG;
     }
+
+
     let keyHeight = dHeight * keyHeightRate;
     this.barPosition = dHeight - keyHeight - navigationbar_height;
     this.inputHandle.addLog(`initWindow-dWidth = ${dWidth};dHeight = ${dHeight};keyboard height = ${keyHeight};;navibar height = navigationbar_height`);
     this.inputHandle.addLog(`initWindow-deviceType = ${deviceInfo.deviceType}`);
+
+
     let panelInfo: inputMethodEngine.PanelInfo = {
       type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
       flag: inputMethodEngine.PanelFlag.FLG_FIXED
     }
     let inputStyle = StyleConfiguration.getInputStyle(isLandscape, isRkDevice, deviceInfo.deviceType);
+
+
     AppStorage.setOrCreate('inputStyle', inputStyle);
     InputMethodEngine.createPanel(this.mContext, panelInfo).then((panel: inputMethodEngine.Panel) => {
       this.panel = panel;
@@ -372,16 +396,21 @@ export class KeyboardController {
       this.inputHandle.addLog('screenChangeEvent');
       this.resizePanel();
     });
+    // 开始监听输入
     InputMethodEngine.on('inputStart', (kbController: inputMethodEngine.KeyboardController, textInputClient: inputMethodEngine.InputClient) => {
       this.inputHandle.addLog('keyboard inputStart');
       this.inputHandle.onInputStart(kbController, textInputClient);
     })
+
+    // 监听输入停止
     InputMethodEngine.on('inputStop', () => {
       this.inputHandle.addLog('keyboard inputStop');
       this.onDestroy();
       this.mContext.destroy();
     });
 
+    // 获取客户端编辑事件代理实例
+    // 输入法应用获取到该实例后，可订阅 '' 物理键盘 '' 按键事件、选中文本变化事件等
     this.mKeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
     this.mKeyboardDelegate.on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
       if (this.isKeyboardShow) {

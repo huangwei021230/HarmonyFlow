@@ -3,10 +3,11 @@ import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
-import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
 
