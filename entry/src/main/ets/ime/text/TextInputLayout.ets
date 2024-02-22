@@ -1,7 +1,8 @@
 import { UIContext } from '@ohos.arkui.UIContext'
-@Component
+
 function TextInputLayout(
 
 ){
+  let context = AppStorage.
 
 }

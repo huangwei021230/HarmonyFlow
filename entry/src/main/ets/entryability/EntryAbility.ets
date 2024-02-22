@@ -8,11 +8,6 @@ import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-
-    // 创建 InputMethodExtensionAbility 的实例
-    const inputMethodExtAbility = new InputMethodExtensionAbility();
-
-    // 调用 InputMethodExtensionAbility 的方法
   }
 
   onDestroy(): void {
@@ -30,6 +25,8 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
+
+
   }
 
   onWindowStageDestroy(): void {
