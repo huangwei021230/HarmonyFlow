@@ -69,11 +69,13 @@ export class DefaultComputingEvaluator implements ComputingEvaluator {
 let cachedDisplayNameState: [FlorisLocale, DisplayLanguageNamesIn, string] = [FlorisLocale.ROOT, DisplayLanguageNamesIn.SYSTEM_LOCALE, ""];
 
 function computeLanguageDisplayName(locale: FlorisLocale, displayLanguageNamesIn: DisplayLanguageNamesIn): string {
-  const [cachedLocale, cachedDisplayLanguageNamesIn, cachedDisplayName] = cachedDisplayNameState;
+  const cachedLocale = cachedDisplayNameState[0];
+  const cachedDisplayLanguageNamesIn = cachedDisplayNameState[1];
+  const cachedDisplayName = cachedDisplayNameState[2];
   if (cachedLocale === locale && cachedDisplayLanguageNamesIn === displayLanguageNamesIn) {
     return cachedDisplayName;
   }
-  const displayName = displayLanguageNamesIn === DisplayLanguageNamesIn.SYSTEM_LOCALE ? locale.displayName() : locale.displayName(locale);
+  const displayName: string = displayLanguageNamesIn === DisplayLanguageNamesIn.SYSTEM_LOCALE ? locale.displayName() : locale.displayName(locale);
   cachedDisplayNameState = [locale, displayLanguageNamesIn, displayName];
   return displayName;
 }
