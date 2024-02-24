@@ -593,7 +593,7 @@
     },
     {
       "name": "general__empty_string",
-      "value": ""
+      "value": " "
     },
     {
       "name": "general__invalid_fatal",
@@ -642,15 +642,6 @@
     {
       "name": "media__tab__kaomoji_label",
       "value": "(^-^*)/"
-    }
-
-
-
-
-
-
-
-
-
+    },
   ]
 }

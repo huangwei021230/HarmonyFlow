@@ -22,6 +22,15 @@ import FaultLogger from '@ohos.faultLogger';
 import window from '@ohos.window';
 import fs from '@ohos.file.fs';
 
+export enum AppTheme {
+  AUTO = "auto",
+  AUTO_AMOLED = "auto_amoled",
+  LIGHT = "light",
+  DARK = "dark",
+  AMOLED_DARK = "amoled_dark"
+}
+
+
 const TAG: string = 'ServiceExtAbility->';
 
 class ServiceExtAbility extends InputMethodExtensionAbility {
