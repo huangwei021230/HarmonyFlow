@@ -10,7 +10,7 @@ class AppPrefs{
 
   constructor(context: Context) {
     try {
-      dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+      dataPreferences.getPreferences(context, 'HarmonyFlow', (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
           console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
           return;
@@ -24,6 +24,7 @@ class AppPrefs{
       console.error("Failed to get preferences. code =" + code + ", message =" + message);
     }
     this.init()
+
   }
   init(){
       try{
@@ -90,7 +91,7 @@ class AppPrefs{
 
         // inputFeedback
         preferences.put("input_feedback__audio_enabled", true);
-        preferences.put("input_feedback__audio_activation_mode", InputFeedbackActivationMode.RESPECT_SYSTEM_SETTINGS);
+        // preferences.put("input_feedback__audio_activation_mode", InputFeedbackActivationMode.RESPECT_SYSTEM_SETTINGS);
         preferences.put("input_feedback__audio_volume", 50);
         preferences.put("input_feedback__audio_feat_key_press", true);
         preferences.put("input_feedback__audio_feat_key_long_press", false);
@@ -150,10 +151,10 @@ class AppPrefs{
         preferences.put("localization__subtypes", "[]")
 
         // media
-        preferences.put("media__emoji_recently_used", EmojiRecentlyUsedHelper.Serializer.serialize(emojiRecentlyUsed))
+        // preferences.put("media__emoji_recently_used", EmojiRecentlyUsedHelper.Serializer.serialize(emojiRecentlyUsed))
         preferences.put("media__emoji_recently_used_max_size", 90)
-        preferences.put("media__emoji_preferred_skin_tone", EmojiSkinTone.DEFAULT)
-        preferences.put("media__emoji_preferred_hair_style", EmojiHairStyle.DEFAULT)
+        // preferences.put("media__emoji_preferred_skin_tone", EmojiSkinTone.DEFAULT)
+        // preferences.put("media__emoji_preferred_hair_style", EmojiHairStyle.DEFAULT)
 
 
         // smartBar
@@ -169,7 +170,7 @@ class AppPrefs{
 
 
         // spelling
-        preferences.put("spelling__language_mode", SpellingLanguageMode.USE_KEYBOARD_SUBTYPES.name)
+        // preferences.put("spelling__language_mode", SpellingLanguageMode.USE_KEYBOARD_SUBTYPES.name)
         preferences.put("spelling__use_contacts", true)
         preferences.put("spelling__use_udm_entries", true)
 
@@ -177,7 +178,7 @@ class AppPrefs{
         // suggestion
         preferences.put("suggestion__api30_inline_suggestions_enabled", true)
         preferences.put("suggestion__enabled", false)
-        preferences.put("suggestion__display_mode", CandidatesDisplayMode.DYNAMIC_SCROLLABLE.name)
+        // preferences.put("suggestion__display_mode", CandidatesDisplayMode.DYNAMIC_SCROLLABLE.name)
         preferences.put("suggestion__block_possibly_offensive", true)
         preferences.put("suggestion__clipboard_content_enabled", true)
         preferences.put("suggestion__clipboard_content_timeout", 60)

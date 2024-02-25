@@ -52,7 +52,7 @@ const DEVICE_BIG: DeviceSize = {
   height: 1600
 }
 // 定义键盘在不同设备上占设备高度的比例，用于键盘显示适配不同设备
-const KEYBOARD_HEIGHT_RATE_DEFAULT: number = 0.43;
+const KEYBOARD_HEIGHT_RATE_DEFAULT: number = 0.3;
 const KEYBOARD_HEIGHT_RATE_PHONE: number = 0.38;
 const KEYBOARD_HEIGHT_RATE_PHONE_LAND: number = 0.5;
 const KEYBOARD_HEIGHT_RATE_BIG_LAND: number = 0.38;
@@ -260,6 +260,7 @@ export class KeyboardController {
     if (this.mContext == undefined) {
       return;
     }
+    // 处理UI大小
     let dis = display.getDefaultDisplaySync();
     this.inputHandle.addLog("initWindow-oncall display");
     let dWidth = dis.width;
@@ -267,7 +268,7 @@ export class KeyboardController {
     let navigationbar_height = NAVIGATIONBAR_HEIGHT_DEFAULT;
     let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
 
-
+    // 持久化UI大小数据
     AppStorage.setOrCreate<number>('windowWidth', dis.width);
     AppStorage.setOrCreate<number>('windowHeight', dis.height);
 
@@ -341,10 +342,14 @@ export class KeyboardController {
   private resizePanel(): void {
     this.inputHandle.addLog('resizeWindow');
     let dis = display.getDefaultDisplaySync();
+
+
     this.inputHandle.addLog('resizeWindow-oncall display');
     let dWidth = dis.width;
     let dHeight = dis.height;
     let navigationbar_height = dHeight * 0.07; // 有些产品导航栏高度为0，默认为0.07
+
+
     let keyHeightRate = KEYBOARD_HEIGHT_RATE_DEFAULT;
     AppStorage.setOrCreate<number>('windowWidth', dis.width);
     AppStorage.setOrCreate<number>('windowHeight', dis.height);
@@ -493,6 +498,8 @@ export class KeyboardController {
       this.inputHandle.addLog(`keyCode KeyUp is intercepted: ${keyCode}`);
     }
     this.inputHandle.addLog(`OnKeyUp: this.keyCodes = ${JSON.stringify(this.keyCodes)}`);
+
+
 
     // For KEYCODE_DEL/KEYCODE_FORWARD_DEL, processed in OnKeyDown, so just intercept it
     if (keyCode === 2055 || keyCode === 2071 || (keyCode >= 2012 && keyCode <= 2016)) {

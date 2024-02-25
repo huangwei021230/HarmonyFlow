@@ -1,16 +1,16 @@
 export enum LayoutType {
-  CHARACTERS = "characters",
-  CHARACTERS_MOD = "charactersMod",
-  EXTENSION = "extension",
-  NUMERIC = "numeric",
-  NUMERIC_ADVANCED = "numericAdvanced",
-  NUMERIC_ROW = "numericRow",
-  PHONE = "phone",
-  PHONE2 = "phone2",
-  SYMBOLS = "symbols",
-  SYMBOLS_MOD = "symbolsMod",
-  SYMBOLS2 = "symbols2",
-  SYMBOLS2_MOD = "symbols2Mod"
+  CHARACTERS =            "characters",
+  CHARACTERS_MOD =        "charactersMod",
+  EXTENSION =             "extension",
+  NUMERIC =               "numeric",
+  NUMERIC_ADVANCED =      "numericAdvanced",
+  NUMERIC_ROW =           "numericRow",
+  PHONE =                 "phone",
+  PHONE2 =                "phone2",
+  SYMBOLS =               "symbols",
+  SYMBOLS_MOD =           "symbolsMod",
+  SYMBOLS2 =              "symbols2",
+  SYMBOLS2_MOD =          "symbols2Mod"
 }
 
 // 使用 LayoutType 的字符串值来构造 LayoutType 枚举
