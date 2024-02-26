@@ -23,13 +23,14 @@ import { BusinessError } from '@ohos.base';
 import { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
+import { EmojiKeyboardController } from './emoji/EmojiKeyboardController';
 
-interface DeviceSize {
+export interface DeviceSize {
   width: number;
   height: number;
 }
 
-interface CursorInfo {
+export interface CursorInfo {
   x: number;
   y: number;
   height: number
@@ -235,12 +236,14 @@ export class KeyboardController {
   private isKeyboardShow: boolean = false;
   private inputHandle: InputHandler = InputHandler.getInstance();
   private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate | undefined;
+  private emojiKeyboard: EmojiKeyboardController
 
   constructor(context: InputMethodExtensionContext) {
     this.inputHandle.addLog('constructor');
     this.mContext = context;
     this.panel = undefined;
     this.mKeyboardDelegate = undefined;
+    this.emojiKeyboard = new EmojiKeyboardController(context)
   }
 
   public onCreate(): void {

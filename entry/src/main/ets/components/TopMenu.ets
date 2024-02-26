@@ -24,6 +24,7 @@ export struct TopMenu {
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
       Stack() {
+
         Image($rawfile('down.svg'))
           .width(this.inputStyle.downMenuPicWidth)
           .height(this.inputStyle.downMenuPicHeight)
