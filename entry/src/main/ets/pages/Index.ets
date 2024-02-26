@@ -21,13 +21,15 @@ import {
   numberSourceListData,
   symbolSourceListData,
   keySourceListType,
-  sourceListType
+  sourceListType,
+  combinedList
 } from '../model/KeyboardKeyData';
 import { KeyMenu } from '../components/KeyMenu';
 import { NumberMenu } from '../components/NumberMenu';
 import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
 import { SymbolMenu } from '../components/SymbolMenu';
 import { TopMenu } from '../components/TopMenu';
+import { EmojiMenu } from '../components/emoji/EmojiMenu';
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
@@ -38,6 +40,10 @@ struct Index {
   private keyList: keySourceListType[] = keySourceListData;
   private numberList: sourceListType[] = numberSourceListData;
   private symbolList: sourceListType[] = symbolSourceListData;
+  // 表情包列表
+  private emojiList: sourceListType[][] = combinedList;
+
+
   @Provide menuType: number = MenuType.NORMAL;
   @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
@@ -71,8 +77,10 @@ struct Index {
             KeyMenu({ keyList: this.keyList })
           } else if (this.menuType === MenuType.NUMBER) {
             NumberMenu({ numberList: this.numberList, })
-          } else {
+          } else if(this.menuType == MenuType.SPECIAL){
             SymbolMenu({ symbolList: this.symbolList, })
+          } else if(this.menuType == MenuType.EMOJI){
+            EmojiMenu({ emojiList: this.})
           }
         }
         .width('100%')

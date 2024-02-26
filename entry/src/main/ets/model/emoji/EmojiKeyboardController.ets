@@ -9,6 +9,7 @@ export class EmojiKeyboardController{
   context: Context
   container: EmojiContainer
   emojisArray: string[] = [" "]
+
   constructor(context: InputMethodExtensionContext) {
     this.context = context
     this.container = new EmojiContainer(context)
@@ -18,9 +19,7 @@ export class EmojiKeyboardController{
     console.log("1014514" + this.container.emojiText)
     this.emojisArray = (this.container.emojiText).split(new RegExp('\r?\n')).filter(Boolean);
 
-    this.emojisArray.forEach(emoji =>{
-      console.log("114514" + emoji);
-    })
+
 
   }
 }
@@ -30,10 +29,9 @@ class EmojiContainer{
 
   constructor(context: InputMethodExtensionContext) {
     try {
-      const emojiContent = context.resourceManager.getRawFileContentSync("ime/media/emoji/temp.txt")
+      const emojiContent = context.resourceManager.getRawFileContentSync("ime/media/emoji/root.txt")
       const decoder = new util.TextDecoder()
       this.emojiText = decoder.decode(emojiContent)
-      console.log("114514:" + this.emojiText.length)
 
     } catch (error) {
       let code = (error as BusinessError).code;
