@@ -22,7 +22,8 @@ import {
   symbolSourceListData,
   keySourceListType,
   sourceListType,
-  combinedList
+  combinedList,
+  emotionList
 } from '../model/KeyboardKeyData';
 import { KeyMenu } from '../components/KeyMenu';
 import { NumberMenu } from '../components/NumberMenu';
@@ -41,7 +42,7 @@ struct Index {
   private numberList: sourceListType[] = numberSourceListData;
   private symbolList: sourceListType[] = symbolSourceListData;
   // 表情包列表
-  private emojiList: sourceListType[][] = combinedList;
+  private emojiList: sourceListType[] = emotionList;
 
 
   @Provide menuType: number = MenuType.NORMAL;
@@ -80,7 +81,7 @@ struct Index {
           } else if(this.menuType == MenuType.SPECIAL){
             SymbolMenu({ symbolList: this.symbolList, })
           } else if(this.menuType == MenuType.EMOJI){
-            EmojiMenu({ emojiList: this.})
+            EmojiMenu({ emojiList: this.emojiList})
           }
         }
         .width('100%')

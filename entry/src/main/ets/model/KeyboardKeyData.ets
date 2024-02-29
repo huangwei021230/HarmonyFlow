@@ -433,14 +433,14 @@ let celebrationAndGameEmojis = [
 ];
 
 
+export const emotionList: sourceListType[] = emotion_emojis.map<sourceListType>(emoji => ({ content: emoji }));
+export const handList: sourceListType[] = handEmojis.map<sourceListType>(handEmoji => ({ content: handEmoji }));
+export const animalList:sourceListType[] = animalEmojis.map<sourceListType>(animalEmoji => ({ content: animalEmoji }));
+export const foodList:sourceListType[] = fruitAndFoodEmojis.map<sourceListType>(foodEmoji => ({ content: foodEmoji }));
+export const placeAndTransportList = placeAndTransportEmojis.map<sourceListType>(emoji => ({ content: emoji }));
+export const celebrationAndGameList = celebrationAndGameEmojis.map<sourceListType>(emoji => ({ content: emoji }));
 
 
-let emotionList: sourceListType[] = emotion_emojis.map<sourceListType>(emoji => ({ content: emoji }));
-let handList: sourceListType[] = handEmojis.map<sourceListType>(handEmoji => ({ content: handEmoji }));
-let animalList:sourceListType[] = animalEmojis.map<sourceListType>(animalEmoji => ({ content: animalEmoji }));
-let foodList:sourceListType[] = fruitAndFoodEmojis.map<sourceListType>(foodEmoji => ({ content: foodEmoji }));
-let placeAndTransportList = placeAndTransportEmojis.map<sourceListType>(emoji => ({ content: emoji }));
-let celebrationAndGameList = celebrationAndGameEmojis.map<sourceListType>(emoji => ({ content: emoji }));
 
 export const combinedList: sourceListType[][] = [];
 combinedList.push(handList);

@@ -7,36 +7,33 @@ import util from '@ohos.util'
 
 export class EmojiKeyboardController{
   context: Context
-  container: EmojiContainer
+  // container: EmojiContainer
   emojisArray: string[] = [" "]
 
   constructor(context: InputMethodExtensionContext) {
     this.context = context
-    this.container = new EmojiContainer(context)
     this.init()
   }
   init() {
-    console.log("1014514" + this.container.emojiText)
-    this.emojisArray = (this.container.emojiText).split(new RegExp('\r?\n')).filter(Boolean);
 
 
 
   }
 }
 
-class EmojiContainer{
-  emojiText: string = " "
-
-  constructor(context: InputMethodExtensionContext) {
-    try {
-      const emojiContent = context.resourceManager.getRawFileContentSync("ime/media/emoji/root.txt")
-      const decoder = new util.TextDecoder()
-      this.emojiText = decoder.decode(emojiContent)
-
-    } catch (error) {
-      let code = (error as BusinessError).code;
-      let message = (error as BusinessError).message;
-      console.error(`promise getRawFileContent failed, error code: ${code}, message: ${message}.`);
-    }
-  }
-}
+// class EmojiContainer{
+//   emojiText: string = " "
+//
+//   constructor(context: InputMethodExtensionContext) {
+//     try {
+//       const emojiContent = context.resourceManager.getRawFileContentSync("ime/media/emoji/root.txt")
+//       const decoder = new util.TextDecoder()
+//       this.emojiText = decoder.decode(emojiContent)
+//
+//     } catch (error) {
+//       let code = (error as BusinessError).code;
+//       let message = (error as BusinessError).message;
+//       console.error(`promise getRawFileContent failed, error code: ${code}, message: ${message}.`);
+//     }
+//   }
+// }

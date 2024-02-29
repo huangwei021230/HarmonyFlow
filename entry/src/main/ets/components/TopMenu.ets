@@ -15,16 +15,36 @@
 
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
+import { MenuType } from '../model/KeyboardKeyData';
 
 @Preview
 @Component
 export struct TopMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
+  @Consume menuType: number;
+  lastMenuType: number = 0;
 
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
       Stack() {
+        Image($rawfile('ic_emoji_emotions.svg'))
+          .width('32vp')
+          .height('32vp')
+      }
+      .width(this.inputStyle.downMenuWidth)
+      .borderRadius(4)
+      .height('100%')
+      .onClick(() => {
+        if(this.menuType == MenuType.EMOJI){
+          this.menuType = this.lastMenuType;
+        }else{
+          this.lastMenuType = this.menuType;
+          this.menuType = MenuType.EMOJI;
+        }
+      })
 
+
+      Stack() {
         Image($rawfile('down.svg'))
           .width(this.inputStyle.downMenuPicWidth)
           .height(this.inputStyle.downMenuPicHeight)
@@ -35,6 +55,9 @@ export struct TopMenu {
       .onClick(() => {
         InputHandler.getInstance().hideKeyboardSelf();
       })
+
+
+
     }
     .width('100%')
     .height(this.inputStyle.downMenuHeight)

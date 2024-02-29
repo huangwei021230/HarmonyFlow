@@ -21,6 +21,7 @@ import resourceManager from '@ohos.resourceManager';
 import FaultLogger from '@ohos.faultLogger';
 import window from '@ohos.window';
 import fs from '@ohos.file.fs';
+import { emotion_emojis, sourceListType } from '../model/KeyboardKeyData';
 
 export enum AppTheme {
   AUTO = "auto",
