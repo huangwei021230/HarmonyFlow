@@ -15,6 +15,7 @@
 import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 import { InputHandler } from '../../model/KeyboardController';
 import { keySourceListType } from '../../model/KeyboardKeyData';
+import font from '@ohos.font';
 
 
 @Styles function pressedStyles() {
@@ -31,10 +32,19 @@ export struct EmojiItem {
   private keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
+  aboutToAppear() {
+    // familySrc支持RawFile
+    font.registerFont({
+      familyName: 'emoji',
+      familySrc: $rawfile('font/NotoColorEmoji-Regular.ttf')
+    })
+  }
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (this.keyValue) {
         Text(this.keyValue.content)
+          .fontFamily('emoji')
           .fontSize(this.inputStyle.symbol_fontSize)
           .fontColor(Color.Black)
       }

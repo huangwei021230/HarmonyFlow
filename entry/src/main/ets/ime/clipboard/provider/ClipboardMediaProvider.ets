@@ -1,0 +1,1 @@
+import dataShare from '@ohos.data.dataSharePredicates'

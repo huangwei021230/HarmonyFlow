@@ -74,11 +74,6 @@ export function GetHardKeyValue(keyCode: number, isShift: boolean): string {
   keyList.set(2122, ')');
 
 
-
-
-
-
-
   if (keyList.has(keyCode)) {
     let value = keyList.get(keyCode);
     if (isShift && keyCode >= 2017 && keyCode <= 2042 && value !== undefined) {
