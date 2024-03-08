@@ -27,6 +27,7 @@ class ClipboardFileStorage{
       let buf = new ArrayBuffer(4096);
       let len = fs.readSync(fromFile.fd, buf);
       while (len !== -1) {
+
         let num = stream.writeSync(buf);
         len = fs.readSync(fromFile.fd, buf);
       }
@@ -47,6 +48,8 @@ class ClipboardFileStorage{
       fs.unlink(filePath);
     }
   }
+
+
   getFileForId(context: Context, id: number): File{
     let filePath = context.filesDir.toString() + "/clipboard_files" + "/" + id.toString();
     let bool = fs.access(filePath);

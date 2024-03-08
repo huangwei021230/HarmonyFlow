@@ -4,6 +4,7 @@ import relationalStore from '@ohos.data.relationalStore';
 import Want from '@ohos.app.ability.Want';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import uri from '@ohos.uri';
 
 let DB_NAME = 'DB00.db';
 const CLIPBOARD_FILES_TABLE = 'clipboard_files';
@@ -27,6 +28,20 @@ const columns: Columns = {
 
 
 class ClipboardMediaProvider extends DataShareExtensionAbility{
+
+  /**
+   * Companion Object
+   */
+  static AUTHORITY : string = "com.boogiepop.myapplication.provider.clipboard"
+  static IMAGE_CLIPS_URI : uri.URI = new uri.URI("content://$AUTHORITY/clips/images")
+  static VIDEO_CLIPS_URI : uri.URI = new uri.URI("content://$AUTHORITY/clips/videos")
+
+  static IMAGE_CLIP_ITEM : number = 0
+  static IMAGE_CLIPS_TABLE : number = 1
+  static VIDEO_CLIP_ITEM : number = 2
+  static VIDEO_CLIPS_TABLE : number = 3
+
+
 
   onCreate(want: Want, callback: Function) {
     relationalStore.getRdbStore(this.context, {

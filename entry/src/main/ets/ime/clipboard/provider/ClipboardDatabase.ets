@@ -1,11 +1,12 @@
 import pasteboard from '@ohos.pasteboard';
 import fileUri from '@ohos.file.fileuri';
-
+import uri from '@ohos.uri';
 enum ItemType{
   TEXT = 1,
   IMAGE = 2,
   VIDEO = 3,
 }
+
 
 namespace ItemType {
   export function fromInt(value: number): ItemType {
@@ -62,15 +63,32 @@ function fromClipData(context: Context, data: pasteboard.PasteData, cloneUri:boo
   }else{
     type = ItemType.TEXT;
   }
-
-  let uri: string | null = null;
+  let dataUri = new uri.URI(dataRecord.uri)
+  let uriStr: string | null = null;
   if(type === ItemType.IMAGE || type === ItemType.VIDEO){
     /**
      * dataRecord.uri返回的是简单的string类型，和fileUri不同，
      * 无法通过authority进行进一步验证
      */
-    uri = dataRecord.uri
+
+    if(dataUri.authority ==  || !cloneUri){
+      uri = dataRecord.uri
+    }else{
+      let displayName = ""
+      switch (type) {
+        case ItemType.IMAGE:
+          displayName = "Image"
+          break;
+        case ItemType.VIDEO:
+          displayName = "Video"
+          break;
+        default:
+          displayName = "Unknown"
+          break;
+      }
   }else{
+
+  }
 
   }
   let pasteBoardDataType:string = data.getPrimaryMimeType()
