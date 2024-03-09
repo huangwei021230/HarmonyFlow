@@ -92,7 +92,6 @@ class ClipboardMediaProvider extends DataShareExtensionAbility{
     });
   }
 
-
   /**
    * @param uri           string
    * @param valueBucket   ValuesBucket  键值对，表示插入数据
