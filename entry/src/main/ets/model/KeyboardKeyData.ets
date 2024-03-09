@@ -17,7 +17,8 @@ export enum MenuType {
   NORMAL = 0,
   NUMBER = 1,
   SPECIAL = 2,
-  EMOJI = 3
+  EMOJI = 3,
+  CLIPBOARD = 4
 }
 
 export enum KeyState {

@@ -29,7 +29,7 @@ const columns: Columns = {
 };
 
 
-class ClipboardMediaProvider extends DataShareExtensionAbility{
+export class ClipboardMediaProvider extends DataShareExtensionAbility{
 
   /**
    * Companion Object

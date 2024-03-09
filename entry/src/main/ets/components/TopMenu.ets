@@ -26,6 +26,18 @@ export struct TopMenu {
 
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
+      Stack(){
+        Image($rawfile('ic_back.svg'))
+          .width('32vp')
+          .height('32vp')
+      }
+      .width(this.inputStyle.downMenuWidth)
+      .borderRadius(4)
+      .height('100%')
+      .onClick(() => {
+        this.menuType = MenuType.NORMAL
+      })
+
       Stack() {
         Image($rawfile('ic_emoji_emotions.svg'))
           .width('32vp')
@@ -40,6 +52,24 @@ export struct TopMenu {
         }else{
           this.lastMenuType = this.menuType;
           this.menuType = MenuType.EMOJI;
+        }
+      })
+
+
+      Stack() {
+        Image($rawfile('ic_clipboard.svg'))
+          .width('32vp')
+          .height('32vp')
+      }
+      .width(this.inputStyle.downMenuWidth)
+      .borderRadius(4)
+      .height('100%')
+      .onClick(() => {
+        if(this.menuType == MenuType.CLIPBOARD){
+          this.menuType = this.lastMenuType;
+        }else{
+          this.lastMenuType = this.menuType;
+          this.menuType = MenuType.CLIPBOARD;
         }
       })
 

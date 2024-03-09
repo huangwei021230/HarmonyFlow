@@ -67,20 +67,22 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
       console.info('Get RdbStore successfully.');
     })
     // initialize the dataShareHelper
-    try {
-      dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
-        if (err !== undefined) {
-          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-          return;
-        }
-        console.info("createDataShareHelper succeed, data : " + data);
-        dataShareHelper = data;
-      });
-    } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
-    };
+    // 是否需要？
+
+    // try {
+    //   dataShare.createDataShareHelper(getContext(), uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+    //     if (err !== undefined) {
+    //       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+    //       return;
+    //     }
+    //     console.info("createDataShareHelper succeed, data : " + data);
+    //     dataShareHelper = data;
+    //   });
+    // } catch (err) {
+    //   let code = (err as BusinessError).code;
+    //   let message = (err as BusinessError).message;
+    //   console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    // };
   }
 
   onDestroy(): void {
