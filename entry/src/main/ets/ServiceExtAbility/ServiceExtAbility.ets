@@ -22,6 +22,9 @@ import FaultLogger from '@ohos.faultLogger';
 import window from '@ohos.window';
 import fs from '@ohos.file.fs';
 import { emotion_emojis, sourceListType } from '../model/KeyboardKeyData';
+import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@ohos.base';
+import dataShare from '@ohos.data.dataShare';
 
 export enum AppTheme {
   AUTO = "auto",
@@ -33,6 +36,10 @@ export enum AppTheme {
 
 
 const TAG: string = 'ServiceExtAbility->';
+export let store: relationalStore.RdbStore | undefined = undefined
+export let dataShareHelper: dataShare.DataShareHelper | undefined = undefined
+
+
 
 class ServiceExtAbility extends InputMethodExtensionAbility {
   private keyboardController: KeyboardController | undefined = undefined;
@@ -41,11 +48,39 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
     let context = this.context;
     let pathDir = context.filesDir;
   }
-
   onCreate(want: Want): void {
     this.addLog(`onCreate want: ${want.abilityName}`);
     this.keyboardController = new KeyboardController(this.context);
     this.keyboardController.onCreate();
+
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: "RdbTest.db",
+      securityLevel: relationalStore.SecurityLevel.S1
+    };
+
+    relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
+      store = rdbStore;
+      if (err) {
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+        return;
+      }
+      console.info('Get RdbStore successfully.');
+    })
+    // initialize the dataShareHelper
+    try {
+      dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
   }
 
   onDestroy(): void {
@@ -62,7 +97,6 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
   init(){
     this.initICU(this.context)
     // 删除cache文件夹中的所有文件 不可用 this.context.cacheDir.deleteContentRecursively()
-
   }
 
   initICU(context: InputMethodExtensionContext): Boolean{

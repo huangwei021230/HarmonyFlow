@@ -5,6 +5,8 @@ import Want from '@ohos.app.ability.Want';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import uri from '@ohos.uri';
+import { UriMatcher } from '../../../lib/io/UriMatcher';
+import { store } from '../../../ServiceExtAbility/ServiceExtAbility';
 
 let DB_NAME = 'DB00.db';
 const CLIPBOARD_FILES_TABLE = 'clipboard_files';
@@ -14,7 +16,7 @@ let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
   + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 
 
-let rdbStore: relationalStore.RdbStore;
+let rdbStore: relationalStore.RdbStore = store;
 
 interface Columns {
   mediaUri: string;
@@ -41,9 +43,18 @@ class ClipboardMediaProvider extends DataShareExtensionAbility{
   static VIDEO_CLIP_ITEM : number = 2
   static VIDEO_CLIPS_TABLE : number = 3
 
+  static Matcher: UriMatcher = new UriMatcher(UriMatcher.NO_MATCH)
+
 
 
   onCreate(want: Want, callback: Function) {
+    ClipboardMediaProvider.Matcher.addURI(ClipboardMediaProvider.AUTHORITY, "clips/images/#", ClipboardMediaProvider.IMAGE_CLIP_ITEM)
+    ClipboardMediaProvider.Matcher.addURI(ClipboardMediaProvider.AUTHORITY, "clips/images", ClipboardMediaProvider.IMAGE_CLIPS_TABLE)
+    ClipboardMediaProvider.Matcher.addURI(ClipboardMediaProvider.AUTHORITY, "clips/videos/#", ClipboardMediaProvider.VIDEO_CLIP_ITEM)
+    ClipboardMediaProvider.Matcher.addURI(ClipboardMediaProvider.AUTHORITY, "clips/videos", ClipboardMediaProvider.VIDEO_CLIPS_TABLE)
+
+
+
     relationalStore.getRdbStore(this.context, {
       name: DB_NAME,
       securityLevel: relationalStore.SecurityLevel.S1
@@ -58,7 +69,9 @@ class ClipboardMediaProvider extends DataShareExtensionAbility{
       }
     });
   }
-  
+
+
+
   /**
    * @param uri               string                                  fileUri
    * @param predicates        dataSharePredicates.DataSharePredicates 筛选条件
@@ -97,9 +110,6 @@ class ClipboardMediaProvider extends DataShareExtensionAbility{
       }
     });
   }
-
-
-
 };
 
 export default ClipboardMediaProvider;
