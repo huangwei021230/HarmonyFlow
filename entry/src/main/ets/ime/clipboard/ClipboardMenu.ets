@@ -1,5 +1,7 @@
 import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
-import { combinedList,
+import {
+  clipBoardItemList,
+  combinedList,
   emotionList,
   emotion_emojis,
   keySourceListData, keySourceListType, KeyState,
@@ -22,7 +24,7 @@ import { ClipboardItem } from './ClipboardItem';
 export struct ClipboardMenu{
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
-  private clipBoardItemList: sourceListType[] = [];
+  private clipBoardItemList = clipBoardItemList
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
 

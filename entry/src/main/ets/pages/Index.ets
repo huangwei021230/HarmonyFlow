@@ -23,7 +23,8 @@ import {
   keySourceListType,
   sourceListType,
   combinedList,
-  emotionList
+  emotionList,
+  clipBoardItemList
 } from '../model/KeyboardKeyData';
 import { KeyMenu } from '../components/KeyMenu';
 import { NumberMenu } from '../components/NumberMenu';
@@ -31,6 +32,7 @@ import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
 import { SymbolMenu } from '../components/SymbolMenu';
 import { TopMenu } from '../components/TopMenu';
 import { EmojiMenu } from '../components/emoji/EmojiMenu';
+import { ClipboardMenu } from '../ime/clipboard/ClipboardMenu';
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
@@ -43,7 +45,7 @@ struct Index {
   private symbolList: sourceListType[] = symbolSourceListData;
   // 表情包列表
   private emojiList: sourceListType[] = emotionList;
-
+  private clipBoardList: sourceListType[] = clipBoardItemList
 
   @Provide menuType: number = MenuType.NORMAL;
   @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
@@ -82,6 +84,8 @@ struct Index {
             SymbolMenu({ symbolList: this.symbolList, })
           } else if(this.menuType == MenuType.EMOJI){
             EmojiMenu({ emojiList: this.emojiList})
+          } else if(this.menuType == MenuType.CLIPBOARD){
+            ClipboardMenu({clipBoardItemList: this.clipBoardList})
           }
         }
         .width('100%')

@@ -451,3 +451,7 @@ combinedList.push(foodList);
 combinedList.push(placeAndTransportList);
 combinedList.push(celebrationAndGameList);
 
+export const clipBoardList = [
+  "123", "456", "789"
+]
+export const clipBoardItemList: sourceListType[] = clipBoardList.map<sourceListType>(item => ({ content: item}))
