@@ -7,6 +7,10 @@ import data from '@ohos.telephony.data';
 import relationalStore from '@ohos.data.relationalStore';
 import { store } from '../../../ServiceExtAbility/ServiceExtAbility';
 import dataShare from '@ohos.data.dataShare';
+import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { BusinessError } from '@ohos.base';
+import { clipBoardList } from '../../../model/KeyboardKeyData';
+import { ClipboardManager } from '../ClipboardManager';
 
 enum ItemType{
   TEXT = 1,
@@ -36,7 +40,7 @@ namespace ItemType {
  */
 const FLOW_CLIP_LABEL = "harmony/clipboard_item";
 
-class ClipboardItem{
+export class ClipboardItem{
   id: number = 0
   public type: ItemType
   public text: string | null
@@ -72,13 +76,42 @@ class ClipboardItem{
 
   static init(){
     const sql = "CREATE TABLE CLIPBOARD_HISTORY_TABLE ( _id INTEGER PRIMARY KEY AUTOINCREMENT, type INTEGER, text TEXT, uri TEXT, creationTimestampMs INTEGER, isPinned INTEGER, mimeTypes TEXT );"
-    store.executeSql(sql)
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).executeSql(sql, (err) => {
+        if (err) {
+          console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        console.info('create table done.');
+      })
+    }
   }
 
 
 
   static text(text: string): ClipboardItem{
-    return new ClipboardItem(ItemType.TEXT, text, null, systemDateTime.getTime(true), false, ClipboardItem.TEXT_PLAIN, ClipboardItem.rowID++)
+    let time = systemDateTime.getTime(true)
+    const valueBucket: ValuesBucket = {
+      "type": ItemType.TEXT,
+      "text": text,
+      "uri": "",
+      "creationTimestampMs": 0,
+      "isPinned": false,
+      "mimeTypes": ClipboardItem.TEXT_PLAIN[0],
+    };
+    // 插入数据库
+    if(store != undefined) {
+      (store as relationalStore.RdbStore).insert("CLIPBOARD_HISTORY_TABLE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
+        .then((rowId: number) => {
+          console.info(`Insert is successful, rowId = ${rowId}`);
+          ClipboardManager.ClipboardItemList.push({content: text})
+        })
+        .catch((err: BusinessError) => {
+          console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
+        })
+    }
+    // 内存变化
+    return new ClipboardItem(ItemType.TEXT, text, "", time, false, ClipboardItem.TEXT_PLAIN, ClipboardItem.rowID++)
   }
 
 
@@ -127,13 +160,13 @@ class ClipboardItem{
 
 
     let text: string = dataRecord.plainText?.toString();
-    let mimeTypes: string[]
+    let mimeTypesOfThis: string[] = [""]
     if(type == ItemType.TEXT){
-      mimeTypes[0] = ClipboardItem.TEXT_PLAIN[0]
+      mimeTypesOfThis[0] = ClipboardItem.TEXT_PLAIN[0]
     }
 
     // 注意这边使用的是uriStr，和florisboard中的Uri类仍然存在区别
-    return new ClipboardItem(type, text, uriStr, systemDateTime.getTime(true), false, mimeTypes)
+    return new ClipboardItem(type, text, uriStr ? uriStr : "", systemDateTime.getTime(true), false, mimeTypesOfThis)
 
   }
 
@@ -143,6 +176,7 @@ class ClipboardItem{
     }else if(this.type == ItemType.IMAGE){
       return pasteboard.createData(pasteboard.MIMETYPE_PIXELMAP, this.uri)
     }
+    return pasteboard.createData(ClipboardItem.TEXT_PLAIN[0], this.text)
   }
 
 }

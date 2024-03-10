@@ -15,7 +15,10 @@
 
 import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
 import { InputHandler } from '../model/KeyboardController';
-import { MenuType } from '../model/KeyboardKeyData';
+import {  MenuType } from '../model/KeyboardKeyData';
+import { store } from '../ServiceExtAbility/ServiceExtAbility';
+import relationalStore from '@ohos.data.relationalStore';
+import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
 
 @Preview
 @Component
@@ -65,11 +68,29 @@ export struct TopMenu {
       .borderRadius(4)
       .height('100%')
       .onClick(() => {
-        if(this.menuType == MenuType.CLIPBOARD){
-          this.menuType = this.lastMenuType;
-        }else{
-          this.lastMenuType = this.menuType;
-          this.menuType = MenuType.CLIPBOARD;
+        // 查表
+        if(store != undefined) {
+          (store as relationalStore.RdbStore).querySql("SELECT text FROM CLIPBOARD_HISTORY_TABLE", (err, resultSet) => {
+            if (err) {
+              console.error(`Query failed, code is ${err.code},message is ${err.message}`);
+              return;
+            }
+            console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+            // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+            while (resultSet.goToNextRow()) {
+              const text = resultSet.getString(resultSet.getColumnIndex("text"));
+              console.info(`text = ${text}`);
+              ClipboardManager.ClipboardItemList.push({content: text})
+            }
+            // 释放数据集的内存
+            resultSet.close();
+          })
+          if(this.menuType == MenuType.CLIPBOARD){
+            this.menuType = this.lastMenuType;
+          }else{
+            this.lastMenuType = this.menuType;
+            this.menuType = MenuType.CLIPBOARD;
+          }
         }
       })
 

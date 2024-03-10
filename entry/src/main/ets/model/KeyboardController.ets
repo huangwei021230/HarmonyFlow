@@ -24,6 +24,7 @@ import { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
 import { EmojiKeyboardController } from './emoji/EmojiKeyboardController';
+import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
 
 export interface DeviceSize {
   width: number;
@@ -236,6 +237,7 @@ export class KeyboardController {
   private isKeyboardShow: boolean = false;
   private inputHandle: InputHandler = InputHandler.getInstance();
   private mKeyboardDelegate: inputMethodEngine.KeyboardDelegate | undefined;
+  private mClipboardManager: ClipboardManager
   private emojiKeyboard: EmojiKeyboardController
 
   constructor(context: InputMethodExtensionContext) {
@@ -244,6 +246,7 @@ export class KeyboardController {
     this.panel = undefined;
     this.mKeyboardDelegate = undefined;
     this.emojiKeyboard = new EmojiKeyboardController(context)
+    this.mClipboardManager = new ClipboardManager()
   }
 
   public onCreate(): void {
@@ -595,5 +598,7 @@ export class KeyboardController {
         this.mKeyboardDelegate.off('textChange');
       }
     }
+    // TODO: 取消事件变化回调函数
+    // ClipboardManager.systemPasteBoard.off("update", )
   }
 }

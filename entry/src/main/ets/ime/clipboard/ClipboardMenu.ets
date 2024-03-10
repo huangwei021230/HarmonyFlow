@@ -1,6 +1,6 @@
 import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 import {
-  clipBoardItemList,
+  clipBoardList,
   combinedList,
   emotionList,
   emotion_emojis,
@@ -9,7 +9,8 @@ import {
 import { TipsDialog } from '@ohos.arkui.advanced.Dialog';
 import Log from '../../model/Log';
 import hilog from '@ohos.hilog';
-import { ClipboardItem } from './ClipboardItem';
+import { ClipItem } from './ClipboardItem';
+import { ClipboardManager } from './ClipboardManager';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))
@@ -24,7 +25,7 @@ import { ClipboardItem } from './ClipboardItem';
 export struct ClipboardMenu{
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
-  private clipBoardItemList = clipBoardItemList
+  @StorageLink('ClipboardItemList') private clipBoardItemList: sourceListType[] = ClipboardManager.ClipboardItemList
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
 
@@ -33,7 +34,7 @@ export struct ClipboardMenu{
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.clipBoardItemList.slice(0,2), (item: sourceListType) => {
-          ClipboardItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          ClipItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')

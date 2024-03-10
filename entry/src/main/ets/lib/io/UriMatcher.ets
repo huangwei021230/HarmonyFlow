@@ -30,7 +30,7 @@ export class UriMatcher{
       this.mCode = arg1;
       this.mWhich = -1;
       this.mChildren = new List<UriMatcher>();
-      this.mText = null;
+      this.mText = "";
     }
   }
 
@@ -50,7 +50,7 @@ export class UriMatcher{
       console.log("code" + code + " is invalid: it must be positive")
 
     }
-    let tokens: string[] = null
+    let tokens: string[] = []
     if(path != null){
       let newPath = path;
       // Strip leading slash if present.
@@ -107,7 +107,8 @@ export class UriMatcher{
       if (list == null){
         break;
       }
-      node = null
+      node = new UriMatcher(1)
+
       let lj: number = list.length
       for(let j = 0; j < lj; j++){
         let n: UriMatcher = list.get(j);

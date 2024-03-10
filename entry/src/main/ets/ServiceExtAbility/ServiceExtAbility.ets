@@ -25,6 +25,8 @@ import { emotion_emojis, sourceListType } from '../model/KeyboardKeyData';
 import relationalStore from '@ohos.data.relationalStore';
 import { BusinessError } from '@ohos.base';
 import dataShare from '@ohos.data.dataShare';
+import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
+import { ClipboardItem } from '../ime/clipboard/provider/ClipboardDatabase';
 
 export enum AppTheme {
   AUTO = "auto",
@@ -65,9 +67,13 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
         return;
       }
       console.info('Get RdbStore successfully.');
+      ClipboardItem.init()
+
     })
-    // initialize the dataShareHelper
-    // 是否需要？
+
+
+    // TODO: initialize the dataShareHelper
+    // TODO: 是否需要？
 
     // try {
     //   dataShare.createDataShareHelper(getContext(), uri, (err:BusinessError, data:dataShare.DataShareHelper) => {

@@ -28,7 +28,7 @@ import font from '@ohos.font';
 
 // 无大小写的按键组件
 @Component
-export struct ClipboardItem {
+export struct ClipItem {
   private keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 

@@ -24,7 +24,6 @@ import {
   sourceListType,
   combinedList,
   emotionList,
-  clipBoardItemList
 } from '../model/KeyboardKeyData';
 import { KeyMenu } from '../components/KeyMenu';
 import { NumberMenu } from '../components/NumberMenu';
@@ -33,6 +32,9 @@ import { SymbolMenu } from '../components/SymbolMenu';
 import { TopMenu } from '../components/TopMenu';
 import { EmojiMenu } from '../components/emoji/EmojiMenu';
 import { ClipboardMenu } from '../ime/clipboard/ClipboardMenu';
+import { store } from '../ServiceExtAbility/ServiceExtAbility';
+import relationalStore from '@ohos.data.relationalStore';
+import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
@@ -45,7 +47,7 @@ struct Index {
   private symbolList: sourceListType[] = symbolSourceListData;
   // 表情包列表
   private emojiList: sourceListType[] = emotionList;
-  private clipBoardList: sourceListType[] = clipBoardItemList
+  private clipBoardList: sourceListType[] = ClipboardManager.ClipboardItemList
 
   @Provide menuType: number = MenuType.NORMAL;
   @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
@@ -71,6 +73,7 @@ struct Index {
     AppStorage.set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE));
   }
 
+
   build() {
     Stack() {
       Column() {
@@ -85,7 +88,7 @@ struct Index {
           } else if(this.menuType == MenuType.EMOJI){
             EmojiMenu({ emojiList: this.emojiList})
           } else if(this.menuType == MenuType.CLIPBOARD){
-            ClipboardMenu({clipBoardItemList: this.clipBoardList})
+            ClipboardMenu({})
           }
         }
         .width('100%')

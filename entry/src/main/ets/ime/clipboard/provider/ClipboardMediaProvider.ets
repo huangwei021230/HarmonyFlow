@@ -11,12 +11,8 @@ import { store } from '../../../ServiceExtAbility/ServiceExtAbility';
 let DB_NAME = 'DB00.db';
 const CLIPBOARD_FILES_TABLE = 'clipboard_files';
 
-let DDL_TBL_CREATE = 'CREATE TABLE IF NOT EXISTS '
-  + CLIPBOARD_FILES_TABLE
-  + ' (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)';
 
 
-let rdbStore: relationalStore.RdbStore = store;
 
 interface Columns {
   mediaUri: string;
@@ -54,20 +50,6 @@ export class ClipboardMediaProvider extends DataShareExtensionAbility{
     ClipboardMediaProvider.Matcher.addURI(ClipboardMediaProvider.AUTHORITY, "clips/videos", ClipboardMediaProvider.VIDEO_CLIPS_TABLE)
 
 
-
-    relationalStore.getRdbStore(this.context, {
-      name: DB_NAME,
-      securityLevel: relationalStore.SecurityLevel.S1
-    }, (err, data) => {
-      console.info(`getRdbStore done, data : ${data}`);
-      rdbStore = data;
-      rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
-        console.error(`executeSql done, error message : ${err}`);
-      });
-      if (callback) {
-        callback();
-      }
-    });
   }
 
 
@@ -82,7 +64,7 @@ export class ClipboardMediaProvider extends DataShareExtensionAbility{
     if (predicates === null || predicates === undefined) {
       return;
     }
-    rdbStore.query(CLIPBOARD_FILES_TABLE, predicates, columns, (err, resultSet) => {
+    store?.query(CLIPBOARD_FILES_TABLE, predicates, columns, (err, resultSet) => {
       if (resultSet !== undefined) {
         console.info(`resultSet.rowCount: ${resultSet.rowCount}`);
       }
@@ -102,7 +84,7 @@ export class ClipboardMediaProvider extends DataShareExtensionAbility{
       console.error('invalid valueBuckets');
       return;
     }
-    rdbStore.insert(CLIPBOARD_FILES_TABLE, valueBucket, (err, ret) => {
+    store?.insert(CLIPBOARD_FILES_TABLE, valueBucket, (err, ret) => {
       console.info(`callback ret: ${ret}`);
       if (callback !== undefined) {
         callback(err, ret);
