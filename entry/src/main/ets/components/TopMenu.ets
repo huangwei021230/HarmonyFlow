@@ -85,6 +85,7 @@ export struct TopMenu {
             // 释放数据集的内存
             resultSet.close();
           })
+
           if(this.menuType == MenuType.CLIPBOARD){
             this.menuType = this.lastMenuType;
           }else{

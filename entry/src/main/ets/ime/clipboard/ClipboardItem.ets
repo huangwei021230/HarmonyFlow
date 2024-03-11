@@ -43,7 +43,7 @@ export struct ClipItem {
     }
     .backgroundColor($r('app.color.key_item_normal'))
     .borderRadius(4)
-    .width(this.keyValue ? (67.68 * this.keyValue.content.length) + "vp" : 'auto')
+    .width(this.keyValue ? (20 * this.keyValue.content.length) + "vp" : 'auto')
     .height('100%')
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .onClick(() => {
@@ -54,5 +54,6 @@ export struct ClipItem {
     .stateStyles({
       normal: normalStyles, pressed: pressedStyles
     })
+    .margin({ top: this.inputStyle.paddingTop })
   }
 }

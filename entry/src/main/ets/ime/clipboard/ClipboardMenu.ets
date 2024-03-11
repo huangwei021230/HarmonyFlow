@@ -29,11 +29,10 @@ export struct ClipboardMenu{
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
 
-
   build(){
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        ForEach(this.clipBoardItemList.slice(0,2), (item: sourceListType) => {
+    Flex({ direction: FlexDirection.Column, wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween,wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
+        ForEach(this.clipBoardItemList, (item: sourceListType) => {
           ClipItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
         }, (item: sourceListType) => item.content)
       }

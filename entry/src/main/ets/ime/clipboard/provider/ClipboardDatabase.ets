@@ -75,17 +75,29 @@ export class ClipboardItem{
 
 
   static init(){
-    const sql = "CREATE TABLE CLIPBOARD_HISTORY_TABLE ( _id INTEGER PRIMARY KEY AUTOINCREMENT, type INTEGER, text TEXT, uri TEXT, creationTimestampMs INTEGER, isPinned INTEGER, mimeTypes TEXT );"
+    const tableName = "CLIPBOARD_HISTORY_TABLE";
+    const checkTableExistsQuery = `SELECT name FROM sqlite_master WHERE type='table' AND name='${tableName}';`;
+
     if(store != undefined) {
-      (store as relationalStore.RdbStore).executeSql(sql, (err) => {
+      (store as relationalStore.RdbStore).executeSql(checkTableExistsQuery, (err, result) => {
         if (err) {
-          console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
+          console.error(`ExecuteSql failed, code is ${err.code}, 114514 message is ${err.message}`);
           return;
         }
-        console.info('create table done.');
-      })
+        // Table does not exist, create it
+        const createTableQuery = "CREATE TABLE CLIPBOARD_HISTORY_TABLE (_id INTEGER PRIMARY KEY AUTOINCREMENT, type INTEGER, text TEXT, uri TEXT, creationTimestampMs INTEGER, isPinned INTEGER, mimeTypes TEXT );";
+        (store as relationalStore.RdbStore).executeSql(createTableQuery, (err) => {
+          if (err) {
+            console.error(`ExecuteSql failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          console.info('Table created successfully.');
+        });
+        console.log("table exists")
+      });
     }
   }
+
 
 
 
