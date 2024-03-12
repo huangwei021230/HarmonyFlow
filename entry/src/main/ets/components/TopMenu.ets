@@ -18,7 +18,7 @@ import { InputHandler } from '../model/KeyboardController';
 import {  MenuType } from '../model/KeyboardKeyData';
 import { store } from '../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore';
-import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
+import { ClipboardManager } from './clipboard/ClipboardManager';
 
 @Preview
 @Component

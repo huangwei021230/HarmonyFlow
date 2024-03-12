@@ -25,8 +25,8 @@ import { emotion_emojis, sourceListType } from '../model/KeyboardKeyData';
 import relationalStore from '@ohos.data.relationalStore';
 import { BusinessError } from '@ohos.base';
 import dataShare from '@ohos.data.dataShare';
-import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
-import { ClipboardItem } from '../ime/clipboard/provider/ClipboardDatabase';
+import { ClipboardManager } from '../components/clipboard/ClipboardManager';
+import { ClipboardItem } from '../components/clipboard/provider/ClipboardDatabase';
 
 export enum AppTheme {
   AUTO = "auto",

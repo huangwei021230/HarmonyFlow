@@ -31,10 +31,10 @@ import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
 import { SymbolMenu } from '../components/SymbolMenu';
 import { TopMenu } from '../components/TopMenu';
 import { EmojiMenu } from '../components/emoji/EmojiMenu';
-import { ClipboardMenu } from '../ime/clipboard/ClipboardMenu';
+import { ClipboardMenu } from '../components/clipboard/ClipboardMenu';
 import { store } from '../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore';
-import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
+import { ClipboardManager } from '../components/clipboard/ClipboardManager';
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';

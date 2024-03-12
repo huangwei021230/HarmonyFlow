@@ -24,7 +24,7 @@ import { GetHardKeyValue } from './HardKeyUtils';
 import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
 import { EmojiKeyboardController } from './emoji/EmojiKeyboardController';
-import { ClipboardManager } from '../ime/clipboard/ClipboardManager';
+import { ClipboardManager } from '../components/clipboard/ClipboardManager';
 
 export interface DeviceSize {
   width: number;
