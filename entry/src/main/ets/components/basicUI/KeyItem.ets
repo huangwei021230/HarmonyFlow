@@ -13,44 +13,42 @@
  * limitations under the License.
  */
 
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { MenuKey, MenuType } from '../model/KeyboardKeyData';
+import { keySourceListType, } from '../../model/KeyboardKeyData';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
+import { InputHandler } from '../../model/KeyboardController';
 
 @Styles function pressedStyles() {
-  .backgroundColor($r('app.color.key_item_gray_pressed'))
+  .backgroundColor($r('app.color.key_item_normal_pressed'))
 }
 
 @Styles function normalStyles() {
-  .backgroundColor($r('app.color.key_item_gray'))
+  .backgroundColor($r('app.color.key_item_normal'))
 }
 
-// 无大小写的灰色组件
+// 无大小写的按键组件
 @Component
-export struct KeyItemGray {
-  private keyValue: string | undefined = undefined;
+export struct KeyItem {
+  private keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
-  @Consume menuType: number;
 
   build() {
-    Stack() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (this.keyValue) {
-        Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
+        Text(this.keyValue.content)
+          .fontSize(this.inputStyle.symbol_fontSize)
+          .fontColor(Color.Black)
       }
     }
-    .backgroundColor($r('app.color.key_item_gray'))
+    .backgroundColor($r('app.color.key_item_normal'))
     .borderRadius(4)
+    .width(this.inputStyle.basicButtonWidth)
+    .height('100%')
+    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .onClick(() => {
-      if (this.keyValue === MenuKey.NUMBER_KEY) {
-        this.menuType = MenuType.NUMBER;
-      } else if (this.keyValue === MenuKey.SPECIAL_KEY) {
-        this.menuType = MenuType.SPECIAL;
-      } else if (this.keyValue === MenuKey.NORMAL_KEY) {
-        this.menuType = MenuType.NORMAL;
+      if (this.keyValue) {
+        InputHandler.getInstance().insertText(this.keyValue.content);
       }
     })
-    .height('100%')
-    .width(this.inputStyle.switchButtonWidth)
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .stateStyles({
       normal: normalStyles, pressed: pressedStyles
     })

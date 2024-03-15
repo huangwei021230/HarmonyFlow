@@ -4,7 +4,7 @@ import { combinedList,
   emotion_emojis,
   keySourceListData, keySourceListType, KeyState,
   sourceListType } from '../../model/KeyboardKeyData';
-import { KeyItem } from '../KeyItem';
+import { KeyItem } from '../basicUI/KeyItem';
 import { EmojiItem } from './EmojiItem';
 import { TipsDialog } from '@ohos.arkui.advanced.Dialog';
 import Log from '../../model/Log';

@@ -14,10 +14,10 @@
  */
 
 import { DeleteItem } from './DeleteItem';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
-import { MenuKey, numberSourceListData, sourceListType } from '../model/KeyboardKeyData';
+import { MenuKey, numberSourceListData, sourceListType } from '../../model/KeyboardKeyData';
 import { SpaceItem } from './SpaceItem';
 import { ReturnItem } from './ReturnItem';
 

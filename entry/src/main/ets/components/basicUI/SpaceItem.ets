@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import { keySourceListType, } from '../model/KeyboardKeyData';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { InputHandler } from '../model/KeyboardController';
+import { InputHandler } from '../../model/KeyboardController';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_normal_pressed'))
@@ -25,32 +24,30 @@ import { InputHandler } from '../model/KeyboardController';
   .backgroundColor($r('app.color.key_item_normal'))
 }
 
-// 无大小写的按键组件
+// 空格组件
 @Component
-export struct KeyItem {
-  private keyValue: keySourceListType | undefined = undefined;
+export struct SpaceItem {
+  private spaceWith: Resource | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      if (this.keyValue) {
-        Text(this.keyValue.content)
+    if (this.spaceWith) {
+      Stack() {
+        Text('space')
           .fontSize(this.inputStyle.symbol_fontSize)
-          .fontColor(Color.Black)
+          .fontColor('black')
       }
+      .backgroundColor($r('app.color.key_item_normal'))
+      .width(this.spaceWith)
+      .borderRadius(4)
+      .height('100%')
+      .onClick(() => {
+        InputHandler.getInstance().insertText(' ');
+      })
+      .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
+      .stateStyles({
+        normal: normalStyles, pressed: pressedStyles
+      })
     }
-    .backgroundColor($r('app.color.key_item_normal'))
-    .borderRadius(4)
-    .width(this.inputStyle.basicButtonWidth)
-    .height('100%')
-    .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
-    .onClick(() => {
-      if (this.keyValue) {
-        InputHandler.getInstance().insertText(this.keyValue.content);
-      }
-    })
-    .stateStyles({
-      normal: normalStyles, pressed: pressedStyles
-    })
   }
 }

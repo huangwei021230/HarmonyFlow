@@ -25,11 +25,11 @@ import {
   combinedList,
   emotionList,
 } from '../model/KeyboardKeyData';
-import { KeyMenu } from '../components/KeyMenu';
-import { NumberMenu } from '../components/NumberMenu';
+import { KeyMenu } from '../components/basicUI/KeyMenu';
+import { NumberMenu } from '../components/basicUI/NumberMenu';
 import { StyleConfiguration, KeyStyle } from '../common/StyleConfiguration';
-import { SymbolMenu } from '../components/SymbolMenu';
-import { TopMenu } from '../components/TopMenu';
+import { SymbolMenu } from '../components/basicUI/SymbolMenu';
+import { TopMenu } from '../components/basicUI/TopMenu';
 import { EmojiMenu } from '../components/emoji/EmojiMenu';
 import { ClipboardMenu } from '../components/clipboard/ClipboardMenu';
 import { store } from '../ServiceExtAbility/ServiceExtAbility';

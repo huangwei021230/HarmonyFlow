@@ -14,11 +14,11 @@
  */
 
 import { DeleteItem } from './DeleteItem';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
 import { ReturnItem } from './ReturnItem';
-import { MenuKey, symbolSourceListData, sourceListType } from '../model/KeyboardKeyData';
+import { MenuKey, symbolSourceListData, sourceListType } from '../../model/KeyboardKeyData';
 import { SpaceItem } from './SpaceItem';
 
 // 符号键盘

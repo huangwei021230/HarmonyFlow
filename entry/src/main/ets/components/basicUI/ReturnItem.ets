@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { InputHandler } from '../../model/KeyboardController';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 
 enum EntryKey {
   Send = 'Send',

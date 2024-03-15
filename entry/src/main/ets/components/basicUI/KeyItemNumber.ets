@@ -14,9 +14,9 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import { InputHandler } from '../model/KeyboardController';
-import { KeyState, keySourceListType } from '../model/KeyboardKeyData';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { InputHandler } from '../../model/KeyboardController';
+import { KeyState, keySourceListType } from '../../model/KeyboardKeyData';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_normal_pressed'))

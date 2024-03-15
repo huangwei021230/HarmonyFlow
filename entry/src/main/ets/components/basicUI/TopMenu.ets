@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
-import { InputHandler } from '../model/KeyboardController';
-import {  MenuType } from '../model/KeyboardKeyData';
-import { store } from '../ServiceExtAbility/ServiceExtAbility';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
+import { InputHandler } from '../../model/KeyboardController';
+import {  MenuType } from '../../model/KeyboardKeyData';
+import { store } from '../../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore';
-import { ClipboardManager } from './clipboard/ClipboardManager';
+import { ClipboardManager } from '../clipboard/ClipboardManager';
 
 @Preview
 @Component

@@ -14,8 +14,8 @@
  */
 
 import { DeleteItem } from './DeleteItem';
-import { MenuKey, KeyState, keySourceListType, keySourceListData } from '../model/KeyboardKeyData';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { MenuKey, KeyState, keySourceListType, keySourceListData } from '../../model/KeyboardKeyData';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 import { KeyItem } from './KeyItem';
 import { KeyItemGray } from './KeyItemGray';
 import { KeyItemNumber } from './KeyItemNumber';

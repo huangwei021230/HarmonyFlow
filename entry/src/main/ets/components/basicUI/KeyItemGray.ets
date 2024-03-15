@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { InputHandler } from '../model/KeyboardController';
-import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
+import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
+import { MenuKey, MenuType } from '../../model/KeyboardKeyData';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))
@@ -24,24 +24,32 @@ import { KeyStyle, StyleConfiguration } from '../common/StyleConfiguration';
   .backgroundColor($r('app.color.key_item_gray'))
 }
 
-// 删除组件
+// 无大小写的灰色组件
 @Component
-export struct DeleteItem {
+export struct KeyItemGray {
+  private keyValue: string | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
+  @Consume menuType: number;
 
   build() {
     Stack() {
-      Image($rawfile('delete.svg'))
-        .width(this.inputStyle.featurePicSize)
-        .height(this.inputStyle.featurePicSize)
+      if (this.keyValue) {
+        Text(this.keyValue).fontSize(this.inputStyle.switchNumberFontSize).fontColor('black')
+      }
     }
     .backgroundColor($r('app.color.key_item_gray'))
     .borderRadius(4)
     .onClick(() => {
-      InputHandler.getInstance().deleteForward(1);
+      if (this.keyValue === MenuKey.NUMBER_KEY) {
+        this.menuType = MenuType.NUMBER;
+      } else if (this.keyValue === MenuKey.SPECIAL_KEY) {
+        this.menuType = MenuType.SPECIAL;
+      } else if (this.keyValue === MenuKey.NORMAL_KEY) {
+        this.menuType = MenuType.NORMAL;
+      }
     })
-    .width(this.inputStyle.switchButtonWidth)
     .height('100%')
+    .width(this.inputStyle.switchButtonWidth)
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .stateStyles({
       normal: normalStyles, pressed: pressedStyles
