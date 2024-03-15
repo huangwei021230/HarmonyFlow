@@ -9,7 +9,7 @@ import {
 import { TipsDialog } from '@ohos.arkui.advanced.Dialog';
 import Log from '../../model/Log';
 import hilog from '@ohos.hilog';
-import { ClipItem } from './ClipboardItem';
+import { ClipItem } from './ClipItem';
 import { ClipboardManager } from './ClipboardManager';
 
 @Styles function pressedStyles() {
