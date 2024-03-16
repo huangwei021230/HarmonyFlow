@@ -40,6 +40,7 @@ export class OperatorCheck{
   }
 
   public pushText(text: string){
+    console.log("Operator: Text")
     if(this.isDigit(text)){
       OperatorCheck.getInstance().operatorStack.push(new Operator(OperatorType.number, text));
     }else if(this.isCharacter(text)){
@@ -49,6 +50,7 @@ export class OperatorCheck{
   }
 
   public pushBackSpace(){
+    console.log("Operator: backSpace")
     OperatorCheck.getInstance().operatorStack.push(new Operator(OperatorType.backSpace, "backSpace"));
     this.stackCheck();
   }

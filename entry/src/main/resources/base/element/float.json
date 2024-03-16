@@ -5,6 +5,10 @@
       "value": "112vp"
     },
     {
+      "name":"bigger_size_button_width",
+      "value": "40vp"
+    },
+    {
       "name": "landSpace_basic_button_height",
       "value": "66vp"
     },

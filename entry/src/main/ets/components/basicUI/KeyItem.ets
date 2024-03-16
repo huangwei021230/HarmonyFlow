@@ -30,7 +30,7 @@ import { InputHandler } from '../../model/KeyboardController';
 export struct KeyItem {
   private keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
-
+  private inputWidth: string | undefined = undefined;
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (this.keyValue) {
@@ -52,5 +52,10 @@ export struct KeyItem {
     .stateStyles({
       normal: normalStyles, pressed: pressedStyles
     })
+  }
+
+  public setWidth(){
+    this.inputStyle.basicButtonWidth = $r("app.float.bigger_size_button_width");
+    this.build();
   }
 }
