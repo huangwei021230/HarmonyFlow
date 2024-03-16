@@ -6,6 +6,7 @@ import uri from '@ohos.uri';
 /**
  * Backend helper object which is used by [ClipboardMediaProvider] to serve content.
  */
+
 class ClipboardFileStorage{
   clipboardFilesDir: fs.File
   constructor(context: Context) {

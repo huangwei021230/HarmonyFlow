@@ -30,14 +30,15 @@ export namespace KeyData {
   export const GROUP_KANA: number = 97;
 }
 export abstract class CaseSelector implements AbstractKeyData {
-  lower: AbstractKeyData;
-  upper: AbstractKeyData;
   compute(evaluator: ComputingEvaluator): KeyData {
-    return (if (evaluator.state.isUppercase) { upper } else { lower }).compute(evaluator)
+    throw new Error('Method not implemented.')
   }
 
   asString(isForDisplay: Boolean): String {
-    return ""
+    throw new Error('Method not implemented.')
   }
+
+  lower: AbstractKeyData;
+  upper: AbstractKeyData;
 }
 

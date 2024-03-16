@@ -25,6 +25,7 @@ import { KeyCode } from '@ohos.multimodalInput.keyCode';
 import { StyleConfiguration } from '../common/StyleConfiguration';
 import { EmojiKeyboardController } from './emoji/EmojiKeyboardController';
 import { ClipboardManager } from '../components/clipboard/ClipboardManager';
+import { OperatorCheck } from './modelChecker/OperatorChecker';
 
 export interface DeviceSize {
   width: number;
@@ -70,7 +71,7 @@ export class InputHandler {
   private selectInfo: string = '';
   private textInfo: string = '';
   private inputInfo: string = '';
-
+  private operatorCheck: OperatorCheck = OperatorCheck.getInstance();
   private constructor() {
     this.mKbController = undefined;
     this.mTextInputClient = undefined;
@@ -136,6 +137,8 @@ export class InputHandler {
   public deleteForward(length: number): void {
     this.addLog('deleteForward');
     if (this.mTextInputClient !== undefined) {
+      // 向操作栈中压入backSpace操作
+      this.operatorCheck.pushBackSpace();
       this.mTextInputClient.deleteForward(length);
     } else {
       this.addLog('deleteForward this.mTextInputClient is undefined');
@@ -149,6 +152,8 @@ export class InputHandler {
   public insertText(text: string): void {
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
+      // 向操作栈中压入操作
+      this.operatorCheck.pushText(text);
       this.mTextInputClient.insertText(text);
     } else {
       this.addLog('insertText this.mTextInputClient is undefined');
@@ -165,7 +170,7 @@ export class InputHandler {
   // 移动光标
   public moveCursor(direction: inputMethodEngine.Direction): void {
     if (this.mTextInputClient !== undefined) {
-      this.addLog(`moveCursor direction = ${direction}`);
+      this.addLog(`moveCursor direction = $ {direction}`);
       this.mTextInputClient.moveCursor(direction);
     } else {
       this.addLog('moveCursor this.mTextInputClient is undefined');
