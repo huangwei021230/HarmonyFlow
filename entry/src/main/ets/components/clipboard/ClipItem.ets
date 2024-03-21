@@ -31,8 +31,8 @@ import font from '@ohos.font';
 export struct ClipItem {
   private keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
-
-
+  @State WIDTH: number = 0;
+  @State HEIGHT: number = 0;
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (this.keyValue) {
@@ -43,8 +43,8 @@ export struct ClipItem {
     }
     .backgroundColor($r('app.color.key_item_normal'))
     .borderRadius(4)
-    .width(this.keyValue ? (20 * this.keyValue.content.length) + "vp" : 'auto')
-    .height('100%')
+    .width(this.WIDTH + "vp")
+    .height(this.HEIGHT * 100 + "%")
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
     .onClick(() => {
       if (this.keyValue) {

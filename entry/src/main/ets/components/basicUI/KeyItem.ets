@@ -55,7 +55,7 @@ export struct KeyItem {
   }
 
   public setWidth(){
-    this.inputStyle.basicButtonWidth = $r("app.float.bigger_size_button_width");
+
     this.build();
   }
 }

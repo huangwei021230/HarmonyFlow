@@ -59,8 +59,7 @@ export class OperatorCheck{
     if(OperatorCheck.getInstance().operatorStack.size() > this.N){
       OperatorCheck.getInstance().operatorStack.pop();
     }
+
   }
-
-
 
 }

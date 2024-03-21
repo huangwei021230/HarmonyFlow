@@ -11,6 +11,7 @@ import Log from '../../model/Log';
 import hilog from '@ohos.hilog';
 import { ClipItem } from './ClipItem';
 import { ClipboardManager } from './ClipboardManager';
+import display from '@ohos.display';
 
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_gray_pressed'))
@@ -28,18 +29,31 @@ export struct ClipboardMenu{
   @StorageLink('ClipboardItemList') private clipBoardItemList: sourceListType[] = ClipboardManager.ClipboardItemList
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
+  private screenWidth: number = px2vp(display.getDefaultDisplaySync().width);
+  scroller: Scroller = new Scroller()
 
-  build(){
-    Flex({ direction: FlexDirection.Column, wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
-      Flex({ justifyContent: FlexAlign.SpaceBetween,wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
-        ForEach(this.clipBoardItemList, (item: sourceListType) => {
-          ClipItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
-        }, (item: sourceListType) => item.content)
+  build() {
+    Scroll(this.scroller) {
+      Stack() {
+        Flex({ direction: FlexDirection.Column, wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
+          Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
+            ForEach(this.clipBoardItemList, (item: sourceListType) => {
+              ClipItem({
+                keyValue: { content: item.content, title: item.content, upperContent: item.content },
+                WIDTH: item.content.length * 10 > this.screenWidth ? this.screenWidth : item.content.length * 10,
+                HEIGHT: item.content.length * 10 >= this.screenWidth ? item.content.length * 10 / this.screenWidth : 1
+              })
+            }, (item: sourceListType) => item.content)
+          }
+          .width('100%')
+          .height(this.inputStyle.basicButtonHeight)
+          .margin({ top: this.inputStyle.paddingTop, left: this.inputStyle.paddingLeftRight})
+        }
       }
-      .width('100%')
-      .height(this.inputStyle.basicButtonHeight)
-      .margin({ top: this.inputStyle.paddingTop })
     }
+    .scrollable(ScrollDirection.Vertical)
+    .width("100%")
+    .height("100%")
   }
 
 }

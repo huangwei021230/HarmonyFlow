@@ -32,7 +32,8 @@ export struct KeyItemNumber {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume keyState: number;
   private keyValue: keySourceListType | undefined = undefined;
-
+  @State WIDTH: number = 0;
+  @State HEIGHT: number = 0;
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (AppStorage.get<boolean>('isLandscape') && deviceInfo.deviceType === 'phone' && this.keyValue) {
@@ -85,5 +86,10 @@ export struct KeyItemNumber {
     .stateStyles({
       normal: normalStyles, pressed: pressedStyles
     })
+  }
+
+  public setWidth(){
+    this.inputStyle.basicButtonWidth = $r("app.float.bigger_size_button_width");
+    this.build();
   }
 }

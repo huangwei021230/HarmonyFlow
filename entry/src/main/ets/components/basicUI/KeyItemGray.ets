@@ -30,7 +30,8 @@ export struct KeyItemGray {
   private keyValue: string | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
-
+  @State WIDTH: number = 0;
+  @State HEIGHT: number = 0;
   build() {
     Stack() {
       if (this.keyValue) {
