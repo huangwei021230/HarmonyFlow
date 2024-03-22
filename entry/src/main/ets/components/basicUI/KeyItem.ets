@@ -31,6 +31,7 @@ export struct KeyItem {
   private keyValue: keySourceListType | undefined = undefined;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   private inputWidth: string | undefined = undefined;
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (this.keyValue) {
@@ -56,6 +57,5 @@ export struct KeyItem {
 
   public setWidth(){
 
-    this.build();
   }
 }
