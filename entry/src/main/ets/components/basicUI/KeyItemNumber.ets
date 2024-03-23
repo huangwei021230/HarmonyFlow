@@ -31,7 +31,7 @@ import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
 export struct KeyItemNumber {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume keyState: number;
-  private keyValue: keySourceListType | undefined = undefined;
+  @State private keyValue: keySourceListType | undefined = undefined;
   @State WIDTH: number = 36;
 
   build() {

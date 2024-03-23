@@ -1,14 +1,15 @@
 import { Operator, OperatorType } from './Operator';
 import HashMap from '@ohos.util.HashMap';
-import { keySourceListData } from '../KeyboardKeyData';
-import Queue from '@ohos.util.Queue';
+import { keySourceListData, keySourceListType } from '../KeyboardKeyData';
 import Deque from '@ohos.util.Deque';
+import { Index } from '../../pages/Index';
 
 
 export class OperatorCheck{
   private N: number = 10;
   private static instance: OperatorCheck;
   operatorQueue: Deque<Operator>; // 改为队列
+
   private constructor() {
     this.operatorQueue = new Deque<Operator>(); // 改为队列
   }
@@ -52,13 +53,15 @@ export class OperatorCheck{
     if (OperatorCheck.getInstance().operatorQueue.getLast()?.type == OperatorType.backSpace) {
       console.log("queue check begin")
       let nowChar = this.getMostFrequentChar();
+      // TODO: 传值给对应组件
       for (let index = 0; index < keySourceListData.length; index++) {
         if (keySourceListData[index].content == nowChar) {
-
           keySourceListData[index].width *= 1.5;
           console.log("514114: " + keySourceListData[index].width);
         }
       }
+
+
     }
   }
 

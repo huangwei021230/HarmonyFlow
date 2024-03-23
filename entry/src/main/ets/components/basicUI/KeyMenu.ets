@@ -36,7 +36,7 @@ export struct KeyMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   @Provide keyState: number = KeyState.LOWER_CASE;
-  @State private keyList: keySourceListType[] = keySourceListData;
+  @State public keyList: keySourceListType[] = keySourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
 
@@ -117,6 +117,10 @@ export struct KeyMenu {
       right: this.inputStyle.paddingLeftRight
     })
   }
+  public EnlargeWidthOfButton(text: string){
+    for (let index = 0; index < this.keyList.length; index++) {
 
+    }
+  }
 
 }

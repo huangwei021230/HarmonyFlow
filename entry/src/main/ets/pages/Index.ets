@@ -33,7 +33,7 @@ import { TopMenu } from '../components/basicUI/TopMenu';
 import { EmojiMenu } from '../components/emoji/EmojiMenu';
 import { ClipboardMenu } from '../components/clipboard/ClipboardMenu';
 import { store } from '../ServiceExtAbility/ServiceExtAbility';
-import relationalStore from '@ohos.data.relationalStore';
+import relationalStore from '@ohos.data.relationalStore'  ;
 import { ClipboardManager } from '../components/clipboard/ClipboardManager';
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
@@ -41,19 +41,20 @@ const TAG: string = 'index->';
 
 @Entry
 @Component
-struct Index {
-  private keyList: keySourceListType[] = keySourceListData;
-  private numberList: sourceListType[] = numberSourceListData;
-  private symbolList: sourceListType[] = symbolSourceListData;
+export struct Index {
+  @StorageLink("keyList") keyList: keySourceListType[] = keySourceListData;
+  @State private numberList: sourceListType[] = numberSourceListData;
+  @State private symbolList: sourceListType[] = symbolSourceListData;
   // 表情包列表
-  private emojiList: sourceListType[] = emotionList;
-  private clipBoardList: sourceListType[] = ClipboardManager.ClipboardItemList
+  @State private emojiList: sourceListType[] = emotionList;
+  @State private clipBoardList: sourceListType[] = ClipboardManager.ClipboardItemList
 
   @Provide menuType: number = MenuType.NORMAL;
   @StorageLink('inputPattern') @Watch('inputPatternChange') inputPattern: InputType = InputType.Normal
   @StorageLink('isLandscape') @Watch('change') isLandscape: boolean = false;
   @StorageLink('isRkDevice') isRkDevice: boolean = true;
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE);
+
 
   onBackPress(): boolean {
     Log.showInfo(TAG, 'kikaInput onBackPress');
@@ -72,7 +73,6 @@ struct Index {
   change(): void {
     AppStorage.set('inputStyle', StyleConfiguration.getInputStyle(this.isLandscape, this.isRkDevice, DEVICE_TYPE));
   }
-
 
   build() {
     Stack() {
