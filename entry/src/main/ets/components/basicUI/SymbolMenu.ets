@@ -20,6 +20,7 @@ import { KeyItemGray } from './KeyItemGray';
 import { ReturnItem } from './ReturnItem';
 import { MenuKey, symbolSourceListData, sourceListType } from '../../model/KeyboardKeyData';
 import { SpaceItem } from './SpaceItem';
+import { WindowMode } from '@ohos.UiTest';
 
 // 符号键盘
 @Component
@@ -34,7 +35,7 @@ export struct SymbolMenu {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.symbolList.slice(0, 10), (item: sourceListType) => {
-          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 } })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
@@ -43,7 +44,7 @@ export struct SymbolMenu {
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.symbolList.slice(10, 20), (item: sourceListType) => {
-          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 } })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
@@ -53,7 +54,7 @@ export struct SymbolMenu {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         KeyItemGray({ keyValue: MenuKey.NUMBER_KEY })
         ForEach(this.symbolList.slice(20), (item: sourceListType) => {
-          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 } })
         }, (item: sourceListType) => item.content)
         DeleteItem()
       }
@@ -63,10 +64,10 @@ export struct SymbolMenu {
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         KeyItemGray({ keyValue: MenuKey.NORMAL_KEY })
-        KeyItem({ keyValue: { content: '<', title: '<', upperContent: '<' } })
-        KeyItem({ keyValue: { content: '>', title: '>', upperContent: '>' } })
+        KeyItem({ keyValue: { content: '<', title: '<', upperContent: '<', width: 36 } })
+        KeyItem({ keyValue: { content: '>', title: '>', upperContent: '>', width: 36 } })
         SpaceItem({ spaceWith: this.spaceWidth })
-        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
+        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.', width: 36 } })
         ReturnItem({ returnWidth: this.returnWidth })
       }
       .width('100%')

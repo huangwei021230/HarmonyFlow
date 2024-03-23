@@ -36,7 +36,8 @@ export enum MenuKey {
 export interface keySourceListType {
   title: string,
   content: string,
-  upperContent: string
+  upperContent: string,
+  width: number;
 }
 
 export interface sourceListType {
@@ -47,134 +48,161 @@ export let keySourceListData: keySourceListType[] = [
   {
     title: '1',
     content: 'q',
-    upperContent: 'Q'
+    upperContent: 'Q',
+    width: 36
   },
   {
     title: '2',
     content: 'w',
-    upperContent: 'W'
+    upperContent: 'W',
+    width: 36
   },
   {
     title: '3',
     content: 'e',
-    upperContent: 'E'
+    upperContent: 'E',
+    width: 36
   },
   {
     title: '4',
     content: 'r',
-    upperContent: 'R'
+    upperContent: 'R',
+    width: 36
   },
   {
     title: '5',
     content: 't',
-    upperContent: 'T'
+    upperContent: 'T',
+    width: 36
   },
   {
     title: '6',
     content: 'y',
-    upperContent: 'Y'
+    upperContent: 'Y',
+    width: 36
   },
   {
     title: '7',
     content: 'u',
-    upperContent: 'U'
+    upperContent: 'U',
+    width: 36
   },
   {
     title: '8',
     content: 'i',
-    upperContent: 'I'
+    upperContent: 'I',
+    width: 36
   },
   {
     title: '9',
     content: 'o',
-    upperContent: 'O'
+    upperContent: 'O',
+    width: 36
   },
   {
     title: '0',
     content: 'p',
-    upperContent: 'P'
+    upperContent: 'P',
+    width: 36
   },
   {
     title: String.fromCharCode(126),
     content: 'a',
-    upperContent: 'A'
+    upperContent: 'A',
+    width: 36
   },
   {
     title: String.fromCharCode(33),
     content: 's',
-    upperContent: 'S'
+    upperContent: 'S',
+    width: 36
   },
   {
     title: '@',
     content: 'd',
-    upperContent: 'D'
+    upperContent: 'D',
+    width: 36
   },
   {
     title: String.fromCharCode(35),
     content: 'f',
-    upperContent: 'F'
+    upperContent: 'F',
+    width: 36
   },
   {
     title: '%',
     content: 'g',
-    upperContent: 'G'
+    upperContent: 'G',
+    width: 36
   },
   {
     title: String.fromCharCode(39),
     content: 'h',
-    upperContent: 'H'
+    upperContent: 'H',
+    width: 36
   },
   {
     title: '&',
     content: 'j',
-    upperContent: 'J'
+    upperContent: 'J',
+    width: 36
   },
   {
     title: '*',
     content: 'k',
-    upperContent: 'K'
+    upperContent: 'K',
+    width: 36
   },
   {
     title: '?',
     content: 'l',
-    upperContent: 'L'
+    upperContent: 'L',
+    width: 36
   },
   {
     title: String.fromCharCode(72),
     content: 'z',
-    upperContent: 'Z'
+    upperContent: 'Z',
+    width: 36
   },
   {
     title: String.fromCharCode(73),
     content: 'x',
-    upperContent: 'X'
+    upperContent: 'X',
+    width: 36
   },
   {
     title: String.fromCharCode(175),
     content: 'c',
-    upperContent: 'C'
+    upperContent: 'C',
+    width: 36
   },
   {
     title: String.fromCharCode(95),
     content: 'v',
-    upperContent: 'V'
+    upperContent: 'V',
+    width: 36
   },
   {
     title: String.fromCharCode(58),
     content: 'b',
-    upperContent: 'B'
+    upperContent: 'B',
+    width: 36
   },
   {
     title: String.fromCharCode(59),
     content: 'n',
-    upperContent: 'N'
+    upperContent: 'N',
+    width: 36
   },
   {
     title: String.fromCharCode(47),
     content: 'm',
-    upperContent: 'M'
+    upperContent: 'M',
+    width: 36
   }
 ]
+
 
 export let numberSourceListData: sourceListType[] = [
   {

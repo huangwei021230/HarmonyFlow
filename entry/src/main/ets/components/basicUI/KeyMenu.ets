@@ -36,7 +36,7 @@ export struct KeyMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
   @Provide keyState: number = KeyState.LOWER_CASE;
-  private keyList: keySourceListType[] = keySourceListData;
+  @State private keyList: keySourceListType[] = keySourceListData;
   private spaceWidth: Resource = this.inputStyle.spaceButtonWidth_1;
   private returnWidth: Resource = this.inputStyle.returnButtonWidthType_1;
 
@@ -44,7 +44,7 @@ export struct KeyMenu {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.keyList.slice(0, 10), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item })
+          KeyItemNumber({ keyValue: item, WIDTH: item.width})
         }, (item: keySourceListType) => item.content)
       }
       .width('100%')
@@ -56,7 +56,7 @@ export struct KeyMenu {
         }.width('4%').height(0)
 
         ForEach(this.keyList.slice(10, 19), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item })
+          KeyItemNumber({ keyValue: item, WIDTH: item.width})
         }, (item: keySourceListType) => item.content)
         Stack() {
         }.width('4%').height(0)
@@ -90,7 +90,7 @@ export struct KeyMenu {
         })
 
         ForEach(this.keyList.slice(19), (item: keySourceListType) => {
-          KeyItemNumber({ keyValue: item })
+          KeyItemNumber({ keyValue: item, WIDTH: item.width})
         }, (item: keySourceListType) => item.content)
         DeleteItem()
       }
@@ -100,9 +100,9 @@ export struct KeyMenu {
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         KeyItemGray({ keyValue: MenuKey.NUMBER_KEY })
-        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
+        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',', width: 36} })
         SpaceItem({ spaceWith: this.spaceWidth })
-        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
+        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.', width: 36} })
         ReturnItem({ returnWidth: this.returnWidth })
       }
       .width('100%')

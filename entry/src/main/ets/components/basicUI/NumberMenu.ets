@@ -34,7 +34,7 @@ export struct NumberMenu {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.numberList.slice(0, 10), (item: sourceListType) => {
-          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36} })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
@@ -43,7 +43,7 @@ export struct NumberMenu {
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.numberList.slice(10, 20), (item: sourceListType) => {
-          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 } })
         }, (item: sourceListType) => item.content)
       }
       .width('100%')
@@ -53,7 +53,7 @@ export struct NumberMenu {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         KeyItemGray({ keyValue: MenuKey.SPECIAL_KEY })
         ForEach(this.numberList.slice(20), (item: sourceListType) => {
-          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          KeyItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 } })
         }, (item: sourceListType) => item.content)
         DeleteItem()
       }
@@ -63,11 +63,11 @@ export struct NumberMenu {
 
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         KeyItemGray({ keyValue: MenuKey.NORMAL_KEY })
-        KeyItem({ keyValue: { content: '_', title: '_', upperContent: '_' } })
-        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',' } })
+        KeyItem({ keyValue: { content: '_', title: '_', upperContent: '_', width: 36 } })
+        KeyItem({ keyValue: { content: ',', title: ',', upperContent: ',', width: 36 } })
 
         SpaceItem({ spaceWith: this.spaceWidth })
-        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.' } })
+        KeyItem({ keyValue: { content: '.', title: '.', upperContent: '.', width: 36 } })
         ReturnItem({ returnWidth: this.returnWidth })
       }
       .width('100%')

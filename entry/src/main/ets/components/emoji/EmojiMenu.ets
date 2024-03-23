@@ -32,7 +32,7 @@ export struct EmojiMenu{
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
         ForEach(this.emojiList.slice(0,10), (item: sourceListType) => {
-          EmojiItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content } })
+          EmojiItem({ keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 } })
         }, (item: sourceListType) => item.content)
 
       }

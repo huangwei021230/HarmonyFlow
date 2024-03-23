@@ -39,7 +39,7 @@ export struct ClipboardMenu{
           Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap, alignItems: ItemAlign.Center }) {
             ForEach(this.clipBoardItemList, (item: sourceListType) => {
               ClipItem({
-                keyValue: { content: item.content, title: item.content, upperContent: item.content },
+                keyValue: { content: item.content, title: item.content, upperContent: item.content, width: 36 },
                 WIDTH: item.content.length * 10 > this.screenWidth ? this.screenWidth : item.content.length * 10,
                 HEIGHT: item.content.length * 10 >= this.screenWidth ? item.content.length * 10 / this.screenWidth : 1
               })
