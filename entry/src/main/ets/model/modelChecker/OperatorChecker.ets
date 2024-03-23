@@ -7,11 +7,14 @@ import { Index } from '../../pages/Index';
 
 export class OperatorCheck{
   private N: number = 10;
+  private enlargeN: number = 3;
   private static instance: OperatorCheck;
   operatorQueue: Deque<Operator>; // 改为队列
+  enlargeItemQueue: Deque<string>; // 放大字符的deque
 
   private constructor() {
     this.operatorQueue = new Deque<Operator>(); // 改为队列
+    this.enlargeItemQueue = new Deque<string>();
   }
   public static getInstance(): OperatorCheck{
     if(!OperatorCheck.instance){
@@ -56,13 +59,21 @@ export class OperatorCheck{
       // TODO: 传值给对应组件
       for (let index = 0; index < keySourceListData.length; index++) {
         if (keySourceListData[index].content == nowChar) {
-          keySourceListData[index].width *= 1.5;
-          console.log("514114: " + keySourceListData[index].width);
+          if(keySourceListData[index].width == 51) break;
+          keySourceListData[index].width  = 51;
+          this.enlargeItemQueue.insertEnd(keySourceListData[index].content);
+          this.enlargeItemCheck();
+          break;
         }
       }
-
-
     }
+  }
+
+  private enlargeItemCheck(){
+    if(OperatorCheck.getInstance().enlargeItemQueue.length > this.enlargeN){
+      OperatorCheck.getInstance().enlargeItemQueue.popFirst();
+    }
+    console.log("114514: " + OperatorCheck.getInstance().enlargeItemQueue.getLast());
   }
 
   private getMostFrequentChar(){
