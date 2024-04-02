@@ -3,6 +3,11 @@
   "buildOption": {
     "arkOptions": {
       // "apPath": "./modules.ap"  /* Profile used for profile-guided optimization (PGO), a compiler optimization technique to improve app runtime performance. */
+    },
+    "externalNativeOptions": {
+      "path": "./src/main/cpp/CMakeLists.txt",
+      "arguments": "",
+      "cppFlags": "",
     }
   },
   "buildOptionSet": [
