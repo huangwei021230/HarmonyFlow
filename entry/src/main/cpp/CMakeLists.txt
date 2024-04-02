@@ -18,7 +18,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.c")
 
-#if (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
+if (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
     add_library(optnative SHARED ${SOURCES})
     # add_executable(optnative ${SOURCES})
     target_link_libraries(optnative PUBLIC libace_napi.z.so)
@@ -31,6 +31,7 @@ file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.c")
     set(TORCH_GLOBAL_DEPS_LIBRARY "${LINK_DIRS}/libtorch_global_deps.so")
     # utf8proc lib
     set(UTF8PROC_LIBRARY "${LINK_DIRS}/libutf8proc.so")
+
 
     message(PYTORCH_LIBRARY "####PYTORCH_LIBRARY####: ${PYTORCH_LIBRARY}")
     message(C10_LIBRARY "####C10_LIBRARY####: ${C10_LIBRARY}")
@@ -47,4 +48,4 @@ file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.c")
     #target_link_libraries(optnative PUBLIC rawfile.z)
 
 
-#endif()
+endif()
