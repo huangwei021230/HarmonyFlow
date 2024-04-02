@@ -38,13 +38,38 @@ export class OperatorCheck{
     // } else {
     // }
     OperatorCheck.getInstance().operatorQueue.insertEnd(new Operator(OperatorType.character, text));
-    this.queueCheck(); // 修改调用的方法名
+    // this.queueCheck(); // 修改调用的方法名
+    this.Check() // for test
   }
 
   public pushBackSpace(){
     console.log("Operator: backSpace")
     OperatorCheck.getInstance().operatorQueue.insertEnd(new Operator(OperatorType.backSpace, "backSpace"));
-    this.queueCheck(); // 修改调用的方法名
+    // this.queueCheck(); // 修改调用的方法名
+    this.Check() // for test
+  }
+
+  private Check(){
+    if (OperatorCheck.getInstance().operatorQueue.length > this.N) {
+      OperatorCheck.getInstance().operatorQueue.popFirst(); // 修改为出队操作
+    }
+
+    if(OperatorCheck.getInstance().operatorQueue.length >= 2 && OperatorCheck.getInstance().operatorQueue.getLast()?.type == OperatorType.character){
+      let ch: Operator = OperatorCheck.getInstance().operatorQueue.popLast();
+      if(OperatorCheck.getInstance().operatorQueue.getLast()?.type == OperatorType.backSpace){
+        for (let index = 0; index < keySourceListData.length; index++) {
+          if (keySourceListData[index].content == ch.text) {
+            if(keySourceListData[index].width == 51) break;
+            // 放大
+            keySourceListData[index].width  = 51;
+
+            this.enlargeItemQueue.insertEnd(keySourceListData[index].content);
+            this.enlargeItemCheck();
+            break;
+          }
+        }
+      }
+    }
   }
 
   private queueCheck() {
@@ -60,7 +85,9 @@ export class OperatorCheck{
       for (let index = 0; index < keySourceListData.length; index++) {
         if (keySourceListData[index].content == nowChar) {
           if(keySourceListData[index].width == 51) break;
+          // 放大
           keySourceListData[index].width  = 51;
+
           this.enlargeItemQueue.insertEnd(keySourceListData[index].content);
           this.enlargeItemCheck();
           break;
@@ -71,7 +98,17 @@ export class OperatorCheck{
 
   private enlargeItemCheck(){
     if(OperatorCheck.getInstance().enlargeItemQueue.length > this.enlargeN){
+      let nowChar = OperatorCheck.getInstance().enlargeItemQueue.getFirst();
       OperatorCheck.getInstance().enlargeItemQueue.popFirst();
+
+      // 缩小
+      for (let index = 0; index < keySourceListData.length; index++) {
+        if (keySourceListData[index].content == nowChar) {
+          if(keySourceListData[index].width == 36) break;
+          keySourceListData[index].width  = 36;
+          break;
+        }
+      }
     }
     console.log("114514: " + OperatorCheck.getInstance().enlargeItemQueue.getLast());
   }
