@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor slice_inverse_symint(const at::Tensor & self, const at::Tensor & src, int64_t dim=0, c10::optional<c10::SymInt> start=c10::nullopt, c10::optional<c10::SymInt> end=c10::nullopt, c10::SymInt step=1);
+TORCH_API at::Tensor slice_inverse_symint(const at::Tensor & self, const at::Tensor & src, int64_t dim=0, ::std::optional<c10::SymInt> start=::std::nullopt, ::std::optional<c10::SymInt> end=::std::nullopt, c10::SymInt step=1);
 } // namespace native
 } // namespace at

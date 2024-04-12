@@ -20,7 +20,7 @@ namespace meta {
 struct TORCH_API structured_linalg_vector_norm : public at::impl::MetaBase {
     
     
-    void meta(const at::Tensor & self, const at::Scalar & ord, at::OptionalIntArrayRef dim, bool keepdim, c10::optional<at::ScalarType> dtype);
+    void meta(const at::Tensor & self, const at::Scalar & ord, at::OptionalIntArrayRef dim, bool keepdim, ::std::optional<at::ScalarType> dtype);
 };
 
 } // namespace native

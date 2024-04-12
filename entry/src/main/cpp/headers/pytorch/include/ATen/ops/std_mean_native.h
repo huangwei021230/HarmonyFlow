@@ -18,9 +18,9 @@ namespace at {
 namespace native {
 TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, bool unbiased=true);
 TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, at::OptionalIntArrayRef dim, bool unbiased=true, bool keepdim=false);
-TORCH_API ::std::tuple<at::Tensor &,at::Tensor &> std_mean_correction_out(const at::Tensor & self, at::OptionalIntArrayRef dim, const c10::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out0, at::Tensor & out1);
-TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, at::OptionalIntArrayRef dim=c10::nullopt, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false);
+TORCH_API ::std::tuple<at::Tensor &,at::Tensor &> std_mean_correction_out(const at::Tensor & self, at::OptionalIntArrayRef dim, const ::std::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out0, at::Tensor & out1);
+TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, at::OptionalIntArrayRef dim=::std::nullopt, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false);
 TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, at::DimnameList dim, bool unbiased=true, bool keepdim=false);
-TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false);
+TORCH_API ::std::tuple<at::Tensor,at::Tensor> std_mean(const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false);
 } // namespace native
 } // namespace at

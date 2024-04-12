@@ -23,11 +23,11 @@ namespace at {
 
 
 // aten::_make_dep_token(*, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None, MemoryFormat? memory_format=None) -> Tensor
-inline at::Tensor _make_dep_token(at::TensorOptions options={}, c10::optional<at::MemoryFormat> memory_format=c10::nullopt) {
+inline at::Tensor _make_dep_token(at::TensorOptions options={}, ::std::optional<at::MemoryFormat> memory_format=::std::nullopt) {
     return at::_ops::_make_dep_token::call(c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt(), c10::impl::check_tensor_options_and_extract_memory_format(options, memory_format));
 }
 // aten::_make_dep_token(*, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None, MemoryFormat? memory_format=None) -> Tensor
-inline at::Tensor _make_dep_token(c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory, c10::optional<at::MemoryFormat> memory_format) {
+inline at::Tensor _make_dep_token(::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory, ::std::optional<at::MemoryFormat> memory_format) {
     return at::_ops::_make_dep_token::call(dtype, layout, device, pin_memory, memory_format);
 }
 

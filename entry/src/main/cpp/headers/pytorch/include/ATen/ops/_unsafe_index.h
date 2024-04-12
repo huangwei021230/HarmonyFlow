@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_unsafe_index.Tensor(Tensor self, Tensor?[] indices) -> Tensor
-inline at::Tensor _unsafe_index(const at::Tensor & self, const c10::List<c10::optional<at::Tensor>> & indices) {
+inline at::Tensor _unsafe_index(const at::Tensor & self, const c10::List<::std::optional<at::Tensor>> & indices) {
     return at::_ops::_unsafe_index_Tensor::call(self, indices);
 }
 

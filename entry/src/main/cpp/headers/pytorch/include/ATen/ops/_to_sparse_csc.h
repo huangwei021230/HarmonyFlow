@@ -23,11 +23,11 @@ namespace at {
 
 
 // aten::_to_sparse_csc.out(Tensor self, int? dense_dim=None, *, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & _to_sparse_csc_out(at::Tensor & out, const at::Tensor & self, c10::optional<int64_t> dense_dim=c10::nullopt) {
+inline at::Tensor & _to_sparse_csc_out(at::Tensor & out, const at::Tensor & self, ::std::optional<int64_t> dense_dim=::std::nullopt) {
     return at::_ops::_to_sparse_csc_out::call(self, dense_dim, out);
 }
 // aten::_to_sparse_csc.out(Tensor self, int? dense_dim=None, *, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & _to_sparse_csc_outf(const at::Tensor & self, c10::optional<int64_t> dense_dim, at::Tensor & out) {
+inline at::Tensor & _to_sparse_csc_outf(const at::Tensor & self, ::std::optional<int64_t> dense_dim, at::Tensor & out) {
     return at::_ops::_to_sparse_csc_out::call(self, dense_dim, out);
 }
 

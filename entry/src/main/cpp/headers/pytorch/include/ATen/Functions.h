@@ -92,6 +92,8 @@
 #include <ATen/ops/_backward.h>
 #include <ATen/ops/_batch_norm_impl_index.h>
 #include <ATen/ops/_batch_norm_impl_index_backward.h>
+#include <ATen/ops/_batch_norm_no_update.h>
+#include <ATen/ops/_batch_norm_with_update.h>
 #include <ATen/ops/_cast_Byte.h>
 #include <ATen/ops/_cast_Char.h>
 #include <ATen/ops/_cast_Double.h>
@@ -104,6 +106,7 @@
 #include <ATen/ops/_cdist_forward.h>
 #include <ATen/ops/_cholesky_solve_helper.h>
 #include <ATen/ops/_choose_qparams_per_tensor.h>
+#include <ATen/ops/_chunk_cat.h>
 #include <ATen/ops/_coalesce.h>
 #include <ATen/ops/_coalesced.h>
 #include <ATen/ops/_compute_linear_combination.h>
@@ -239,6 +242,7 @@
 #include <ATen/ops/_linalg_check_errors.h>
 #include <ATen/ops/_linalg_det.h>
 #include <ATen/ops/_linalg_eigh.h>
+#include <ATen/ops/_linalg_eigvals.h>
 #include <ATen/ops/_linalg_slogdet.h>
 #include <ATen/ops/_linalg_solve_ex.h>
 #include <ATen/ops/_linalg_svd.h>
@@ -266,8 +270,15 @@
 #include <ATen/ops/_native_multi_head_attention.h>
 #include <ATen/ops/_neg_view.h>
 #include <ATen/ops/_neg_view_copy.h>
+#include <ATen/ops/_nested_compute_contiguous_strides_offsets.h>
 #include <ATen/ops/_nested_from_padded.h>
 #include <ATen/ops/_nested_from_padded_and_nested_example.h>
+#include <ATen/ops/_nested_get_jagged_dummy.h>
+#include <ATen/ops/_nested_get_lengths.h>
+#include <ATen/ops/_nested_get_offsets.h>
+#include <ATen/ops/_nested_get_ragged_idx.h>
+#include <ATen/ops/_nested_get_values.h>
+#include <ATen/ops/_nested_get_values_copy.h>
 #include <ATen/ops/_nested_select_backward.h>
 #include <ATen/ops/_nested_sum_backward.h>
 #include <ATen/ops/_nested_tensor_from_mask.h>
@@ -279,6 +290,8 @@
 #include <ATen/ops/_nested_tensor_strides.h>
 #include <ATen/ops/_nested_view_from_buffer.h>
 #include <ATen/ops/_nested_view_from_buffer_copy.h>
+#include <ATen/ops/_nested_view_from_jagged.h>
+#include <ATen/ops/_nested_view_from_jagged_copy.h>
 #include <ATen/ops/_new_zeros_with_same_feature_meta.h>
 #include <ATen/ops/_nnpack_available.h>
 #include <ATen/ops/_nnpack_spatial_convolution.h>
@@ -329,6 +342,7 @@
 #include <ATen/ops/_sparse_bsc_tensor_unsafe.h>
 #include <ATen/ops/_sparse_bsr_tensor_unsafe.h>
 #include <ATen/ops/_sparse_compressed_tensor_unsafe.h>
+#include <ATen/ops/_sparse_compressed_tensor_with_dims.h>
 #include <ATen/ops/_sparse_coo_tensor_unsafe.h>
 #include <ATen/ops/_sparse_coo_tensor_with_dims.h>
 #include <ATen/ops/_sparse_coo_tensor_with_dims_and_tensors.h>
@@ -415,6 +429,7 @@
 #include <ATen/ops/_values_copy.h>
 #include <ATen/ops/_version.h>
 #include <ATen/ops/_weight_int4pack_mm.h>
+#include <ATen/ops/_weight_int8pack_mm.h>
 #include <ATen/ops/_weight_norm.h>
 #include <ATen/ops/_weight_norm_differentiable_backward.h>
 #include <ATen/ops/_weight_norm_interface.h>
@@ -487,6 +502,7 @@
 #include <ATen/ops/baddbmm.h>
 #include <ATen/ops/bartlett_window.h>
 #include <ATen/ops/batch_norm.h>
+#include <ATen/ops/batch_norm_backward.h>
 #include <ATen/ops/batch_norm_backward_elemt.h>
 #include <ATen/ops/batch_norm_backward_reduce.h>
 #include <ATen/ops/batch_norm_elemt.h>
@@ -1098,6 +1114,7 @@
 #include <ATen/ops/result_type.h>
 #include <ATen/ops/retain_grad.h>
 #include <ATen/ops/retains_grad.h>
+#include <ATen/ops/rms_norm.h>
 #include <ATen/ops/rnn_relu.h>
 #include <ATen/ops/rnn_relu_cell.h>
 #include <ATen/ops/rnn_tanh.h>

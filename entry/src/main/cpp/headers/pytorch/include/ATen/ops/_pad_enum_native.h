@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor _pad_enum_symint(const at::Tensor & self, c10::SymIntArrayRef pad, int64_t mode, c10::optional<double> value=c10::nullopt);
+TORCH_API at::Tensor _pad_enum_symint(const at::Tensor & self, c10::SymIntArrayRef pad, int64_t mode, ::std::optional<double> value=::std::nullopt);
 } // namespace native
 } // namespace at

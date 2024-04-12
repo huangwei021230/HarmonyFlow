@@ -27,7 +27,7 @@ inline at::Tensor sparse_bsc_tensor(const at::Tensor & ccol_indices, const at::T
     return at::_ops::sparse_bsc_tensor_ccol_row_value_size::call(ccol_indices, row_indices, values, size, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::sparse_bsc_tensor.ccol_row_value_size(Tensor ccol_indices, Tensor row_indices, Tensor values, int[] size, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=False) -> Tensor
-inline at::Tensor sparse_bsc_tensor(const at::Tensor & ccol_indices, const at::Tensor & row_indices, const at::Tensor & values, at::IntArrayRef size, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor sparse_bsc_tensor(const at::Tensor & ccol_indices, const at::Tensor & row_indices, const at::Tensor & values, at::IntArrayRef size, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::sparse_bsc_tensor_ccol_row_value_size::call(ccol_indices, row_indices, values, size, dtype, layout, device, pin_memory);
 }
 
@@ -36,7 +36,7 @@ inline at::Tensor sparse_bsc_tensor(const at::Tensor & ccol_indices, const at::T
     return at::_ops::sparse_bsc_tensor_ccol_row_value::call(ccol_indices, row_indices, values, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::sparse_bsc_tensor.ccol_row_value(Tensor ccol_indices, Tensor row_indices, Tensor values, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=False) -> Tensor
-inline at::Tensor sparse_bsc_tensor(const at::Tensor & ccol_indices, const at::Tensor & row_indices, const at::Tensor & values, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor sparse_bsc_tensor(const at::Tensor & ccol_indices, const at::Tensor & row_indices, const at::Tensor & values, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::sparse_bsc_tensor_ccol_row_value::call(ccol_indices, row_indices, values, dtype, layout, device, pin_memory);
 }
 

@@ -20,7 +20,7 @@ namespace meta {
 struct TORCH_API structured_cumsum : public at::impl::MetaBase {
     
     
-    void meta(const at::Tensor & self, int64_t dim, c10::optional<at::ScalarType> dtype);
+    void meta(const at::Tensor & self, int64_t dim, ::std::optional<at::ScalarType> dtype);
 };
 
 } // namespace native

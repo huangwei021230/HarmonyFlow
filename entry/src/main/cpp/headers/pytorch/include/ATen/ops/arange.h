@@ -27,7 +27,7 @@ inline at::Tensor arange(const at::Scalar & end, at::TensorOptions options={}) {
     return at::_ops::arange::call(end, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::arange(Scalar end, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor arange(const at::Scalar & end, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor arange(const at::Scalar & end, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::arange::call(end, dtype, layout, device, pin_memory);
 }
 
@@ -36,7 +36,7 @@ inline at::Tensor arange(const at::Scalar & start, const at::Scalar & end, at::T
     return at::_ops::arange_start::call(start, end, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::arange.start(Scalar start, Scalar end, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor arange(const at::Scalar & start, const at::Scalar & end, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor arange(const at::Scalar & start, const at::Scalar & end, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::arange_start::call(start, end, dtype, layout, device, pin_memory);
 }
 
@@ -45,7 +45,7 @@ inline at::Tensor arange(const at::Scalar & start, const at::Scalar & end, const
     return at::_ops::arange_start_step::call(start, end, step, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::arange.start_step(Scalar start, Scalar end, Scalar step=1, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor arange(const at::Scalar & start, const at::Scalar & end, const at::Scalar & step, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor arange(const at::Scalar & start, const at::Scalar & end, const at::Scalar & step, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::arange_start_step::call(start, end, step, dtype, layout, device, pin_memory);
 }
 

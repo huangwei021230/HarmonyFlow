@@ -1,98 +1,36 @@
-#include "headers/tokenization.h"
-namespace Tokenizer {
-    std::wstring cleanText(const std::wstring &text) {
-        std::wstring output;
-        for (const wchar_t &cp : text) {
-            if (cp == 0 || cp == 0xfffd || isControol(cp))
-                continue;
-            if (isWhitespace(cp))
-                output += L" ";
-            else
-                output += cp;
-        }
-        return output;
-    }
+//#pragma once
 
-    bool isControol(const wchar_t &ch) {
-        if (ch == L'\t' || ch == L'\n' || ch == L'\r')
-            return false;
-        auto cat = utf8proc_category(ch);
-        if (cat == UTF8PROC_CATEGORY_CC || cat == UTF8PROC_CATEGORY_CF)
-            return true;
-        return false;
-    }
+#include "tokenization.h"
+#include "nlohmann/json.hpp"
+#include <iostream>
+#include <fstream>
+#include <regex>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <memory>
+#include <algorithm>
+#include <map>
+#include <locale>
+#include <codecvt>
+#include <iomanip>
+// #include <boost/regex.hpp>
+#define ll long long
 
-    bool isWhitespace(const wchar_t &ch) {
-        if (ch == L' ' || ch == L'\t' || ch == L'\n' || ch == L'\r')
-            return true;
-        auto cat = utf8proc_category(ch);
-        if (cat == UTF8PROC_CATEGORY_ZS)
-            return true;
-        return false;
-    }
-
-    bool isPunctuation(const wchar_t &ch) {
-        if ((ch >= 33 && ch <= 47) || (ch >= 58 && ch <= 64) || (ch >= 91 && ch <= 96) || (ch >= 123 && ch <= 126))
-            return true;
-        auto cat = utf8proc_category(ch);
-        if (cat == UTF8PROC_CATEGORY_PD || cat == UTF8PROC_CATEGORY_PS || cat == UTF8PROC_CATEGORY_PE ||
-            cat == UTF8PROC_CATEGORY_PC || cat == UTF8PROC_CATEGORY_PO // sometimes ¶ belong SO
-            || cat == UTF8PROC_CATEGORY_PI || cat == UTF8PROC_CATEGORY_PF)
-            return true;
-        return false;
-    }
-
-    bool isChineseChar(const wchar_t &ch) {
-        if ((ch >= 0x4E00 && ch <= 0x9FFF) || (ch >= 0x3400 && ch <= 0x4DBF) || (ch >= 0x20000 && ch <= 0x2A6DF) ||
-            (ch >= 0x2A700 && ch <= 0x2B73F) || (ch >= 0x2B740 && ch <= 0x2B81F) || (ch >= 0x2B820 && ch <= 0x2CEAF) ||
-            (ch >= 0xF900 && ch <= 0xFAFF) || (ch >= 0x2F800 && ch <= 0x2FA1F))
-            return true;
-        return false;
-    }
-
-    std::wstring tokenizeChineseChars(const std::wstring &text) {
-        std::wstring output;
-        for (auto &ch : text) {
-            if (isChineseChar(ch)) {
-                output += L' ';
-                output += ch;
-                output += L' ';
-            } else
-                output += ch;
-        }
-        return output;
-    }
-
-    std::wstring strip(const std::wstring &text) {
-        std::wstring ret = text;
-        if (ret.empty())
-            return ret;
-        size_t pos = 0;
-        while (pos < ret.size() && isStripChar(ret[pos]))
-            pos++;
-        if (pos != 0)
-            ret = ret.substr(pos, ret.size() - pos);
-        pos = ret.size() - 1;
-        while (pos != (size_t)-1 && isStripChar(ret[pos]))
-            pos--;
-        return ret.substr(0, pos + 1);
-    }
-
-    std::string normalize_nfd(const std::string &s) {
-        std::string ret;
-        char *result = (char *)utf8proc_NFD((unsigned char *)s.c_str());
-        if (result) {
-            ret = std::string(result);
-            free(result);
-            result = NULL;
-        }
-        return ret;
-    }
+namespace tokenizer{
+    const std::unordered_map<std::wstring, std::wstring> VOCAB_FILES_NAMES = {
+            {L"vocab_file",  L"vocab.json"},
+            {L"merges_file", L"merges.txt"},
+    };
+    const std::unordered_map<std::wstring, size_t> PRETRAINED_POSITIONAL_EMBEDDINGS_SIZES = {
+            {L"facebook/opt-125m", 1024},
+    };
 
     std::vector<std::wstring> split(const std::wstring &text) {
         std::vector<std::wstring> result;
         size_t pos = 0, found;
-
         while ((found = text.find_first_not_of(stripChar, pos)) != std::wstring::npos) {
             pos = text.find_first_of(stripChar, found);
             if (pos == std::wstring::npos) {
@@ -101,72 +39,73 @@ namespace Tokenizer {
             }
             result.push_back(text.substr(found, pos - found));
         }
-
         return result;
     }
 
-    std::wstring runStripAccents(const std::wstring &text) {
-        // Strips accents from a piece of text.
-        std::wstring nText;
-        try {
-            nText = convertToUnicode(normalize_nfd(convertFromUnicode(text)));
-        } catch (std::bad_cast &e) {
-            std::cerr << "bad_cast" << std::endl;
-            return L"";
+    std::vector<std::string> split(const std::string &text) {
+        std::vector<std::string> result;
+        size_t pos = 0, found;
+        std::istringstream ir(text);
+        std::string buffer;
+        while(std::getline(ir, buffer, ' ')) {
+            result.push_back(buffer);
         }
-
-        std::wstring output;
-        for (auto &ch : nText) {
-            auto cat = utf8proc_category(ch);
-            if (cat == UTF8PROC_CATEGORY_MN)
-                continue;
-            output += ch;
-        }
-        return output;
+        return result;
     }
 
-    std::vector<std::wstring> runSplitOnPunc(const std::wstring &text) {
-        size_t i = 0;
-        bool startNewWord = true;
-        std::vector<std::wstring> output;
-        while (i < text.size()) {
-            wchar_t ch = text[i];
-            if (isPunctuation(ch)) {
-                output.push_back(std::wstring(&ch, 1));
-                startNewWord = true;
-            } else {
-                if (startNewWord)
-                    output.push_back(std::wstring());
-                startNewWord = false;
-                output[output.size() - 1] += ch;
-            }
-            i++;
+    std::map<size_t , wchar_t> bytes_to_unicode() {
+        std::vector<int> bs;
+        std::vector<int> cs;
+        for (unsigned char i = '!'; i <= '~'; ++i) {
+            bs.push_back(i);
         }
-        return output;
-    }
-
-
-    bool isStripChar(const wchar_t &ch) { return stripChar.find(ch) != std::wstring::npos; }
-
-    std::vector<std::wstring> whitespaceTokenize(const std::wstring &text) {
-        std::wstring rtext = strip(text);
-        if (rtext.empty())
-            return std::vector<std::wstring>();
-        return split(text);
-    }
-
-    std::wstring join(const std::vector<std::wstring> &vec, const std::wstring &separator) {
-        std::wostringstream oss;
-        if (!vec.empty()) {
-            auto it = vec.begin();
-            oss << *it++;
-            while (it != vec.end()) {
-                oss << separator << *it++;
+        for (wchar_t i = L'¡'; i <= L'¬'; ++i) {
+            bs.push_back(i);
+        }
+        for (wchar_t i = L'®'; i <= L'ÿ'; ++i) {
+            bs.push_back(i);
+        }
+        cs = bs;
+        int n = 0;
+        for (int b = 0; b < (1 << 8); ++b) {
+            if (std::find(bs.begin(), bs.end(), b) == bs.end()) {
+                bs.push_back(b);
+                cs.push_back((1 << 8) + n);
+                n += 1;
             }
         }
-        return oss.str();
+
+        std::map<size_t , wchar_t> byte_unicode_map;
+       for (size_t i = 0; i < bs.size(); ++i) {
+           byte_unicode_map[bs[i]] = static_cast<wchar_t>(cs[i]);
+       }
+
+       return byte_unicode_map;
     }
 
+
+
+    std::wstring strip(const std::wstring &text) {
+        std::wstring ret = text;
+        size_t pos = 0;
+        while(pos < ret.size() && stripChar.find(ret[pos]) != std::string::npos) {
+            pos++;
+        }
+        if(pos > 0) {
+            ret = ret.substr(pos);
+        }
+        pos = ret.size() - 1;
+        while(pos != (size_t) -1 && stripChar.find(ret[pos]) != std::string::npos) {
+            pos--;
+        }
+        if(pos < ret.size() - 1) {
+            ret = ret.substr(0, pos + 1);
+        }
+        return ret;
+    }
+
+
+    //   deal with json Vocab
     std::shared_ptr<Vocab> loadVocab(const std::string &vocabFile) {
         std::shared_ptr<Vocab> vocab(new Vocab);
         size_t index = 0;
@@ -183,90 +122,252 @@ namespace Tokenizer {
         return vocab;
     }
 
-    BasicTokenizer::BasicTokenizer(bool doLowerCase) : mDoLowerCase(doLowerCase) {}
 
-    std::vector<std::wstring> BasicTokenizer::tokenize(const std::string &text) const {
-        std::wstring nText = convertToUnicode(text);
-        nText = cleanText(nText);
 
-        nText = tokenizeChineseChars(nText);
+    GPT2Tokenizer::GPT2Tokenizer(
+            const std::string &vocab_file,
+            const std::string &merges_file,
+            const size_t &vocab_size,
+            const size_t &n_special,
+            const std::wstring &unk_token,
+            const std::wstring &bos_token,
+            const std::wstring &eos_token,
+            const std::wstring &pad_token,
+            const bool &add_prefix_space,
+            const bool &add_bos_token){
+        // initialize encoder and decoder
+        std::filesystem::path absolute_path = std::filesystem::absolute(vocab_file);
+        std::ifstream file(absolute_path);
 
-        const std::vector<std::wstring> &origTokens = whitespaceTokenize(nText);
-        std::vector<std::wstring> splitTokens;
-        for (std::wstring token : origTokens) {
-            if (mDoLowerCase) {
-                token = tolower(token);
-                token = runStripAccents(token);
-            }
-            const auto &tokens = runSplitOnPunc(token);
-            splitTokens.insert(splitTokens.end(), tokens.begin(), tokens.end());
+        if(!file.is_open()) {
+            std::cerr << "Error opening file " << std::endl;
+            exit(1);
         }
-        return whitespaceTokenize(join(splitTokens, L" "));
+        nlohmann::json j;
+        try {
+            file >> j;
+        } catch (nlohmann::json::parse_error &e) {
+            std::cerr << "Error parsing json file " << std::endl;
+            exit(1);
+        }
+        file.close();
+        encoder = std::make_shared<Vocab>();
+        decoder = std::make_shared<InvVocab>();
+        for(const auto &[key, value] : j.items()) {
+            std::wstring token = convertToUnicode(key);
+            (*encoder)[token] = value;
+            (*decoder)[value] = token;
+        }
+
+        // initialize byte encoder and decoder
+        byte_encoder = bytes_to_unicode();
+        for(const auto &[key, value] : byte_encoder) {
+            byte_decoder[value] = key;
+        }
+
+        // deal with merge.txt
+        std::filesystem::path absolute_path_merges = std::filesystem::absolute(merges_file);
+        std::ifstream file_merges(absolute_path_merges, std::ios::in | std::ios::binary);
+        // open file encoding = utf-8
+        file_merges.imbue(std::locale(file_merges.getloc(), new std::codecvt_utf8<wchar_t>));
+
+
+        // TODO: transform this into Unicode form
+        std::vector<std::string> bpe_merges;
+        if(!file_merges.is_open()) {
+            std::cerr << "Error opening file " << std::endl;
+            exit(1);
+        }
+        std::string line;
+        bool first_line = true;
+        while (std::getline(file_merges, line)) {
+            // skip the first line
+            if (first_line) {
+                first_line = false;
+                continue;
+            }
+            // check if line is not empty before adding, to mimic Python's split("\n")[1:-1]
+            if (!line.empty()) {
+                // remove the first space
+                bpe_merges.push_back(line);
+            }
+        }
+        if (!bpe_merges.empty() && bpe_merges.back().empty()) {
+            bpe_merges.pop_back();
+        }
+        file_merges.close();
+
+
+        // tuple
+        std::vector<std::vector<std::wstring>> bpe_merge_words;
+        for(const auto &line : bpe_merges) {
+            std::wstring wline = convertToUnicode(line);
+            std::vector<std::wstring> words = split(wline);
+            bpe_merge_words.push_back(words);
+        }
+
+        for(int i = 0;i< bpe_merge_words.size(); ++i) {
+            bpe_ranks[std::make_pair(bpe_merge_words[i][0], bpe_merge_words[i][1])] = i;
+        }
+
+        // regex pattern
+        pat = std::regex("'s|'t|'re|'ve|'m|'ll|'d| ?\\w+| ?\\d+| ?[^\\s\\w\\d]+|\\s+(?!\\S)|\\s+");
+        
+    }
+    size_t GPT2Tokenizer::getVocabId(const std::wstring &token) {
+        auto it = (*encoder).find(token);
+        if(it != (*encoder).end()) {
+            return it->second;
+        } else {
+            auto unknown_it = (*encoder).find(L"<unk>");
+            if(it != (*encoder).end()) {
+                return unknown_it->second;
+            }else{
+                std::cerr << "Error: token not found in encoder" << std::endl;
+                exit(1);
+            }
+        }
+    }
+    // std::wstring GPT2Tokenizer::bpe(const std::wstring &token){
+    //     if(cache.find(token) != cache.end()) {
+    //         return cache[token];
+    //     }
+    //     std::vector<std::wstring> word;
+        
+    //     for(auto &c : token) {
+    //         word.push_back(std::wstring(1, c));
+    //     }
+    //     auto pairs = get_pairs(word);
+    //     if(pairs.empty()) {
+    //         return token;
+    //     }
+    //     while (true) {
+    //         auto it = std::min_element(pairs.begin(), pairs.end(), [this](const auto& pair1, const auto& pair2) {
+    //             return bpe_ranks[pair1] < bpe_ranks[pair2];
+    //         });
+    //         auto bigram = *it;
+    //         if (bpe_ranks.find(make_pair(bigram.first, bigram.second)) == bpe_ranks.end()) {
+    //             break;
+    //         }
+    //         std::string new_word;
+    //         size_t i = 0;
+    //         while (i < word.size()) {
+    //             auto j = word.find(bigram.first, i);
+    //             if (j == std::string::npos) {
+    //                 new_word.append(word.substr(i));
+    //                 break;
+    //             }
+    //             new_word.append(word.substr(i, j - i));
+    //             i = j;
+    //             if (word[i] == bigram.first[0] && i < word.size() - 1 && word[i + 1] == bigram.second[0]) {
+    //                 new_word.append(bigram.first + bigram.second);
+    //                 i += 2;
+    //             } else {
+    //                 new_word.push_back(word[i]);
+    //                 ++i;
+    //             }
+    //         }
+    //         word = new_word;
+    //         if (word.size() == 1) {
+    //             break;
+    //         } else {
+    //             pairs = get_pairs(word);
+    //         }
+    //     }
+    //     cache[token] = word;
+    //     return word;
+    // }
+
+    
+    std::vector<std::wstring> GPT2Tokenizer::tokenize(const std::string &text) const {;
+        std::string text_copy = text;
+        std::vector<std::wstring> bpe_tokens;
+        // Tokenize the text
+        // Match results
+        std::smatch match;
+        // Search for matches in the text
+        std::string::const_iterator start = text_copy.begin();
+        std::string::const_iterator end = text_copy.end();
+        while (std::regex_search(start, end, match, pat)) {
+            // Update the start iterator to search for next match
+            std::string utf8_token = match.str();
+            start = match[0].second;
+            std::wstringstream result;
+            for (char c : utf8_token) {  
+                if (byte_encoder.find(c) != byte_encoder.end()) {
+                    auto it = byte_encoder.find(static_cast<size_t>(c));
+                    result << it->second;
+                }
+                else
+                {
+                    result << static_cast<wchar_t>(c);
+                }
+            }
+            bpe_tokens.push_back(result.str());
+            //TODO: bpe
+        }
+        return bpe_tokens;
+    }
+    std::vector<size_t> GPT2Tokenizer::convertTokensToIds(const std::vector<std::wstring> &tokens) {
+        std::vector<size_t> token_ids;
+        for(const auto &token : tokens) {
+            auto it = (*encoder).find(token);
+            if(it != (*encoder).end()) {
+                token_ids.push_back(it->second);
+            } else {
+                auto unknown_it = (*encoder).find(L"<unk>");
+                if(it != (*encoder).end()) {
+                    token_ids.push_back(unknown_it->second);
+                }else{
+                    std::cerr << "Error: token not found in encoder" << std::endl;
+                    exit(1);
+                }
+            }
+        }
+        return token_ids;
+    }
+    std::unordered_set<std::pair<std::wstring, std::wstring>, pair_hash> GPT2Tokenizer::get_pairs(const std::vector<std::wstring>& words){
+        std::unordered_set<std::pair<std::wstring, std::wstring>, pair_hash> pairs;
+        for(size_t i = 1; i < words.size(); ++i) {
+            pairs.insert(std::make_pair(words[i - 1], words[i]));
+        }
+        return pairs;
     }
 
-    WordpieceTokenizer::WordpieceTokenizer(const std::shared_ptr<Vocab> vocab, const std::wstring &unkToken,
-                                           size_t maxInputCharsPerWord)
-        : mVocab(vocab), mUnkToken(unkToken), mMaxInputCharsPerWord(maxInputCharsPerWord) {}
-
-    std::vector<std::wstring> WordpieceTokenizer::tokenize(const std::wstring &text) const {
-        std::vector<std::wstring> outputTokens;
-        for (auto &token : whitespaceTokenize(text)) {
-            if (token.size() > mMaxInputCharsPerWord) {
-                outputTokens.push_back(mUnkToken);
-            }
-            bool isBad = false;
-            size_t start = 0;
-            std::vector<std::wstring> subTokens;
-            while (start < token.size()) {
-                size_t end = token.size();
-                std::wstring curSubstr;
-                bool hasCurSubstr = false;
-                while (start < end) {
-                    std::wstring substr = token.substr(start, end - start);
-                    if (start > 0)
-                        substr = L"##" + substr;
-                    if (mVocab->find(substr) != mVocab->end()) {
-                        curSubstr = substr;
-                        hasCurSubstr = true;
-                        break;
+    std::vector<std::string> GPT2Tokenizer::convertIdsToTokens(const std::vector<size_t> &ids) {
+        std::vector<std::string> tokens;
+        for(const auto &id : ids) {
+            auto it = (*decoder).find(id);
+            if(it != (*decoder).end()) {
+                std::stringstream result;
+                std::wstring unicode_token = it->second;
+                for (wchar_t c : unicode_token) {
+                    if (byte_decoder.find(c) != byte_decoder.end()) {
+                        auto iter = byte_decoder.find(static_cast<wchar_t>(c));
+                        result << static_cast<char>(iter->second);
                     }
-                    end--;
+                    else
+                    {
+                        result << static_cast<char>(c);
+                    }
                 }
-                if (!hasCurSubstr) {
-                    isBad = true;
-                    break;
+                tokens.push_back(result.str());
+
+            } else {
+                auto unknown_it = (*decoder).find(0);
+                if(it != (*decoder).end()) {
+                    tokens.push_back(convertFromUnicode(unknown_it->second));
+                }else{
+                    std::cerr << "Error: token not found in decoder" << std::endl;
+                    exit(1);
                 }
-                subTokens.push_back(curSubstr);
-                start = end;
             }
-            if (isBad)
-                outputTokens.push_back(mUnkToken);
-            else
-                outputTokens.insert(outputTokens.end(), subTokens.begin(), subTokens.end());
         }
-        return outputTokens;
+        return tokens;
     }
 
-    FullTokenizer::FullTokenizer(const std::string &vocabFile, bool doLowerCase)
-        : mVocab(loadVocab(vocabFile)), mBasicTokenizer(BasicTokenizer(doLowerCase)),
-          mWordpieceTokenizer(WordpieceTokenizer(mVocab)) {
-        for (auto &v : *mVocab)
-            mInvVocab[v.second] = v.first;
-    }
 
-    std::vector<std::wstring> FullTokenizer::tokenize(const std::string &text) const {
-        std::vector<std::wstring> splitTokens;
-        for (auto &token : mBasicTokenizer.tokenize(text))
-            for (auto &subToken : mWordpieceTokenizer.tokenize(token))
-                splitTokens.push_back(subToken);
-        return splitTokens;
-    }
+}
 
-    std::vector<size_t> FullTokenizer::convertTokensToIds(const std::vector<std::wstring> &text) const {
-        std::vector<size_t> ret(text.size());
-        for (size_t i = 0; i < text.size(); i++) {
-            ret[i] = (*mVocab)[text[i]];
-        }
-        return ret;
-    }
-} // namespace Tokenizer
+
+

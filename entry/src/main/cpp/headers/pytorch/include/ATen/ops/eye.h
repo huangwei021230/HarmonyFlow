@@ -34,12 +34,12 @@ namespace symint {
 }
 
 // aten::eye(SymInt n, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor eye(int64_t n, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor eye(int64_t n, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye::call(n, dtype, layout, device, pin_memory);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor eye(int64_t n, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+  at::Tensor eye(int64_t n, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye::call(n, dtype, layout, device, pin_memory);
   }
 }
@@ -56,12 +56,12 @@ namespace symint {
 }
 
 // aten::eye(SymInt n, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor eye_symint(c10::SymInt n, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor eye_symint(c10::SymInt n, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye::call(n, dtype, layout, device, pin_memory);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor eye(c10::SymInt n, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+  at::Tensor eye(c10::SymInt n, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye::call(n, dtype, layout, device, pin_memory);
   }
 }
@@ -78,12 +78,12 @@ namespace symint {
 }
 
 // aten::eye.m(SymInt n, SymInt m, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor eye(int64_t n, int64_t m, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor eye(int64_t n, int64_t m, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye_m::call(n, m, dtype, layout, device, pin_memory);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor eye(int64_t n, int64_t m, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+  at::Tensor eye(int64_t n, int64_t m, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye_m::call(n, m, dtype, layout, device, pin_memory);
   }
 }
@@ -100,12 +100,12 @@ namespace symint {
 }
 
 // aten::eye.m(SymInt n, SymInt m, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor eye_symint(c10::SymInt n, c10::SymInt m, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor eye_symint(c10::SymInt n, c10::SymInt m, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye_m::call(n, m, dtype, layout, device, pin_memory);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor eye(c10::SymInt n, c10::SymInt m, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+  at::Tensor eye(c10::SymInt n, c10::SymInt m, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::eye_m::call(n, m, dtype, layout, device, pin_memory);
   }
 }

@@ -388,6 +388,7 @@
 #include <ATen/ops/result_type_compositeimplicitautograd_dispatch.h>
 #include <ATen/ops/retain_grad_compositeimplicitautograd_dispatch.h>
 #include <ATen/ops/retains_grad_compositeimplicitautograd_dispatch.h>
+#include <ATen/ops/rms_norm_compositeimplicitautograd_dispatch.h>
 #include <ATen/ops/rnn_relu_compositeimplicitautograd_dispatch.h>
 #include <ATen/ops/rnn_relu_cell_compositeimplicitautograd_dispatch.h>
 #include <ATen/ops/rnn_tanh_compositeimplicitautograd_dispatch.h>

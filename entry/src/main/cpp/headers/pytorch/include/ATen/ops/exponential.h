@@ -23,16 +23,16 @@ namespace at {
 
 
 // aten::exponential.out(Tensor self, float lambd=1, *, Generator? generator=None, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & exponential_out(at::Tensor & out, const at::Tensor & self, double lambd=1, c10::optional<at::Generator> generator=c10::nullopt) {
+inline at::Tensor & exponential_out(at::Tensor & out, const at::Tensor & self, double lambd=1, ::std::optional<at::Generator> generator=::std::nullopt) {
     return at::_ops::exponential_out::call(self, lambd, generator, out);
 }
 // aten::exponential.out(Tensor self, float lambd=1, *, Generator? generator=None, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & exponential_outf(const at::Tensor & self, double lambd, c10::optional<at::Generator> generator, at::Tensor & out) {
+inline at::Tensor & exponential_outf(const at::Tensor & self, double lambd, ::std::optional<at::Generator> generator, at::Tensor & out) {
     return at::_ops::exponential_out::call(self, lambd, generator, out);
 }
 
 // aten::exponential(Tensor self, float lambd=1, *, Generator? generator=None) -> Tensor
-inline at::Tensor exponential(const at::Tensor & self, double lambd=1, c10::optional<at::Generator> generator=c10::nullopt) {
+inline at::Tensor exponential(const at::Tensor & self, double lambd=1, ::std::optional<at::Generator> generator=::std::nullopt) {
     return at::_ops::exponential::call(self, lambd, generator);
 }
 

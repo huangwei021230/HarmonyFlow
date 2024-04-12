@@ -37,14 +37,14 @@ struct TORCH_API std_mean_dim {
 };
 
 struct TORCH_API std_mean_correction {
-  using schema = ::std::tuple<at::Tensor,at::Tensor> (const at::Tensor &, at::OptionalIntArrayRef, const c10::optional<at::Scalar> &, bool);
+  using schema = ::std::tuple<at::Tensor,at::Tensor> (const at::Tensor &, at::OptionalIntArrayRef, const ::std::optional<at::Scalar> &, bool);
   using ptr_schema = schema*;
   // See Note [static constexpr char* members for windows NVCC]
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(name, "aten::std_mean")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(overload_name, "correction")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(schema_str, "std_mean.correction(Tensor self, int[1]? dim=None, *, Scalar? correction=None, bool keepdim=False) -> (Tensor, Tensor)")
-  static ::std::tuple<at::Tensor,at::Tensor> call(const at::Tensor & self, at::OptionalIntArrayRef dim, const c10::optional<at::Scalar> & correction, bool keepdim);
-  static ::std::tuple<at::Tensor,at::Tensor> redispatch(c10::DispatchKeySet dispatchKeySet, const at::Tensor & self, at::OptionalIntArrayRef dim, const c10::optional<at::Scalar> & correction, bool keepdim);
+  static ::std::tuple<at::Tensor,at::Tensor> call(const at::Tensor & self, at::OptionalIntArrayRef dim, const ::std::optional<at::Scalar> & correction, bool keepdim);
+  static ::std::tuple<at::Tensor,at::Tensor> redispatch(c10::DispatchKeySet dispatchKeySet, const at::Tensor & self, at::OptionalIntArrayRef dim, const ::std::optional<at::Scalar> & correction, bool keepdim);
 };
 
 struct TORCH_API std_mean_names_dim {
@@ -59,25 +59,25 @@ struct TORCH_API std_mean_names_dim {
 };
 
 struct TORCH_API std_mean_correction_names {
-  using schema = ::std::tuple<at::Tensor,at::Tensor> (const at::Tensor &, at::DimnameList, const c10::optional<at::Scalar> &, bool);
+  using schema = ::std::tuple<at::Tensor,at::Tensor> (const at::Tensor &, at::DimnameList, const ::std::optional<at::Scalar> &, bool);
   using ptr_schema = schema*;
   // See Note [static constexpr char* members for windows NVCC]
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(name, "aten::std_mean")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(overload_name, "correction_names")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(schema_str, "std_mean.correction_names(Tensor self, Dimname[1] dim, *, Scalar? correction=None, bool keepdim=False) -> (Tensor, Tensor)")
-  static ::std::tuple<at::Tensor,at::Tensor> call(const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction, bool keepdim);
-  static ::std::tuple<at::Tensor,at::Tensor> redispatch(c10::DispatchKeySet dispatchKeySet, const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction, bool keepdim);
+  static ::std::tuple<at::Tensor,at::Tensor> call(const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction, bool keepdim);
+  static ::std::tuple<at::Tensor,at::Tensor> redispatch(c10::DispatchKeySet dispatchKeySet, const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction, bool keepdim);
 };
 
 struct TORCH_API std_mean_correction_out {
-  using schema = ::std::tuple<at::Tensor &,at::Tensor &> (const at::Tensor &, at::OptionalIntArrayRef, const c10::optional<at::Scalar> &, bool, at::Tensor &, at::Tensor &);
+  using schema = ::std::tuple<at::Tensor &,at::Tensor &> (const at::Tensor &, at::OptionalIntArrayRef, const ::std::optional<at::Scalar> &, bool, at::Tensor &, at::Tensor &);
   using ptr_schema = schema*;
   // See Note [static constexpr char* members for windows NVCC]
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(name, "aten::std_mean")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(overload_name, "correction_out")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(schema_str, "std_mean.correction_out(Tensor self, int[1]? dim=None, *, Scalar? correction=None, bool keepdim=False, Tensor(a!) out0, Tensor(b!) out1) -> (Tensor(a!), Tensor(b!))")
-  static ::std::tuple<at::Tensor &,at::Tensor &> call(const at::Tensor & self, at::OptionalIntArrayRef dim, const c10::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out0, at::Tensor & out1);
-  static ::std::tuple<at::Tensor &,at::Tensor &> redispatch(c10::DispatchKeySet dispatchKeySet, const at::Tensor & self, at::OptionalIntArrayRef dim, const c10::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out0, at::Tensor & out1);
+  static ::std::tuple<at::Tensor &,at::Tensor &> call(const at::Tensor & self, at::OptionalIntArrayRef dim, const ::std::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out0, at::Tensor & out1);
+  static ::std::tuple<at::Tensor &,at::Tensor &> redispatch(c10::DispatchKeySet dispatchKeySet, const at::Tensor & self, at::OptionalIntArrayRef dim, const ::std::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out0, at::Tensor & out1);
 };
 
 }} // namespace at::_ops

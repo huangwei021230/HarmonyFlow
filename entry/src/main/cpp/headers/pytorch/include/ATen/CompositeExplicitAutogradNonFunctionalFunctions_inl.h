@@ -31,7 +31,9 @@
 #include <ATen/ops/_log_softmax_backward_data_compositeexplicitautogradnonfunctional_dispatch.h>
 #include <ATen/ops/_make_dual_copy_compositeexplicitautogradnonfunctional_dispatch.h>
 #include <ATen/ops/_neg_view_copy_compositeexplicitautogradnonfunctional_dispatch.h>
+#include <ATen/ops/_nested_get_values_copy_compositeexplicitautogradnonfunctional_dispatch.h>
 #include <ATen/ops/_nested_view_from_buffer_copy_compositeexplicitautogradnonfunctional_dispatch.h>
+#include <ATen/ops/_nested_view_from_jagged_copy_compositeexplicitautogradnonfunctional_dispatch.h>
 #include <ATen/ops/_reshape_alias_copy_compositeexplicitautogradnonfunctional_dispatch.h>
 #include <ATen/ops/_softmax_compositeexplicitautogradnonfunctional_dispatch.h>
 #include <ATen/ops/_softmax_backward_data_compositeexplicitautogradnonfunctional_dispatch.h>

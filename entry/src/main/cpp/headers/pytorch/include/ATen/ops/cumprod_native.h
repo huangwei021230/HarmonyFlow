@@ -17,10 +17,10 @@
 namespace at {
 namespace native {
 struct TORCH_API structured_cumprod_out : public at::meta::structured_cumprod {
-void impl(const at::Tensor & self, int64_t dim, c10::optional<at::ScalarType> dtype, const at::Tensor & out);
+void impl(const at::Tensor & self, int64_t dim, ::std::optional<at::ScalarType> dtype, const at::Tensor & out);
 };
-TORCH_API at::Tensor cumprod(const at::Tensor & self, at::Dimname dim, c10::optional<at::ScalarType> dtype=c10::nullopt);
-TORCH_API at::Tensor & cumprod_out(const at::Tensor & self, at::Dimname dim, c10::optional<at::ScalarType> dtype, at::Tensor & out);
-TORCH_API at::Tensor & cumprod_(at::Tensor & self, at::Dimname dim, c10::optional<at::ScalarType> dtype=c10::nullopt);
+TORCH_API at::Tensor cumprod(const at::Tensor & self, at::Dimname dim, ::std::optional<at::ScalarType> dtype=::std::nullopt);
+TORCH_API at::Tensor & cumprod_out(const at::Tensor & self, at::Dimname dim, ::std::optional<at::ScalarType> dtype, at::Tensor & out);
+TORCH_API at::Tensor & cumprod_(at::Tensor & self, at::Dimname dim, ::std::optional<at::ScalarType> dtype=::std::nullopt);
 } // namespace native
 } // namespace at

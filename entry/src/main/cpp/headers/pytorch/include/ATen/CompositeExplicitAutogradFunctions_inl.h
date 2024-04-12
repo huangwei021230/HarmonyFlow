@@ -25,9 +25,12 @@
 #include <ATen/ops/_amp_foreach_non_finite_check_and_unscale_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_amp_update_scale_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_assert_scalar_compositeexplicitautograd_dispatch.h>
+#include <ATen/ops/_batch_norm_no_update_compositeexplicitautograd_dispatch.h>
+#include <ATen/ops/_batch_norm_with_update_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_cdist_backward_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_cdist_forward_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_cholesky_solve_helper_compositeexplicitautograd_dispatch.h>
+#include <ATen/ops/_chunk_cat_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_coalesce_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_coalesced_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_conj_compositeexplicitautograd_dispatch.h>
@@ -140,12 +143,14 @@
 #include <ATen/ops/_neg_view_copy_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_from_padded_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_from_padded_and_nested_example_compositeexplicitautograd_dispatch.h>
+#include <ATen/ops/_nested_get_values_copy_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_tensor_from_mask_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_tensor_from_tensor_list_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_tensor_size_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_tensor_storage_offsets_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_tensor_strides_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nested_view_from_buffer_copy_compositeexplicitautograd_dispatch.h>
+#include <ATen/ops/_nested_view_from_jagged_copy_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_new_zeros_with_same_feature_meta_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_nnpack_spatial_convolution_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_pack_padded_sequence_compositeexplicitautograd_dispatch.h>
@@ -161,6 +166,7 @@
 #include <ATen/ops/_slow_conv2d_backward_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_sparse_addmm_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_sparse_broadcast_to_copy_compositeexplicitautograd_dispatch.h>
+#include <ATen/ops/_sparse_compressed_tensor_with_dims_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_sparse_coo_tensor_with_dims_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_sparse_coo_tensor_with_dims_and_tensors_compositeexplicitautograd_dispatch.h>
 #include <ATen/ops/_sparse_csr_prod_compositeexplicitautograd_dispatch.h>

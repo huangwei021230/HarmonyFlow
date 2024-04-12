@@ -46,6 +46,8 @@
 #include <ATen/ops/_backward_native.h>
 #include <ATen/ops/_batch_norm_impl_index_native.h>
 #include <ATen/ops/_batch_norm_impl_index_backward_native.h>
+#include <ATen/ops/_batch_norm_no_update_native.h>
+#include <ATen/ops/_batch_norm_with_update_native.h>
 #include <ATen/ops/_cast_Byte_native.h>
 #include <ATen/ops/_cast_Char_native.h>
 #include <ATen/ops/_cast_Double_native.h>
@@ -58,6 +60,7 @@
 #include <ATen/ops/_cdist_forward_native.h>
 #include <ATen/ops/_cholesky_solve_helper_native.h>
 #include <ATen/ops/_choose_qparams_per_tensor_native.h>
+#include <ATen/ops/_chunk_cat_native.h>
 #include <ATen/ops/_coalesce_native.h>
 #include <ATen/ops/_coalesced_native.h>
 #include <ATen/ops/_compute_linear_combination_native.h>
@@ -193,6 +196,7 @@
 #include <ATen/ops/_linalg_check_errors_native.h>
 #include <ATen/ops/_linalg_det_native.h>
 #include <ATen/ops/_linalg_eigh_native.h>
+#include <ATen/ops/_linalg_eigvals_native.h>
 #include <ATen/ops/_linalg_slogdet_native.h>
 #include <ATen/ops/_linalg_solve_ex_native.h>
 #include <ATen/ops/_linalg_svd_native.h>
@@ -220,8 +224,15 @@
 #include <ATen/ops/_native_multi_head_attention_native.h>
 #include <ATen/ops/_neg_view_native.h>
 #include <ATen/ops/_neg_view_copy_native.h>
+#include <ATen/ops/_nested_compute_contiguous_strides_offsets_native.h>
 #include <ATen/ops/_nested_from_padded_native.h>
 #include <ATen/ops/_nested_from_padded_and_nested_example_native.h>
+#include <ATen/ops/_nested_get_jagged_dummy_native.h>
+#include <ATen/ops/_nested_get_lengths_native.h>
+#include <ATen/ops/_nested_get_offsets_native.h>
+#include <ATen/ops/_nested_get_ragged_idx_native.h>
+#include <ATen/ops/_nested_get_values_native.h>
+#include <ATen/ops/_nested_get_values_copy_native.h>
 #include <ATen/ops/_nested_select_backward_native.h>
 #include <ATen/ops/_nested_sum_backward_native.h>
 #include <ATen/ops/_nested_tensor_from_mask_native.h>
@@ -233,6 +244,8 @@
 #include <ATen/ops/_nested_tensor_strides_native.h>
 #include <ATen/ops/_nested_view_from_buffer_native.h>
 #include <ATen/ops/_nested_view_from_buffer_copy_native.h>
+#include <ATen/ops/_nested_view_from_jagged_native.h>
+#include <ATen/ops/_nested_view_from_jagged_copy_native.h>
 #include <ATen/ops/_new_zeros_with_same_feature_meta_native.h>
 #include <ATen/ops/_nnpack_available_native.h>
 #include <ATen/ops/_nnpack_spatial_convolution_native.h>
@@ -283,6 +296,7 @@
 #include <ATen/ops/_sparse_bsc_tensor_unsafe_native.h>
 #include <ATen/ops/_sparse_bsr_tensor_unsafe_native.h>
 #include <ATen/ops/_sparse_compressed_tensor_unsafe_native.h>
+#include <ATen/ops/_sparse_compressed_tensor_with_dims_native.h>
 #include <ATen/ops/_sparse_coo_tensor_unsafe_native.h>
 #include <ATen/ops/_sparse_coo_tensor_with_dims_native.h>
 #include <ATen/ops/_sparse_coo_tensor_with_dims_and_tensors_native.h>
@@ -369,6 +383,7 @@
 #include <ATen/ops/_values_copy_native.h>
 #include <ATen/ops/_version_native.h>
 #include <ATen/ops/_weight_int4pack_mm_native.h>
+#include <ATen/ops/_weight_int8pack_mm_native.h>
 #include <ATen/ops/_weight_norm_native.h>
 #include <ATen/ops/_weight_norm_differentiable_backward_native.h>
 #include <ATen/ops/_weight_norm_interface_native.h>
@@ -441,6 +456,7 @@
 #include <ATen/ops/baddbmm_native.h>
 #include <ATen/ops/bartlett_window_native.h>
 #include <ATen/ops/batch_norm_native.h>
+#include <ATen/ops/batch_norm_backward_native.h>
 #include <ATen/ops/batch_norm_backward_elemt_native.h>
 #include <ATen/ops/batch_norm_backward_reduce_native.h>
 #include <ATen/ops/batch_norm_elemt_native.h>
@@ -1052,6 +1068,7 @@
 #include <ATen/ops/result_type_native.h>
 #include <ATen/ops/retain_grad_native.h>
 #include <ATen/ops/retains_grad_native.h>
+#include <ATen/ops/rms_norm_native.h>
 #include <ATen/ops/rnn_relu_native.h>
 #include <ATen/ops/rnn_relu_cell_native.h>
 #include <ATen/ops/rnn_tanh_native.h>

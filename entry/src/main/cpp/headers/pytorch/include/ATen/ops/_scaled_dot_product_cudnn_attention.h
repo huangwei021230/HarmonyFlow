@@ -22,8 +22,8 @@
 namespace at {
 
 
-// aten::_scaled_dot_product_cudnn_attention(Tensor query, Tensor key, Tensor value, float dropout_p=0.0, bool is_causal=False, bool return_debug_mask=False, *, float? scale=None) -> (Tensor ouput, Tensor logsumexp, Tensor philox_seed, Tensor philox_offset)
-inline ::std::tuple<at::Tensor,at::Tensor,at::Tensor,at::Tensor> _scaled_dot_product_cudnn_attention(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, double dropout_p=0.0, bool is_causal=false, bool return_debug_mask=false, c10::optional<double> scale=c10::nullopt) {
+// aten::_scaled_dot_product_cudnn_attention(Tensor query, Tensor key, Tensor value, float dropout_p=0.0, bool is_causal=False, bool return_debug_mask=False, *, float? scale=None) -> (Tensor output, Tensor logsumexp, Tensor philox_seed, Tensor philox_offset)
+inline ::std::tuple<at::Tensor,at::Tensor,at::Tensor,at::Tensor> _scaled_dot_product_cudnn_attention(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, double dropout_p=0.0, bool is_causal=false, bool return_debug_mask=false, ::std::optional<double> scale=::std::nullopt) {
     return at::_ops::_scaled_dot_product_cudnn_attention::call(query, key, value, dropout_p, is_causal, return_debug_mask, scale);
 }
 

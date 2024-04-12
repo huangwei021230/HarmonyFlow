@@ -15,14 +15,14 @@ namespace _ops {
 
 
 struct TORCH_API empty_permuted {
-  using schema = at::Tensor (c10::SymIntArrayRef, at::IntArrayRef, c10::optional<at::ScalarType>, c10::optional<at::Layout>, c10::optional<at::Device>, c10::optional<bool>);
+  using schema = at::Tensor (c10::SymIntArrayRef, at::IntArrayRef, ::std::optional<at::ScalarType>, ::std::optional<at::Layout>, ::std::optional<at::Device>, ::std::optional<bool>);
   using ptr_schema = schema*;
   // See Note [static constexpr char* members for windows NVCC]
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(name, "aten::empty_permuted")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(overload_name, "")
   STATIC_CONSTEXPR_STR_INL_EXCEPT_WIN_CUDA(schema_str, "empty_permuted(SymInt[] size, int[] physical_layout, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor")
-  static at::Tensor call(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory);
-  static at::Tensor redispatch(c10::DispatchKeySet dispatchKeySet, c10::SymIntArrayRef size, at::IntArrayRef physical_layout, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory);
+  static at::Tensor call(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory);
+  static at::Tensor redispatch(c10::DispatchKeySet dispatchKeySet, c10::SymIntArrayRef size, at::IntArrayRef physical_layout, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory);
 };
 
 struct TORCH_API empty_permuted_out {

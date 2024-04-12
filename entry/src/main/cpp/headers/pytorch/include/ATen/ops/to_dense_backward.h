@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::to_dense_backward(Tensor grad, Tensor input, bool? masked_grad=None) -> Tensor
-inline at::Tensor to_dense_backward(const at::Tensor & grad, const at::Tensor & input, c10::optional<bool> masked_grad=c10::nullopt) {
+inline at::Tensor to_dense_backward(const at::Tensor & grad, const at::Tensor & input, ::std::optional<bool> masked_grad=::std::nullopt) {
     return at::_ops::to_dense_backward::call(grad, input, masked_grad);
 }
 

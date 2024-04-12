@@ -16,8 +16,8 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor logit(const at::Tensor & self, c10::optional<double> eps=c10::nullopt);
-TORCH_API at::Tensor & logit_out(const at::Tensor & self, c10::optional<double> eps, at::Tensor & out);
-TORCH_API at::Tensor & logit_(at::Tensor & self, c10::optional<double> eps=c10::nullopt);
+TORCH_API at::Tensor logit(const at::Tensor & self, ::std::optional<double> eps=::std::nullopt);
+TORCH_API at::Tensor & logit_out(const at::Tensor & self, ::std::optional<double> eps, at::Tensor & out);
+TORCH_API at::Tensor & logit_(at::Tensor & self, ::std::optional<double> eps=::std::nullopt);
 } // namespace native
 } // namespace at

@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_cslt_sparse_mm(Tensor compressed_A, Tensor dense_B, Tensor? bias=None, Tensor? alpha=None, ScalarType? out_dtype=None, bool transpose_result=False, int alg_id=0) -> Tensor
-inline at::Tensor _cslt_sparse_mm(const at::Tensor & compressed_A, const at::Tensor & dense_B, const c10::optional<at::Tensor> & bias={}, const c10::optional<at::Tensor> & alpha={}, c10::optional<at::ScalarType> out_dtype=c10::nullopt, bool transpose_result=false, int64_t alg_id=0) {
+inline at::Tensor _cslt_sparse_mm(const at::Tensor & compressed_A, const at::Tensor & dense_B, const ::std::optional<at::Tensor> & bias={}, const ::std::optional<at::Tensor> & alpha={}, ::std::optional<at::ScalarType> out_dtype=::std::nullopt, bool transpose_result=false, int64_t alg_id=0) {
     return at::_ops::_cslt_sparse_mm::call(compressed_A, dense_B, bias, alpha, out_dtype, transpose_result, alg_id);
 }
 

@@ -27,7 +27,7 @@ inline at::Tensor logspace(const at::Scalar & start, const at::Scalar & end, int
     return at::_ops::logspace::call(start, end, steps, base, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::logspace(Scalar start, Scalar end, int steps, float base=10.0, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor logspace(const at::Scalar & start, const at::Scalar & end, int64_t steps, double base, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor logspace(const at::Scalar & start, const at::Scalar & end, int64_t steps, double base, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::logspace::call(start, end, steps, base, dtype, layout, device, pin_memory);
 }
 
@@ -36,7 +36,7 @@ inline at::Tensor logspace(const at::Tensor & start, const at::Tensor & end, int
     return at::_ops::logspace_Tensor_Tensor::call(start, end, steps, base, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::logspace.Tensor_Tensor(Tensor start, Tensor end, int steps, float base=10.0, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor logspace(const at::Tensor & start, const at::Tensor & end, int64_t steps, double base, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor logspace(const at::Tensor & start, const at::Tensor & end, int64_t steps, double base, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::logspace_Tensor_Tensor::call(start, end, steps, base, dtype, layout, device, pin_memory);
 }
 
@@ -45,7 +45,7 @@ inline at::Tensor logspace(const at::Tensor & start, const at::Scalar & end, int
     return at::_ops::logspace_Tensor_Scalar::call(start, end, steps, base, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::logspace.Tensor_Scalar(Tensor start, Scalar end, int steps, float base=10.0, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor logspace(const at::Tensor & start, const at::Scalar & end, int64_t steps, double base, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor logspace(const at::Tensor & start, const at::Scalar & end, int64_t steps, double base, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::logspace_Tensor_Scalar::call(start, end, steps, base, dtype, layout, device, pin_memory);
 }
 
@@ -54,7 +54,7 @@ inline at::Tensor logspace(const at::Scalar & start, const at::Tensor & end, int
     return at::_ops::logspace_Scalar_Tensor::call(start, end, steps, base, c10::optTypeMetaToScalarType(options.dtype_opt()), options.layout_opt(), options.device_opt(), options.pinned_memory_opt());
 }
 // aten::logspace.Scalar_Tensor(Scalar start, Tensor end, int steps, float base=10.0, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor logspace(const at::Scalar & start, const at::Tensor & end, int64_t steps, double base, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor logspace(const at::Scalar & start, const at::Tensor & end, int64_t steps, double base, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::logspace_Scalar_Tensor::call(start, end, steps, base, dtype, layout, device, pin_memory);
 }
 

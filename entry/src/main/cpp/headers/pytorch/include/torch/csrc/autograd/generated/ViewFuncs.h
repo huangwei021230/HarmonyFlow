@@ -12,7 +12,9 @@
 #include <ATen/ops/_conj_ops.h>
 #include <ATen/ops/_indices_ops.h>
 #include <ATen/ops/_neg_view_ops.h>
+#include <ATen/ops/_nested_get_values_ops.h>
 #include <ATen/ops/_nested_view_from_buffer_ops.h>
+#include <ATen/ops/_nested_view_from_jagged_ops.h>
 #include <ATen/ops/_reshape_alias_ops.h>
 #include <ATen/ops/_test_autograd_multiple_dispatch_view_ops.h>
 #include <ATen/ops/_values_ops.h>
@@ -125,6 +127,28 @@ private:
 
 };
 
+#define _NESTED_GET_VALUES_VIEW_FUNC_AVAILABLE
+struct _NestedGetValuesViewFunc : public torch::autograd::ViewFunc {
+  _NestedGetValuesViewFunc() 
+  {};
+  virtual ~_NestedGetValuesViewFunc() override {};
+  virtual std::vector<c10::SymInt> get_symints() const override;
+  virtual size_t num_symints() const override;
+  virtual std::vector<at::Tensor> get_tensors() const override;
+  virtual size_t num_tensors() const override;
+  virtual at::Tensor operator()(const at::Tensor&) const override;
+  virtual std::unique_ptr<ViewFunc> clone_and_set(
+      std::optional<std::vector<c10::SymInt>> = c10::nullopt,
+      std::optional<std::vector<at::Tensor>> = c10::nullopt) const override;
+
+protected:
+  virtual void set_symints(std::vector<c10::SymInt>) override;
+  virtual void set_tensors(std::vector<at::Tensor>) override;
+
+private:
+
+};
+
 #define _NESTED_VIEW_FROM_BUFFER_VIEW_FUNC_AVAILABLE
 struct _NestedViewFromBufferViewFunc : public torch::autograd::ViewFunc {
   _NestedViewFromBufferViewFunc(const at::Tensor & nested_size, const at::Tensor & nested_strides, const at::Tensor & offsets) : nested_size(nested_size), nested_strides(nested_strides), offsets(offsets)
@@ -147,6 +171,31 @@ private:
   at::Tensor nested_size;
   at::Tensor nested_strides;
   at::Tensor offsets;
+};
+
+#define _NESTED_VIEW_FROM_JAGGED_VIEW_FUNC_AVAILABLE
+struct _NestedViewFromJaggedViewFunc : public torch::autograd::ViewFunc {
+  _NestedViewFromJaggedViewFunc(const at::Tensor & offsets, const at::Tensor & dummy, const ::std::optional<at::Tensor> & lengths, int64_t ragged_idx) : offsets(offsets), dummy(dummy), lengths(lengths), ragged_idx(ragged_idx)
+  {};
+  virtual ~_NestedViewFromJaggedViewFunc() override {};
+  virtual std::vector<c10::SymInt> get_symints() const override;
+  virtual size_t num_symints() const override;
+  virtual std::vector<at::Tensor> get_tensors() const override;
+  virtual size_t num_tensors() const override;
+  virtual at::Tensor operator()(const at::Tensor&) const override;
+  virtual std::unique_ptr<ViewFunc> clone_and_set(
+      std::optional<std::vector<c10::SymInt>> = c10::nullopt,
+      std::optional<std::vector<at::Tensor>> = c10::nullopt) const override;
+
+protected:
+  virtual void set_symints(std::vector<c10::SymInt>) override;
+  virtual void set_tensors(std::vector<at::Tensor>) override;
+
+private:
+  at::Tensor offsets;
+  at::Tensor dummy;
+  ::std::optional<at::Tensor> lengths;
+  int64_t ragged_idx;
 };
 
 #define _RESHAPE_ALIAS_VIEW_FUNC_AVAILABLE
@@ -240,7 +289,7 @@ private:
 
 #define AS_STRIDED_VIEW_FUNC_AVAILABLE
 struct AsStridedViewFunc : public torch::autograd::ViewFunc {
-  AsStridedViewFunc(c10::SymIntArrayRef size, c10::SymIntArrayRef stride, c10::optional<c10::SymInt> storage_offset) : size(size.vec()), stride(stride.vec()), storage_offset(storage_offset)
+  AsStridedViewFunc(c10::SymIntArrayRef size, c10::SymIntArrayRef stride, ::std::optional<c10::SymInt> storage_offset) : size(size.vec()), stride(stride.vec()), storage_offset(storage_offset)
   {};
   virtual ~AsStridedViewFunc() override {};
   virtual std::vector<c10::SymInt> get_symints() const override;
@@ -259,7 +308,7 @@ protected:
 private:
   ::std::vector<c10::SymInt> size;
   ::std::vector<c10::SymInt> stride;
-  c10::optional<c10::SymInt> storage_offset;
+  ::std::optional<c10::SymInt> storage_offset;
 };
 
 #define CCOL_INDICES_VIEW_FUNC_AVAILABLE
@@ -514,7 +563,7 @@ private:
 
 #define SLICE_TENSOR_VIEW_FUNC_AVAILABLE
 struct SliceTensorViewFunc : public torch::autograd::ViewFunc {
-  SliceTensorViewFunc(int64_t dim, c10::optional<c10::SymInt> start, c10::optional<c10::SymInt> end, c10::SymInt step) : dim(dim), start(start), end(end), step(step)
+  SliceTensorViewFunc(int64_t dim, ::std::optional<c10::SymInt> start, ::std::optional<c10::SymInt> end, c10::SymInt step) : dim(dim), start(start), end(end), step(step)
   {};
   virtual ~SliceTensorViewFunc() override {};
   virtual std::vector<c10::SymInt> get_symints() const override;
@@ -532,14 +581,14 @@ protected:
 
 private:
   int64_t dim;
-  c10::optional<c10::SymInt> start;
-  c10::optional<c10::SymInt> end;
+  ::std::optional<c10::SymInt> start;
+  ::std::optional<c10::SymInt> end;
   c10::SymInt step;
 };
 
 #define SLICE_INVERSE_VIEW_FUNC_AVAILABLE
 struct SliceInverseViewFunc : public torch::autograd::ViewFunc {
-  SliceInverseViewFunc(const at::Tensor & src, int64_t dim, c10::optional<c10::SymInt> start, c10::optional<c10::SymInt> end, c10::SymInt step) : src(src), dim(dim), start(start), end(end), step(step)
+  SliceInverseViewFunc(const at::Tensor & src, int64_t dim, ::std::optional<c10::SymInt> start, ::std::optional<c10::SymInt> end, c10::SymInt step) : src(src), dim(dim), start(start), end(end), step(step)
   {};
   virtual ~SliceInverseViewFunc() override {};
   virtual std::vector<c10::SymInt> get_symints() const override;
@@ -558,8 +607,8 @@ protected:
 private:
   at::Tensor src;
   int64_t dim;
-  c10::optional<c10::SymInt> start;
-  c10::optional<c10::SymInt> end;
+  ::std::optional<c10::SymInt> start;
+  ::std::optional<c10::SymInt> end;
   c10::SymInt step;
 };
 

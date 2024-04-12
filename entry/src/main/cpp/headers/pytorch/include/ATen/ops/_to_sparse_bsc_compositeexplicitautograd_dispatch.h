@@ -17,8 +17,8 @@ namespace at {
 
 namespace compositeexplicitautograd {
 
-TORCH_API at::Tensor & _to_sparse_bsc_out(at::Tensor & out, const at::Tensor & self, at::IntArrayRef blocksize, c10::optional<int64_t> dense_dim=c10::nullopt);
-TORCH_API at::Tensor & _to_sparse_bsc_outf(const at::Tensor & self, at::IntArrayRef blocksize, c10::optional<int64_t> dense_dim, at::Tensor & out);
+TORCH_API at::Tensor & _to_sparse_bsc_out(at::Tensor & out, const at::Tensor & self, at::IntArrayRef blocksize, ::std::optional<int64_t> dense_dim=::std::nullopt);
+TORCH_API at::Tensor & _to_sparse_bsc_outf(const at::Tensor & self, at::IntArrayRef blocksize, ::std::optional<int64_t> dense_dim, at::Tensor & out);
 
 } // namespace compositeexplicitautograd
 } // namespace at

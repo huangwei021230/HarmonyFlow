@@ -16,7 +16,7 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor conv1d_symint(const at::Tensor & input, const at::Tensor & weight, const c10::optional<at::Tensor> & bias={}, c10::SymIntArrayRef stride=c10::SymInt(1), c10::SymIntArrayRef padding=c10::SymInt(0), c10::SymIntArrayRef dilation=c10::SymInt(1), c10::SymInt groups=1);
-TORCH_API at::Tensor conv1d_padding_symint(const at::Tensor & input, const at::Tensor & weight, const c10::optional<at::Tensor> & bias={}, c10::SymIntArrayRef stride=c10::SymInt(1), c10::string_view padding="valid", c10::SymIntArrayRef dilation=c10::SymInt(1), c10::SymInt groups=1);
+TORCH_API at::Tensor conv1d_symint(const at::Tensor & input, const at::Tensor & weight, const ::std::optional<at::Tensor> & bias={}, c10::SymIntArrayRef stride=c10::SymInt(1), c10::SymIntArrayRef padding=c10::SymInt(0), c10::SymIntArrayRef dilation=c10::SymInt(1), c10::SymInt groups=1);
+TORCH_API at::Tensor conv1d_padding_symint(const at::Tensor & input, const at::Tensor & weight, const ::std::optional<at::Tensor> & bias={}, c10::SymIntArrayRef stride=c10::SymInt(1), c10::string_view padding="valid", c10::SymIntArrayRef dilation=c10::SymInt(1), c10::SymInt groups=1);
 } // namespace native
 } // namespace at

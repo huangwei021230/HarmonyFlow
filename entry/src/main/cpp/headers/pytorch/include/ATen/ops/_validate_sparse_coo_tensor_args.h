@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_validate_sparse_coo_tensor_args(Tensor indices, Tensor values, int[] size, bool? is_coalesced=None) -> ()
-inline void _validate_sparse_coo_tensor_args(const at::Tensor & indices, const at::Tensor & values, at::IntArrayRef size, c10::optional<bool> is_coalesced=c10::nullopt) {
+inline void _validate_sparse_coo_tensor_args(const at::Tensor & indices, const at::Tensor & values, at::IntArrayRef size, ::std::optional<bool> is_coalesced=::std::nullopt) {
     return at::_ops::_validate_sparse_coo_tensor_args::call(indices, values, size, is_coalesced);
 }
 

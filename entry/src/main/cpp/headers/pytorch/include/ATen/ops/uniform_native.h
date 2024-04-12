@@ -16,9 +16,9 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor uniform(const at::Tensor & self, double from=0, double to=1, c10::optional<at::Generator> generator=c10::nullopt);
-TORCH_API at::Tensor & uniform_out(const at::Tensor & self, double from, double to, c10::optional<at::Generator> generator, at::Tensor & out);
-TORCH_API at::Tensor & uniform_(at::Tensor & self, double from=0, double to=1, c10::optional<at::Generator> generator=c10::nullopt);
-TORCH_API at::Tensor & uniform_meta_(at::Tensor & self, double from=0, double to=1, c10::optional<at::Generator> generator=c10::nullopt);
+TORCH_API at::Tensor uniform(const at::Tensor & self, double from=0, double to=1, ::std::optional<at::Generator> generator=::std::nullopt);
+TORCH_API at::Tensor & uniform_out(const at::Tensor & self, double from, double to, ::std::optional<at::Generator> generator, at::Tensor & out);
+TORCH_API at::Tensor & uniform_(at::Tensor & self, double from=0, double to=1, ::std::optional<at::Generator> generator=::std::nullopt);
+TORCH_API at::Tensor & uniform_meta_(at::Tensor & self, double from=0, double to=1, ::std::optional<at::Generator> generator=::std::nullopt);
 } // namespace native
 } // namespace at

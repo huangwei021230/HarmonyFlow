@@ -20,7 +20,7 @@ namespace meta {
 struct TORCH_API structured_logit_backward : public TensorIteratorBase {
     
     
-    void meta(const at::Tensor & grad_output, const at::Tensor & self, c10::optional<double> eps);
+    void meta(const at::Tensor & grad_output, const at::Tensor & self, ::std::optional<double> eps);
 };
 
 } // namespace native

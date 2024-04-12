@@ -17,7 +17,7 @@
 namespace at {
 namespace native {
 struct TORCH_API structured_argmin_out : public at::meta::structured_argmin {
-void impl(const at::Tensor & self, c10::optional<int64_t> dim, bool keepdim, const at::Tensor & out);
+void impl(const at::Tensor & self, ::std::optional<int64_t> dim, bool keepdim, const at::Tensor & out);
 };
 } // namespace native
 } // namespace at

@@ -17,7 +17,7 @@ namespace at {
 
 namespace compositeimplicitautograd {
 
-TORCH_API at::Tensor to_sparse_csr(const at::Tensor & self, c10::optional<int64_t> dense_dim=c10::nullopt);
+TORCH_API at::Tensor to_sparse_csr(const at::Tensor & self, ::std::optional<int64_t> dense_dim=::std::nullopt);
 
 } // namespace compositeimplicitautograd
 } // namespace at

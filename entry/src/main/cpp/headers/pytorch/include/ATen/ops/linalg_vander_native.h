@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor linalg_vander_symint(const at::Tensor & x, c10::optional<c10::SymInt> N=c10::nullopt);
+TORCH_API at::Tensor linalg_vander_symint(const at::Tensor & x, ::std::optional<c10::SymInt> N=::std::nullopt);
 } // namespace native
 } // namespace at

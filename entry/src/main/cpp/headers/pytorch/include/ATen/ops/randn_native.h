@@ -17,12 +17,12 @@
 namespace at {
 namespace native {
 TORCH_API at::Tensor & randn_out(at::IntArrayRef size, at::Tensor & out);
-TORCH_API at::Tensor randn(at::IntArrayRef size, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
-TORCH_API at::Tensor & randn_out(at::IntArrayRef size, c10::optional<at::Generator> generator, at::Tensor & out);
-TORCH_API at::Tensor randn(at::IntArrayRef size, c10::optional<at::Generator> generator, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
-TORCH_API at::Tensor randn(at::IntArrayRef size, c10::optional<at::DimnameList> names, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
-TORCH_API at::Tensor & randn_names_out_symint(c10::SymIntArrayRef size, c10::optional<at::DimnameList> names, at::Tensor & out);
-TORCH_API at::Tensor randn(at::IntArrayRef size, c10::optional<at::Generator> generator, c10::optional<at::DimnameList> names, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
-TORCH_API at::Tensor & randn_generator_with_names_out_symint(c10::SymIntArrayRef size, c10::optional<at::Generator> generator, c10::optional<at::DimnameList> names, at::Tensor & out);
+TORCH_API at::Tensor randn(at::IntArrayRef size, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
+TORCH_API at::Tensor & randn_out(at::IntArrayRef size, ::std::optional<at::Generator> generator, at::Tensor & out);
+TORCH_API at::Tensor randn(at::IntArrayRef size, ::std::optional<at::Generator> generator, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
+TORCH_API at::Tensor randn(at::IntArrayRef size, ::std::optional<at::DimnameList> names, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
+TORCH_API at::Tensor & randn_names_out_symint(c10::SymIntArrayRef size, ::std::optional<at::DimnameList> names, at::Tensor & out);
+TORCH_API at::Tensor randn(at::IntArrayRef size, ::std::optional<at::Generator> generator, ::std::optional<at::DimnameList> names, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
+TORCH_API at::Tensor & randn_generator_with_names_out_symint(c10::SymIntArrayRef size, ::std::optional<at::Generator> generator, ::std::optional<at::DimnameList> names, at::Tensor & out);
 } // namespace native
 } // namespace at

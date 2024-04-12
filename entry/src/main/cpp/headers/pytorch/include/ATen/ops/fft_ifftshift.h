@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::fft_ifftshift(Tensor self, int[1]? dim=None) -> Tensor
-inline at::Tensor fft_ifftshift(const at::Tensor & self, at::OptionalIntArrayRef dim=c10::nullopt) {
+inline at::Tensor fft_ifftshift(const at::Tensor & self, at::OptionalIntArrayRef dim=::std::nullopt) {
     return at::_ops::fft_ifftshift::call(self, dim);
 }
 

@@ -16,7 +16,7 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor empty_permuted_symint(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
+TORCH_API at::Tensor empty_permuted_symint(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
 TORCH_API at::Tensor & empty_permuted_out_symint(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, at::Tensor & out);
 } // namespace native
 } // namespace at

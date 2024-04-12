@@ -25,7 +25,7 @@ struct TORCH_API structured_div_Tensor : public TensorIteratorBase {
 struct TORCH_API structured_div_Tensor_mode : public TensorIteratorBase {
     
     
-    void meta(const at::Tensor & self, const at::Tensor & other, c10::optional<c10::string_view> rounding_mode);
+    void meta(const at::Tensor & self, const at::Tensor & other, ::std::optional<c10::string_view> rounding_mode);
 };
 
 } // namespace native

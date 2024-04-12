@@ -23,67 +23,67 @@ namespace at {
 
 
 // aten::fft_hfft2(Tensor self, SymInt[1]? s=None, int[1] dim=[-2,-1], str? norm=None) -> Tensor
-inline at::Tensor fft_hfft2(const at::Tensor & self, at::OptionalIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
-    return at::_ops::fft_hfft2::call(self, s.has_value() ? c10::make_optional(c10::fromIntArrayRefSlow(*s)) : c10::nullopt, dim, norm);
+inline at::Tensor fft_hfft2(const at::Tensor & self, at::OptionalIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
+    return at::_ops::fft_hfft2::call(self, s.has_value() ? ::std::make_optional(c10::fromIntArrayRefSlow(*s)) : ::std::nullopt, dim, norm);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor fft_hfft2(const at::Tensor & self, at::OptionalIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
-    return at::_ops::fft_hfft2::call(self, s.has_value() ? c10::make_optional(c10::fromIntArrayRefSlow(*s)) : c10::nullopt, dim, norm);
+  at::Tensor fft_hfft2(const at::Tensor & self, at::OptionalIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
+    return at::_ops::fft_hfft2::call(self, s.has_value() ? ::std::make_optional(c10::fromIntArrayRefSlow(*s)) : ::std::nullopt, dim, norm);
   }
 }
 
 // aten::fft_hfft2(Tensor self, SymInt[1]? s=None, int[1] dim=[-2,-1], str? norm=None) -> Tensor
-inline at::Tensor fft_hfft2_symint(const at::Tensor & self, at::OptionalSymIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
+inline at::Tensor fft_hfft2_symint(const at::Tensor & self, at::OptionalSymIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
     return at::_ops::fft_hfft2::call(self, s, dim, norm);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor fft_hfft2(const at::Tensor & self, at::OptionalSymIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
+  at::Tensor fft_hfft2(const at::Tensor & self, at::OptionalSymIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
     return at::_ops::fft_hfft2::call(self, s, dim, norm);
   }
 }
 
 // aten::fft_hfft2.out(Tensor self, SymInt[1]? s=None, int[1] dim=[-2,-1], str? norm=None, *, Tensor(a!) out) -> Tensor(a!)
-inline const at::Tensor & fft_hfft2_out(const at::Tensor & out, const at::Tensor & self, at::OptionalIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
-    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? c10::make_optional(c10::fromIntArrayRefSlow(*s)) : c10::nullopt, dim, norm, out);
+inline const at::Tensor & fft_hfft2_out(const at::Tensor & out, const at::Tensor & self, at::OptionalIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
+    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? ::std::make_optional(c10::fromIntArrayRefSlow(*s)) : ::std::nullopt, dim, norm, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  const at::Tensor & fft_hfft2_out(const at::Tensor & out, const at::Tensor & self, at::OptionalIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
-    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? c10::make_optional(c10::fromIntArrayRefSlow(*s)) : c10::nullopt, dim, norm, out);
+  const at::Tensor & fft_hfft2_out(const at::Tensor & out, const at::Tensor & self, at::OptionalIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
+    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? ::std::make_optional(c10::fromIntArrayRefSlow(*s)) : ::std::nullopt, dim, norm, out);
   }
 }
 
 // aten::fft_hfft2.out(Tensor self, SymInt[1]? s=None, int[1] dim=[-2,-1], str? norm=None, *, Tensor(a!) out) -> Tensor(a!)
-inline const at::Tensor & fft_hfft2_outf(const at::Tensor & self, at::OptionalIntArrayRef s, at::IntArrayRef dim, c10::optional<c10::string_view> norm, const at::Tensor & out) {
-    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? c10::make_optional(c10::fromIntArrayRefSlow(*s)) : c10::nullopt, dim, norm, out);
+inline const at::Tensor & fft_hfft2_outf(const at::Tensor & self, at::OptionalIntArrayRef s, at::IntArrayRef dim, ::std::optional<c10::string_view> norm, const at::Tensor & out) {
+    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? ::std::make_optional(c10::fromIntArrayRefSlow(*s)) : ::std::nullopt, dim, norm, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  const at::Tensor & fft_hfft2_outf(const at::Tensor & self, at::OptionalIntArrayRef s, at::IntArrayRef dim, c10::optional<c10::string_view> norm, const at::Tensor & out) {
-    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? c10::make_optional(c10::fromIntArrayRefSlow(*s)) : c10::nullopt, dim, norm, out);
+  const at::Tensor & fft_hfft2_outf(const at::Tensor & self, at::OptionalIntArrayRef s, at::IntArrayRef dim, ::std::optional<c10::string_view> norm, const at::Tensor & out) {
+    return at::_ops::fft_hfft2_out::call(self, s.has_value() ? ::std::make_optional(c10::fromIntArrayRefSlow(*s)) : ::std::nullopt, dim, norm, out);
   }
 }
 
 // aten::fft_hfft2.out(Tensor self, SymInt[1]? s=None, int[1] dim=[-2,-1], str? norm=None, *, Tensor(a!) out) -> Tensor(a!)
-inline const at::Tensor & fft_hfft2_symint_out(const at::Tensor & out, const at::Tensor & self, at::OptionalSymIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
+inline const at::Tensor & fft_hfft2_symint_out(const at::Tensor & out, const at::Tensor & self, at::OptionalSymIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
     return at::_ops::fft_hfft2_out::call(self, s, dim, norm, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  const at::Tensor & fft_hfft2_out(const at::Tensor & out, const at::Tensor & self, at::OptionalSymIntArrayRef s=c10::nullopt, at::IntArrayRef dim={-2,-1}, c10::optional<c10::string_view> norm=c10::nullopt) {
+  const at::Tensor & fft_hfft2_out(const at::Tensor & out, const at::Tensor & self, at::OptionalSymIntArrayRef s=::std::nullopt, at::IntArrayRef dim={-2,-1}, ::std::optional<c10::string_view> norm=::std::nullopt) {
     return at::_ops::fft_hfft2_out::call(self, s, dim, norm, out);
   }
 }
 
 // aten::fft_hfft2.out(Tensor self, SymInt[1]? s=None, int[1] dim=[-2,-1], str? norm=None, *, Tensor(a!) out) -> Tensor(a!)
-inline const at::Tensor & fft_hfft2_symint_outf(const at::Tensor & self, at::OptionalSymIntArrayRef s, at::IntArrayRef dim, c10::optional<c10::string_view> norm, const at::Tensor & out) {
+inline const at::Tensor & fft_hfft2_symint_outf(const at::Tensor & self, at::OptionalSymIntArrayRef s, at::IntArrayRef dim, ::std::optional<c10::string_view> norm, const at::Tensor & out) {
     return at::_ops::fft_hfft2_out::call(self, s, dim, norm, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  const at::Tensor & fft_hfft2_outf(const at::Tensor & self, at::OptionalSymIntArrayRef s, at::IntArrayRef dim, c10::optional<c10::string_view> norm, const at::Tensor & out) {
+  const at::Tensor & fft_hfft2_outf(const at::Tensor & self, at::OptionalSymIntArrayRef s, at::IntArrayRef dim, ::std::optional<c10::string_view> norm, const at::Tensor & out) {
     return at::_ops::fft_hfft2_out::call(self, s, dim, norm, out);
   }
 }

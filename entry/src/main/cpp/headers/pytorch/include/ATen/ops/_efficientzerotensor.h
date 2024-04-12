@@ -34,12 +34,12 @@ namespace symint {
 }
 
 // aten::_efficientzerotensor(SymInt[] size, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor _efficientzerotensor(at::IntArrayRef size, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor _efficientzerotensor(at::IntArrayRef size, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::_efficientzerotensor::call(c10::fromIntArrayRefSlow(size), dtype, layout, device, pin_memory);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor _efficientzerotensor(at::IntArrayRef size, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+  at::Tensor _efficientzerotensor(at::IntArrayRef size, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::_efficientzerotensor::call(c10::fromIntArrayRefSlow(size), dtype, layout, device, pin_memory);
   }
 }
@@ -56,12 +56,12 @@ namespace symint {
 }
 
 // aten::_efficientzerotensor(SymInt[] size, *, ScalarType? dtype=None, Layout? layout=None, Device? device=None, bool? pin_memory=None) -> Tensor
-inline at::Tensor _efficientzerotensor_symint(c10::SymIntArrayRef size, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+inline at::Tensor _efficientzerotensor_symint(c10::SymIntArrayRef size, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::_efficientzerotensor::call(size, dtype, layout, device, pin_memory);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor _efficientzerotensor(c10::SymIntArrayRef size, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory) {
+  at::Tensor _efficientzerotensor(c10::SymIntArrayRef size, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory) {
     return at::_ops::_efficientzerotensor::call(size, dtype, layout, device, pin_memory);
   }
 }

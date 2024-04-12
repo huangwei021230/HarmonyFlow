@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor to_sparse_bsr(const at::Tensor & self, at::IntArrayRef blocksize, c10::optional<int64_t> dense_dim=c10::nullopt);
+TORCH_API at::Tensor to_sparse_bsr(const at::Tensor & self, at::IntArrayRef blocksize, ::std::optional<int64_t> dense_dim=::std::nullopt);
 } // namespace native
 } // namespace at

@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor _make_dep_token_cpu(c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={}, c10::optional<at::MemoryFormat> memory_format=c10::nullopt);
+TORCH_API at::Tensor _make_dep_token_cpu(::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={}, ::std::optional<at::MemoryFormat> memory_format=::std::nullopt);
 } // namespace native
 } // namespace at

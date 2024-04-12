@@ -17,10 +17,10 @@ namespace at {
 
 namespace compositeimplicitautograd {
 
-TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, at::TensorOptions options={}, c10::optional<bool> is_coalesced=c10::nullopt);
-TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory, c10::optional<bool> is_coalesced);
-TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, at::IntArrayRef size, at::TensorOptions options={}, c10::optional<bool> is_coalesced=c10::nullopt);
-TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, at::IntArrayRef size, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory, c10::optional<bool> is_coalesced);
+TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, at::TensorOptions options={}, ::std::optional<bool> is_coalesced=::std::nullopt);
+TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory, ::std::optional<bool> is_coalesced);
+TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, at::IntArrayRef size, at::TensorOptions options={}, ::std::optional<bool> is_coalesced=::std::nullopt);
+TORCH_API at::Tensor sparse_coo_tensor(const at::Tensor & indices, const at::Tensor & values, at::IntArrayRef size, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory, ::std::optional<bool> is_coalesced);
 
 } // namespace compositeimplicitautograd
 } // namespace at

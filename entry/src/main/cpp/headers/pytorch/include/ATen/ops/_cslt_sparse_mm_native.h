@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor _cslt_sparse_mm(const at::Tensor & compressed_A, const at::Tensor & dense_B, const c10::optional<at::Tensor> & bias={}, const c10::optional<at::Tensor> & alpha={}, c10::optional<at::ScalarType> out_dtype=c10::nullopt, bool transpose_result=false, int64_t alg_id=0);
+TORCH_API at::Tensor _cslt_sparse_mm(const at::Tensor & compressed_A, const at::Tensor & dense_B, const ::std::optional<at::Tensor> & bias={}, const ::std::optional<at::Tensor> & alpha={}, ::std::optional<at::ScalarType> out_dtype=::std::nullopt, bool transpose_result=false, int64_t alg_id=0);
 } // namespace native
 } // namespace at

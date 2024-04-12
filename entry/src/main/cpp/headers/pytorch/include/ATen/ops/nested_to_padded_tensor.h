@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::nested_to_padded_tensor(Tensor self, float padding, int[]? output_size=None) -> Tensor
-inline at::Tensor nested_to_padded_tensor(const at::Tensor & self, double padding, at::OptionalIntArrayRef output_size=c10::nullopt) {
+inline at::Tensor nested_to_padded_tensor(const at::Tensor & self, double padding, at::OptionalIntArrayRef output_size=::std::nullopt) {
     return at::_ops::nested_to_padded_tensor::call(self, padding, output_size);
 }
 

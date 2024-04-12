@@ -16,6 +16,8 @@
 
 namespace at {
 namespace native {
+TORCH_API at::Tensor _int_mm_cpu(const at::Tensor & self, const at::Tensor & mat2);
+TORCH_API at::Tensor & _int_mm_out_cpu(const at::Tensor & self, const at::Tensor & mat2, at::Tensor & out);
 TORCH_API at::Tensor _int_mm_cuda(const at::Tensor & self, const at::Tensor & mat2);
 TORCH_API at::Tensor & _int_mm_out_cuda(const at::Tensor & self, const at::Tensor & mat2, at::Tensor & out);
 } // namespace native

@@ -1,3 +1,0 @@
-E:/codes/code-2023-2/ipads/HarmonyFlow/entry/src/main/cpp/cmake-build-debug/CMakeFiles/optnative.dir
-E:/codes/code-2023-2/ipads/HarmonyFlow/entry/src/main/cpp/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/codes/code-2023-2/ipads/HarmonyFlow/entry/src/main/cpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

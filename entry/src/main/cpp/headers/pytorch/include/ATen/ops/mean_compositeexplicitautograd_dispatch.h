@@ -17,7 +17,7 @@ namespace at {
 
 namespace compositeexplicitautograd {
 
-TORCH_API at::Tensor mean(const at::Tensor & self, c10::optional<at::ScalarType> dtype=c10::nullopt);
+TORCH_API at::Tensor mean(const at::Tensor & self, ::std::optional<at::ScalarType> dtype=::std::nullopt);
 
 } // namespace compositeexplicitautograd
 } // namespace at

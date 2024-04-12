@@ -33,7 +33,7 @@ inline at::Tensor var(const at::Tensor & self, at::OptionalIntArrayRef dim, bool
 }
 
 // aten::var.correction(Tensor self, int[1]? dim=None, *, Scalar? correction=None, bool keepdim=False) -> Tensor
-inline at::Tensor var(const at::Tensor & self, at::OptionalIntArrayRef dim=c10::nullopt, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false) {
+inline at::Tensor var(const at::Tensor & self, at::OptionalIntArrayRef dim=::std::nullopt, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false) {
     return at::_ops::var_correction::call(self, dim, correction, keepdim);
 }
 
@@ -47,11 +47,11 @@ inline at::Tensor & var_outf(const at::Tensor & self, at::OptionalIntArrayRef di
 }
 
 // aten::var.correction_out(Tensor self, int[1]? dim=None, *, Scalar? correction=None, bool keepdim=False, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & var_out(at::Tensor & out, const at::Tensor & self, at::OptionalIntArrayRef dim=c10::nullopt, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false) {
+inline at::Tensor & var_out(at::Tensor & out, const at::Tensor & self, at::OptionalIntArrayRef dim=::std::nullopt, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false) {
     return at::_ops::var_correction_out::call(self, dim, correction, keepdim, out);
 }
 // aten::var.correction_out(Tensor self, int[1]? dim=None, *, Scalar? correction=None, bool keepdim=False, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & var_outf(const at::Tensor & self, at::OptionalIntArrayRef dim, const c10::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out) {
+inline at::Tensor & var_outf(const at::Tensor & self, at::OptionalIntArrayRef dim, const ::std::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out) {
     return at::_ops::var_correction_out::call(self, dim, correction, keepdim, out);
 }
 
@@ -70,16 +70,16 @@ inline at::Tensor & var_outf(const at::Tensor & self, at::DimnameList dim, bool 
 }
 
 // aten::var.correction_names(Tensor self, Dimname[1] dim, *, Scalar? correction=None, bool keepdim=False) -> Tensor
-inline at::Tensor var(const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false) {
+inline at::Tensor var(const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false) {
     return at::_ops::var_correction_names::call(self, dim, correction, keepdim);
 }
 
 // aten::var.correction_names_out(Tensor self, Dimname[1] dim, *, Scalar? correction=None, bool keepdim=False, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & var_out(at::Tensor & out, const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false) {
+inline at::Tensor & var_out(at::Tensor & out, const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false) {
     return at::_ops::var_correction_names_out::call(self, dim, correction, keepdim, out);
 }
 // aten::var.correction_names_out(Tensor self, Dimname[1] dim, *, Scalar? correction=None, bool keepdim=False, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & var_outf(const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out) {
+inline at::Tensor & var_outf(const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction, bool keepdim, at::Tensor & out) {
     return at::_ops::var_correction_names_out::call(self, dim, correction, keepdim, out);
 }
 

@@ -18,9 +18,9 @@ namespace at {
 namespace compositeexplicitautograd {
 
 TORCH_API at::Tensor empty_permuted(at::IntArrayRef size, at::IntArrayRef physical_layout, at::TensorOptions options={});
-TORCH_API at::Tensor empty_permuted(at::IntArrayRef size, at::IntArrayRef physical_layout, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory);
+TORCH_API at::Tensor empty_permuted(at::IntArrayRef size, at::IntArrayRef physical_layout, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory);
 TORCH_API at::Tensor empty_permuted_symint(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, at::TensorOptions options={});
-TORCH_API at::Tensor empty_permuted_symint(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, c10::optional<at::ScalarType> dtype, c10::optional<at::Layout> layout, c10::optional<at::Device> device, c10::optional<bool> pin_memory);
+TORCH_API at::Tensor empty_permuted_symint(c10::SymIntArrayRef size, at::IntArrayRef physical_layout, ::std::optional<at::ScalarType> dtype, ::std::optional<at::Layout> layout, ::std::optional<at::Device> device, ::std::optional<bool> pin_memory);
 TORCH_API at::Tensor & empty_permuted_out(at::Tensor & out, at::IntArrayRef size, at::IntArrayRef physical_layout);
 TORCH_API at::Tensor & empty_permuted_outf(at::IntArrayRef size, at::IntArrayRef physical_layout, at::Tensor & out);
 TORCH_API at::Tensor & empty_permuted_symint_out(at::Tensor & out, c10::SymIntArrayRef size, at::IntArrayRef physical_layout);

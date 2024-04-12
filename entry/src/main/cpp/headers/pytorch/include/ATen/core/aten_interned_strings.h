@@ -47,6 +47,9 @@ _(aten, _autocast_to_reduced_precision) \
 _(aten, _backward) \
 _(aten, _batch_norm_impl_index) \
 _(aten, _batch_norm_impl_index_backward) \
+_(aten, _batch_norm_no_update) \
+_(aten, _batch_norm_with_update) \
+_(aten, _batch_norm_with_update_functional) \
 _(aten, _cast_Byte) \
 _(aten, _cast_Char) \
 _(aten, _cast_Double) \
@@ -59,6 +62,7 @@ _(aten, _cdist_backward) \
 _(aten, _cdist_forward) \
 _(aten, _cholesky_solve_helper) \
 _(aten, _choose_qparams_per_tensor) \
+_(aten, _chunk_cat) \
 _(aten, _coalesce) \
 _(aten, _coalesced) \
 _(aten, _coalesced_) \
@@ -244,6 +248,7 @@ _(aten, _lazy_clone) \
 _(aten, _linalg_check_errors) \
 _(aten, _linalg_det) \
 _(aten, _linalg_eigh) \
+_(aten, _linalg_eigvals) \
 _(aten, _linalg_slogdet) \
 _(aten, _linalg_solve_ex) \
 _(aten, _linalg_svd) \
@@ -273,8 +278,15 @@ _(aten, _native_batch_norm_legit_no_training) \
 _(aten, _native_multi_head_attention) \
 _(aten, _neg_view) \
 _(aten, _neg_view_copy) \
+_(aten, _nested_compute_contiguous_strides_offsets) \
 _(aten, _nested_from_padded) \
 _(aten, _nested_from_padded_and_nested_example) \
+_(aten, _nested_get_jagged_dummy) \
+_(aten, _nested_get_lengths) \
+_(aten, _nested_get_offsets) \
+_(aten, _nested_get_ragged_idx) \
+_(aten, _nested_get_values) \
+_(aten, _nested_get_values_copy) \
 _(aten, _nested_select_backward) \
 _(aten, _nested_sum_backward) \
 _(aten, _nested_tensor_from_mask) \
@@ -286,6 +298,8 @@ _(aten, _nested_tensor_storage_offsets) \
 _(aten, _nested_tensor_strides) \
 _(aten, _nested_view_from_buffer) \
 _(aten, _nested_view_from_buffer_copy) \
+_(aten, _nested_view_from_jagged) \
+_(aten, _nested_view_from_jagged_copy) \
 _(aten, _new_zeros_with_same_feature_meta) \
 _(aten, _nnpack_available) \
 _(aten, _nnpack_spatial_convolution) \
@@ -340,6 +354,7 @@ _(aten, _sparse_broadcast_to_copy) \
 _(aten, _sparse_bsc_tensor_unsafe) \
 _(aten, _sparse_bsr_tensor_unsafe) \
 _(aten, _sparse_compressed_tensor_unsafe) \
+_(aten, _sparse_compressed_tensor_with_dims) \
 _(aten, _sparse_coo_tensor_unsafe) \
 _(aten, _sparse_coo_tensor_with_dims) \
 _(aten, _sparse_coo_tensor_with_dims_and_tensors) \
@@ -426,6 +441,7 @@ _(aten, _values) \
 _(aten, _values_copy) \
 _(aten, _version) \
 _(aten, _weight_int4pack_mm) \
+_(aten, _weight_int8pack_mm) \
 _(aten, _weight_norm) \
 _(aten, _weight_norm_differentiable_backward) \
 _(aten, _weight_norm_interface) \
@@ -523,6 +539,7 @@ _(aten, baddbmm) \
 _(aten, baddbmm_) \
 _(aten, bartlett_window) \
 _(aten, batch_norm) \
+_(aten, batch_norm_backward) \
 _(aten, batch_norm_backward_elemt) \
 _(aten, batch_norm_backward_reduce) \
 _(aten, batch_norm_elemt) \
@@ -1249,6 +1266,7 @@ _(aten, resolve_neg) \
 _(aten, result_type) \
 _(aten, retain_grad) \
 _(aten, retains_grad) \
+_(aten, rms_norm) \
 _(aten, rnn_relu) \
 _(aten, rnn_relu_cell) \
 _(aten, rnn_tanh) \
@@ -1575,6 +1593,7 @@ _(attr, alpha) \
 _(attr, amsgrad) \
 _(attr, anchor) \
 _(attr, angle) \
+_(attr, any) \
 _(attr, api_name) \
 _(attr, append) \
 _(attr, approximate) \
@@ -1805,6 +1824,7 @@ _(attr, include_self) \
 _(attr, increasing) \
 _(attr, ind) \
 _(attr, index) \
+_(attr, index_dtype) \
 _(attr, indexing) \
 _(attr, indices) \
 _(attr, info) \
@@ -1925,6 +1945,7 @@ _(attr, normalization) \
 _(attr, normalized) \
 _(attr, normalized_shape) \
 _(attr, nt_example) \
+_(attr, num_chunks) \
 _(attr, num_classes) \
 _(attr, num_generated) \
 _(attr, num_groups) \
@@ -2011,6 +2032,7 @@ _(attr, quant_min) \
 _(attr, quasi) \
 _(attr, query) \
 _(attr, r) \
+_(attr, ragged_idx) \
 _(attr, random_samples) \
 _(attr, range) \
 _(attr, rank) \
@@ -2152,6 +2174,7 @@ _(attr, unpack_data) \
 _(attr, unpack_pivots) \
 _(attr, unroll_dim) \
 _(attr, unsafe) \
+_(attr, update) \
 _(attr, upper) \
 _(attr, upscale_factor) \
 _(attr, use_fast_accum) \

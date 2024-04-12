@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::einsum(str equation, Tensor[] tensors, *, int[]? path=None) -> Tensor
-inline at::Tensor einsum(c10::string_view equation, at::TensorList tensors, at::OptionalIntArrayRef path=c10::nullopt) {
+inline at::Tensor einsum(c10::string_view equation, at::TensorList tensors, at::OptionalIntArrayRef path=::std::nullopt) {
     return at::_ops::einsum::call(equation, tensors, path);
 }
 

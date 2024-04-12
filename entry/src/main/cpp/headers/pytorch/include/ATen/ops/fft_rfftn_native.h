@@ -16,7 +16,7 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor fft_rfftn_symint(const at::Tensor & self, at::OptionalSymIntArrayRef s=c10::nullopt, at::OptionalIntArrayRef dim=c10::nullopt, c10::optional<c10::string_view> norm=c10::nullopt);
-TORCH_API at::Tensor & fft_rfftn_symint_out(const at::Tensor & self, at::OptionalSymIntArrayRef s, at::OptionalIntArrayRef dim, c10::optional<c10::string_view> norm, at::Tensor & out);
+TORCH_API at::Tensor fft_rfftn_symint(const at::Tensor & self, at::OptionalSymIntArrayRef s=::std::nullopt, at::OptionalIntArrayRef dim=::std::nullopt, ::std::optional<c10::string_view> norm=::std::nullopt);
+TORCH_API at::Tensor & fft_rfftn_symint_out(const at::Tensor & self, at::OptionalSymIntArrayRef s, at::OptionalIntArrayRef dim, ::std::optional<c10::string_view> norm, at::Tensor & out);
 } // namespace native
 } // namespace at

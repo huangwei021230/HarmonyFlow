@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API void sym_constrain_range(const at::Scalar & size, c10::optional<int64_t> min=c10::nullopt, c10::optional<int64_t> max=c10::nullopt);
+TORCH_API void sym_constrain_range(const at::Scalar & size, ::std::optional<int64_t> min=::std::nullopt, ::std::optional<int64_t> max=::std::nullopt);
 } // namespace native
 } // namespace at

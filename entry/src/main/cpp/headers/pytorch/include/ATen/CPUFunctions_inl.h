@@ -26,12 +26,14 @@
 #include <ATen/ops/_amp_foreach_non_finite_check_and_unscale_cpu_dispatch.h>
 #include <ATen/ops/_amp_update_scale_cpu_dispatch.h>
 #include <ATen/ops/_assert_async_cpu_dispatch.h>
+#include <ATen/ops/_batch_norm_with_update_cpu_dispatch.h>
 #include <ATen/ops/_cdist_backward_cpu_dispatch.h>
 #include <ATen/ops/_cdist_forward_cpu_dispatch.h>
 #include <ATen/ops/_cholesky_solve_helper_cpu_dispatch.h>
 #include <ATen/ops/_compute_linear_combination_cpu_dispatch.h>
 #include <ATen/ops/_convert_indices_from_coo_to_csr_cpu_dispatch.h>
 #include <ATen/ops/_convert_indices_from_csr_to_coo_cpu_dispatch.h>
+#include <ATen/ops/_convert_weight_to_int4pack_cpu_dispatch.h>
 #include <ATen/ops/_ctc_loss_cpu_dispatch.h>
 #include <ATen/ops/_ctc_loss_backward_cpu_dispatch.h>
 #include <ATen/ops/_cummax_helper_cpu_dispatch.h>
@@ -104,8 +106,10 @@
 #include <ATen/ops/_histogramdd_from_bin_cts_cpu_dispatch.h>
 #include <ATen/ops/_histogramdd_from_bin_tensors_cpu_dispatch.h>
 #include <ATen/ops/_index_put_impl_cpu_dispatch.h>
+#include <ATen/ops/_int_mm_cpu_dispatch.h>
 #include <ATen/ops/_linalg_det_cpu_dispatch.h>
 #include <ATen/ops/_linalg_eigh_cpu_dispatch.h>
+#include <ATen/ops/_linalg_eigvals_cpu_dispatch.h>
 #include <ATen/ops/_linalg_slogdet_cpu_dispatch.h>
 #include <ATen/ops/_linalg_solve_ex_cpu_dispatch.h>
 #include <ATen/ops/_linalg_svd_cpu_dispatch.h>
@@ -120,6 +124,7 @@
 #include <ATen/ops/_masked_softmax_backward_cpu_dispatch.h>
 #include <ATen/ops/_native_batch_norm_legit_cpu_dispatch.h>
 #include <ATen/ops/_native_multi_head_attention_cpu_dispatch.h>
+#include <ATen/ops/_nested_compute_contiguous_strides_offsets_cpu_dispatch.h>
 #include <ATen/ops/_nested_from_padded_cpu_dispatch.h>
 #include <ATen/ops/_nested_tensor_from_mask_cpu_dispatch.h>
 #include <ATen/ops/_nested_tensor_from_mask_left_aligned_cpu_dispatch.h>
@@ -165,6 +170,8 @@
 #include <ATen/ops/_upsample_nearest_exact3d_cpu_dispatch.h>
 #include <ATen/ops/_upsample_nearest_exact3d_backward_cpu_dispatch.h>
 #include <ATen/ops/_validate_compressed_sparse_indices_cpu_dispatch.h>
+#include <ATen/ops/_weight_int4pack_mm_cpu_dispatch.h>
+#include <ATen/ops/_weight_int8pack_mm_cpu_dispatch.h>
 #include <ATen/ops/_weight_norm_interface_cpu_dispatch.h>
 #include <ATen/ops/_weight_norm_interface_backward_cpu_dispatch.h>
 #include <ATen/ops/abs_cpu_dispatch.h>
@@ -205,6 +212,7 @@
 #include <ATen/ops/avg_pool3d_cpu_dispatch.h>
 #include <ATen/ops/avg_pool3d_backward_cpu_dispatch.h>
 #include <ATen/ops/baddbmm_cpu_dispatch.h>
+#include <ATen/ops/batch_norm_backward_cpu_dispatch.h>
 #include <ATen/ops/batch_norm_update_stats_cpu_dispatch.h>
 #include <ATen/ops/bernoulli_cpu_dispatch.h>
 #include <ATen/ops/binary_cross_entropy_cpu_dispatch.h>
@@ -329,6 +337,7 @@
 #include <ATen/ops/linalg_cholesky_ex_cpu_dispatch.h>
 #include <ATen/ops/linalg_cross_cpu_dispatch.h>
 #include <ATen/ops/linalg_eig_cpu_dispatch.h>
+#include <ATen/ops/linalg_eigvals_cpu_dispatch.h>
 #include <ATen/ops/linalg_householder_product_cpu_dispatch.h>
 #include <ATen/ops/linalg_inv_ex_cpu_dispatch.h>
 #include <ATen/ops/linalg_ldl_factor_ex_cpu_dispatch.h>

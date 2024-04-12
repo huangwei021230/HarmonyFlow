@@ -23,111 +23,111 @@ namespace at {
 
 
 // aten::repeat_interleave.Tensor(Tensor repeats, *, SymInt? output_size=None) -> Tensor
-inline at::Tensor repeat_interleave(const at::Tensor & repeats, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_Tensor::call(repeats, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt);
+inline at::Tensor repeat_interleave(const at::Tensor & repeats, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_Tensor::call(repeats, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor repeat_interleave(const at::Tensor & repeats, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_Tensor::call(repeats, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt);
+  at::Tensor repeat_interleave(const at::Tensor & repeats, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_Tensor::call(repeats, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt);
   }
 }
 
 // aten::repeat_interleave.Tensor(Tensor repeats, *, SymInt? output_size=None) -> Tensor
-inline at::Tensor repeat_interleave_symint(const at::Tensor & repeats, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+inline at::Tensor repeat_interleave_symint(const at::Tensor & repeats, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_Tensor::call(repeats, output_size);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor repeat_interleave(const at::Tensor & repeats, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+  at::Tensor repeat_interleave(const at::Tensor & repeats, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_Tensor::call(repeats, output_size);
   }
 }
 
 // aten::repeat_interleave.self_Tensor(Tensor self, Tensor repeats, int? dim=None, *, SymInt? output_size=None) -> Tensor
-inline at::Tensor repeat_interleave(const at::Tensor & self, const at::Tensor & repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_self_Tensor::call(self, repeats, dim, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt);
+inline at::Tensor repeat_interleave(const at::Tensor & self, const at::Tensor & repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_self_Tensor::call(self, repeats, dim, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor repeat_interleave(const at::Tensor & self, const at::Tensor & repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_self_Tensor::call(self, repeats, dim, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt);
+  at::Tensor repeat_interleave(const at::Tensor & self, const at::Tensor & repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_self_Tensor::call(self, repeats, dim, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt);
   }
 }
 
 // aten::repeat_interleave.self_Tensor(Tensor self, Tensor repeats, int? dim=None, *, SymInt? output_size=None) -> Tensor
-inline at::Tensor repeat_interleave_symint(const at::Tensor & self, const at::Tensor & repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+inline at::Tensor repeat_interleave_symint(const at::Tensor & self, const at::Tensor & repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_self_Tensor::call(self, repeats, dim, output_size);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor repeat_interleave(const at::Tensor & self, const at::Tensor & repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+  at::Tensor repeat_interleave(const at::Tensor & self, const at::Tensor & repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_self_Tensor::call(self, repeats, dim, output_size);
   }
 }
 
 // aten::repeat_interleave.self_int(Tensor self, SymInt repeats, int? dim=None, *, SymInt? output_size=None) -> Tensor
-inline at::Tensor repeat_interleave(const at::Tensor & self, int64_t repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_self_int::call(self, repeats, dim, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt);
+inline at::Tensor repeat_interleave(const at::Tensor & self, int64_t repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_self_int::call(self, repeats, dim, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor repeat_interleave(const at::Tensor & self, int64_t repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_self_int::call(self, repeats, dim, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt);
+  at::Tensor repeat_interleave(const at::Tensor & self, int64_t repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_self_int::call(self, repeats, dim, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt);
   }
 }
 
 // aten::repeat_interleave.self_int(Tensor self, SymInt repeats, int? dim=None, *, SymInt? output_size=None) -> Tensor
-inline at::Tensor repeat_interleave_symint(const at::Tensor & self, c10::SymInt repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+inline at::Tensor repeat_interleave_symint(const at::Tensor & self, c10::SymInt repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_self_int::call(self, repeats, dim, output_size);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor repeat_interleave(const at::Tensor & self, c10::SymInt repeats, c10::optional<int64_t> dim=c10::nullopt, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+  at::Tensor repeat_interleave(const at::Tensor & self, c10::SymInt repeats, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_self_int::call(self, repeats, dim, output_size);
   }
 }
 
 // aten::repeat_interleave.Tensor_out(Tensor repeats, *, SymInt? output_size=None, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & repeat_interleave_out(at::Tensor & out, const at::Tensor & repeats, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt, out);
+inline at::Tensor & repeat_interleave_out(at::Tensor & out, const at::Tensor & repeats, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor & repeat_interleave_out(at::Tensor & out, const at::Tensor & repeats, c10::optional<int64_t> output_size=c10::nullopt) {
-    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt, out);
+  at::Tensor & repeat_interleave_out(at::Tensor & out, const at::Tensor & repeats, ::std::optional<int64_t> output_size=::std::nullopt) {
+    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt, out);
   }
 }
 
 // aten::repeat_interleave.Tensor_out(Tensor repeats, *, SymInt? output_size=None, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & repeat_interleave_outf(const at::Tensor & repeats, c10::optional<int64_t> output_size, at::Tensor & out) {
-    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt, out);
+inline at::Tensor & repeat_interleave_outf(const at::Tensor & repeats, ::std::optional<int64_t> output_size, at::Tensor & out) {
+    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, int64_t>::value>>
-  at::Tensor & repeat_interleave_outf(const at::Tensor & repeats, c10::optional<int64_t> output_size, at::Tensor & out) {
-    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? c10::make_optional(c10::SymInt(*output_size)) : c10::nullopt, out);
+  at::Tensor & repeat_interleave_outf(const at::Tensor & repeats, ::std::optional<int64_t> output_size, at::Tensor & out) {
+    return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size.has_value() ? ::std::make_optional(c10::SymInt(*output_size)) : ::std::nullopt, out);
   }
 }
 
 // aten::repeat_interleave.Tensor_out(Tensor repeats, *, SymInt? output_size=None, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & repeat_interleave_symint_out(at::Tensor & out, const at::Tensor & repeats, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+inline at::Tensor & repeat_interleave_symint_out(at::Tensor & out, const at::Tensor & repeats, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor & repeat_interleave_out(at::Tensor & out, const at::Tensor & repeats, c10::optional<c10::SymInt> output_size=c10::nullopt) {
+  at::Tensor & repeat_interleave_out(at::Tensor & out, const at::Tensor & repeats, ::std::optional<c10::SymInt> output_size=::std::nullopt) {
     return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size, out);
   }
 }
 
 // aten::repeat_interleave.Tensor_out(Tensor repeats, *, SymInt? output_size=None, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & repeat_interleave_symint_outf(const at::Tensor & repeats, c10::optional<c10::SymInt> output_size, at::Tensor & out) {
+inline at::Tensor & repeat_interleave_symint_outf(const at::Tensor & repeats, ::std::optional<c10::SymInt> output_size, at::Tensor & out) {
     return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size, out);
 }
 namespace symint {
   template <typename T, typename = std::enable_if_t<std::is_same<T, c10::SymInt>::value>>
-  at::Tensor & repeat_interleave_outf(const at::Tensor & repeats, c10::optional<c10::SymInt> output_size, at::Tensor & out) {
+  at::Tensor & repeat_interleave_outf(const at::Tensor & repeats, ::std::optional<c10::SymInt> output_size, at::Tensor & out) {
     return at::_ops::repeat_interleave_Tensor_out::call(repeats, output_size, out);
   }
 }

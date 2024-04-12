@@ -63,7 +63,6 @@ class C10_API Scalar {
   // As std::is_same_v<long, long long> is false(except Android), one needs to
   // provide a constructor from either long or long long in addition to one from
   // int64_t
-    //TODO: remove this when we have a compiler that supports long long
 #if defined(__APPLE__) || defined(__MACOSX)
   static_assert(
       std::is_same_v<long long, int64_t>,

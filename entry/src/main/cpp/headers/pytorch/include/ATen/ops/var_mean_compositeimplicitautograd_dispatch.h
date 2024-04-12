@@ -20,7 +20,7 @@ namespace compositeimplicitautograd {
 TORCH_API ::std::tuple<at::Tensor,at::Tensor> var_mean(const at::Tensor & self, bool unbiased);
 TORCH_API ::std::tuple<at::Tensor,at::Tensor> var_mean(const at::Tensor & self, at::OptionalIntArrayRef dim, bool unbiased, bool keepdim=false);
 TORCH_API ::std::tuple<at::Tensor,at::Tensor> var_mean(const at::Tensor & self, at::DimnameList dim, bool unbiased, bool keepdim=false);
-TORCH_API ::std::tuple<at::Tensor,at::Tensor> var_mean(const at::Tensor & self, at::DimnameList dim, const c10::optional<at::Scalar> & correction=c10::nullopt, bool keepdim=false);
+TORCH_API ::std::tuple<at::Tensor,at::Tensor> var_mean(const at::Tensor & self, at::DimnameList dim, const ::std::optional<at::Scalar> & correction=::std::nullopt, bool keepdim=false);
 
 } // namespace compositeimplicitautograd
 } // namespace at

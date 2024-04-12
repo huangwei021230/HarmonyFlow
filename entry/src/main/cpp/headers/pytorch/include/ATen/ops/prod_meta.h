@@ -20,7 +20,7 @@ namespace meta {
 struct TORCH_API structured_prod_dim_int : public at::impl::MetaBase {
     
     
-    void meta(const at::Tensor & self, int64_t dim, bool keepdim, c10::optional<at::ScalarType> dtype);
+    void meta(const at::Tensor & self, int64_t dim, bool keepdim, ::std::optional<at::ScalarType> dtype);
 };
 
 } // namespace native

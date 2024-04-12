@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API ::std::tuple<at::Tensor,at::Tensor,at::Tensor> _scaled_dot_product_flash_attention_cpu_backward(const at::Tensor & grad_out, const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const at::Tensor & out, const at::Tensor & logsumexp, double dropout_p, bool is_causal, const c10::optional<at::Tensor> & attn_mask={}, c10::optional<double> scale=c10::nullopt);
+TORCH_API ::std::tuple<at::Tensor,at::Tensor,at::Tensor> _scaled_dot_product_flash_attention_cpu_backward(const at::Tensor & grad_out, const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const at::Tensor & out, const at::Tensor & logsumexp, double dropout_p, bool is_causal, const ::std::optional<at::Tensor> & attn_mask={}, ::std::optional<double> scale=::std::nullopt);
 } // namespace native
 } // namespace at

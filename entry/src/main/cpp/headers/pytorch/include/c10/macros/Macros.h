@@ -382,12 +382,12 @@ __host__ __device__
     // exactly how it is in glibc in case parts of the program are compiled with
     // different NDEBUG settings. Otherwise we might get 'ambiguous declaration'
     // error. Note: On ROCm - this declaration serves for host side compilation.
-    // void
-    // __assert_fail(
-    //     const char* assertion,
-    //     const char* file,
-    //     int line,
-    //     const char* function) noexcept __attribute__((__noreturn__));
+    void
+    __assert_fail(
+        const char* assertion,
+        const char* file,
+        unsigned int line,
+        const char* function) noexcept __attribute__((__noreturn__));
 
 #endif // __SYCL_DEVICE_ONLY__
 }

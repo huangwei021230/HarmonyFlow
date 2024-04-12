@@ -23,16 +23,16 @@ namespace at {
 
 
 // aten::_masked_softmax(Tensor self, Tensor mask, int? dim=None, int? mask_type=None) -> Tensor
-inline at::Tensor _masked_softmax(const at::Tensor & self, const at::Tensor & mask, c10::optional<int64_t> dim=c10::nullopt, c10::optional<int64_t> mask_type=c10::nullopt) {
+inline at::Tensor _masked_softmax(const at::Tensor & self, const at::Tensor & mask, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<int64_t> mask_type=::std::nullopt) {
     return at::_ops::_masked_softmax::call(self, mask, dim, mask_type);
 }
 
 // aten::_masked_softmax.out(Tensor self, Tensor mask, int? dim=None, int? mask_type=None, *, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & _masked_softmax_out(at::Tensor & out, const at::Tensor & self, const at::Tensor & mask, c10::optional<int64_t> dim=c10::nullopt, c10::optional<int64_t> mask_type=c10::nullopt) {
+inline at::Tensor & _masked_softmax_out(at::Tensor & out, const at::Tensor & self, const at::Tensor & mask, ::std::optional<int64_t> dim=::std::nullopt, ::std::optional<int64_t> mask_type=::std::nullopt) {
     return at::_ops::_masked_softmax_out::call(self, mask, dim, mask_type, out);
 }
 // aten::_masked_softmax.out(Tensor self, Tensor mask, int? dim=None, int? mask_type=None, *, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & _masked_softmax_outf(const at::Tensor & self, const at::Tensor & mask, c10::optional<int64_t> dim, c10::optional<int64_t> mask_type, at::Tensor & out) {
+inline at::Tensor & _masked_softmax_outf(const at::Tensor & self, const at::Tensor & mask, ::std::optional<int64_t> dim, ::std::optional<int64_t> mask_type, at::Tensor & out) {
     return at::_ops::_masked_softmax_out::call(self, mask, dim, mask_type, out);
 }
 

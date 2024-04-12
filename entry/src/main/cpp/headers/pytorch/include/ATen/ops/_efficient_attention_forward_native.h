@@ -16,6 +16,6 @@
 
 namespace at {
 namespace native {
-TORCH_API ::std::tuple<at::Tensor,at::Tensor,at::Tensor,at::Tensor,c10::SymInt,c10::SymInt> _efficient_attention_forward(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const c10::optional<at::Tensor> & bias, const c10::optional<at::Tensor> & cu_seqlens_q, const c10::optional<at::Tensor> & cu_seqlens_k, c10::optional<int64_t> max_seqlen_q, c10::optional<int64_t> max_seqlen_k, double dropout_p, int64_t custom_mask_type, bool compute_log_sumexp=false, c10::optional<double> scale=c10::nullopt, const c10::optional<at::Tensor> & causal_diagonal={}, const c10::optional<at::Tensor> & seqlen_k={});
+TORCH_API ::std::tuple<at::Tensor,at::Tensor,at::Tensor,at::Tensor,c10::SymInt,c10::SymInt> _efficient_attention_forward(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const ::std::optional<at::Tensor> & bias, const ::std::optional<at::Tensor> & cu_seqlens_q, const ::std::optional<at::Tensor> & cu_seqlens_k, ::std::optional<int64_t> max_seqlen_q, ::std::optional<int64_t> max_seqlen_k, double dropout_p, int64_t custom_mask_type, bool compute_log_sumexp=false, ::std::optional<double> scale=::std::nullopt, const ::std::optional<at::Tensor> & causal_diagonal={}, const ::std::optional<at::Tensor> & seqlen_k={});
 } // namespace native
 } // namespace at

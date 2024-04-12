@@ -702,7 +702,7 @@ inline std::vector<double> PythonArgs::getDoublelist(int i) {
         tuple ? PyTuple_GET_ITEM(arg, idx) : PyList_GET_ITEM(arg, idx);
     try {
       res[idx] = THPUtils_unpackDouble(obj);
-    } catch (const std::exception& e) {
+    } catch (const std::exception&) {
       throw TypeError(
           "%s(): argument '%s' must be %s, but found element of type %s at pos %zu",
           signature.name.c_str(),
@@ -807,11 +807,7 @@ inline at::Device toDevice(PyObject* obj) {
   }
   if (THPUtils_checkLong(obj)) {
     const auto device_index = THPUtils_unpackLong(obj);
-    TORCH_CHECK(
-        device_index >= 0 && device_index < c10::Device::MAX_NUM_DEVICES,
-        "Device index must be between 0 and ",
-        c10::Device::MAX_NUM_DEVICES - 1,
-        " inclusively.");
+    TORCH_CHECK(device_index >= 0, "Device index must not be negative");
     if (c10::is_privateuse1_backend_registered()) {
       return at::Device(
           c10::DeviceType::PrivateUse1,

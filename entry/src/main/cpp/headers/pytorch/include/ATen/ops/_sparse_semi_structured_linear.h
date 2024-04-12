@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_sparse_semi_structured_linear(Tensor input, Tensor weight, Tensor meta, *, Tensor? bias=None, str? activation=None, ScalarType? out_dtype=None) -> Tensor
-inline at::Tensor _sparse_semi_structured_linear(const at::Tensor & input, const at::Tensor & weight, const at::Tensor & meta, const c10::optional<at::Tensor> & bias={}, c10::optional<c10::string_view> activation=c10::nullopt, c10::optional<at::ScalarType> out_dtype=c10::nullopt) {
+inline at::Tensor _sparse_semi_structured_linear(const at::Tensor & input, const at::Tensor & weight, const at::Tensor & meta, const ::std::optional<at::Tensor> & bias={}, ::std::optional<c10::string_view> activation=::std::nullopt, ::std::optional<at::ScalarType> out_dtype=::std::nullopt) {
     return at::_ops::_sparse_semi_structured_linear::call(input, weight, meta, bias, activation, out_dtype);
 }
 

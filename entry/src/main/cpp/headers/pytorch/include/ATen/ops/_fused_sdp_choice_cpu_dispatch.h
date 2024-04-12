@@ -17,7 +17,7 @@ namespace at {
 
 namespace cpu {
 
-TORCH_API int64_t _fused_sdp_choice(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const c10::optional<at::Tensor> & attn_mask={}, double dropout_p=0.0, bool is_causal=false, c10::optional<double> scale=c10::nullopt);
+TORCH_API int64_t _fused_sdp_choice(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const ::std::optional<at::Tensor> & attn_mask={}, double dropout_p=0.0, bool is_causal=false, ::std::optional<double> scale=::std::nullopt);
 
 } // namespace cpu
 } // namespace at

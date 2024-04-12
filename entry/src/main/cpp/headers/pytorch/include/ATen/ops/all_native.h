@@ -19,7 +19,7 @@ namespace native {
 struct TORCH_API structured_all_out : public at::meta::structured_all_dim {
 void impl(const at::Tensor & self, int64_t dim, bool keepdim, const at::Tensor & out);
 };
-TORCH_API at::Tensor all_dims_default(const at::Tensor & self, at::OptionalIntArrayRef dim=c10::nullopt, bool keepdim=false);
+TORCH_API at::Tensor all_dims_default(const at::Tensor & self, at::OptionalIntArrayRef dim=::std::nullopt, bool keepdim=false);
 TORCH_API at::Tensor & all_dims_out_default(const at::Tensor & self, at::OptionalIntArrayRef dim, bool keepdim, at::Tensor & out);
 struct TORCH_API structured_all_dims_out : public at::meta::structured_all_dims {
 void impl(const at::Tensor & self, at::OptionalIntArrayRef dim, bool keepdim, const at::Tensor & out);

@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_scaled_dot_product_efficient_attention(Tensor query, Tensor key, Tensor value, Tensor? attn_bias, bool compute_log_sumexp, float dropout_p=0.0, bool is_causal=False, *, float? scale=None) -> (Tensor output, Tensor log_sumexp, Tensor philox_seed, Tensor philox_offset)
-inline ::std::tuple<at::Tensor,at::Tensor,at::Tensor,at::Tensor> _scaled_dot_product_efficient_attention(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const c10::optional<at::Tensor> & attn_bias, bool compute_log_sumexp, double dropout_p=0.0, bool is_causal=false, c10::optional<double> scale=c10::nullopt) {
+inline ::std::tuple<at::Tensor,at::Tensor,at::Tensor,at::Tensor> _scaled_dot_product_efficient_attention(const at::Tensor & query, const at::Tensor & key, const at::Tensor & value, const ::std::optional<at::Tensor> & attn_bias, bool compute_log_sumexp, double dropout_p=0.0, bool is_causal=false, ::std::optional<double> scale=::std::nullopt) {
     return at::_ops::_scaled_dot_product_efficient_attention::call(query, key, value, attn_bias, compute_log_sumexp, dropout_p, is_causal, scale);
 }
 

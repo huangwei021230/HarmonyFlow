@@ -16,7 +16,7 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor & _sparse_coo_tensor_with_dims_and_tensors_out_symint(int64_t sparse_dim, int64_t dense_dim, c10::SymIntArrayRef size, const at::Tensor & indices, const at::Tensor & values, c10::optional<bool> is_coalesced, at::Tensor & out);
-TORCH_API at::Tensor new_with_dims_and_tensor_sparse_symint(int64_t sparse_dim, int64_t dense_dim, c10::SymIntArrayRef size, const at::Tensor & indices, const at::Tensor & values, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={}, c10::optional<bool> is_coalesced=c10::nullopt);
+TORCH_API at::Tensor & _sparse_coo_tensor_with_dims_and_tensors_out_symint(int64_t sparse_dim, int64_t dense_dim, c10::SymIntArrayRef size, const at::Tensor & indices, const at::Tensor & values, ::std::optional<bool> is_coalesced, at::Tensor & out);
+TORCH_API at::Tensor new_with_dims_and_tensor_sparse_symint(int64_t sparse_dim, int64_t dense_dim, c10::SymIntArrayRef size, const at::Tensor & indices, const at::Tensor & values, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={}, ::std::optional<bool> is_coalesced=::std::nullopt);
 } // namespace native
 } // namespace at

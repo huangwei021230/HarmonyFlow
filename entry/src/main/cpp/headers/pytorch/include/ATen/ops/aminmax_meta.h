@@ -20,7 +20,7 @@ namespace meta {
 struct TORCH_API structured_aminmax : public at::impl::MetaBase {
     
     
-    void meta(const at::Tensor & self, c10::optional<int64_t> dim, bool keepdim);
+    void meta(const at::Tensor & self, ::std::optional<int64_t> dim, bool keepdim);
 };
 
 } // namespace native

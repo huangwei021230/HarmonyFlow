@@ -19,7 +19,7 @@ namespace native {
 struct TORCH_API structured_clamp_out : public at::meta::structured_clamp {
 void impl(const at::Tensor & self, at::OptionalScalarRef min, at::OptionalScalarRef max, const at::Tensor & out);
 };
-TORCH_API at::Tensor clamp_quantized_cpu(const at::Tensor & self, const c10::optional<at::Scalar> & min=c10::nullopt, const c10::optional<at::Scalar> & max=c10::nullopt);
+TORCH_API at::Tensor clamp_quantized_cpu(const at::Tensor & self, const ::std::optional<at::Scalar> & min=::std::nullopt, const ::std::optional<at::Scalar> & max=::std::nullopt);
 struct TORCH_API structured_clamp_Tensor_out : public at::meta::structured_clamp_Tensor {
 void impl(const at::Tensor & self, at::OptionalTensorRef min, at::OptionalTensorRef max, const at::Tensor & out);
 };

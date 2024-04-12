@@ -23,16 +23,16 @@ namespace at {
 
 
 // aten::_pin_memory(Tensor self, Device? device=None) -> Tensor
-inline at::Tensor _pin_memory(const at::Tensor & self, c10::optional<at::Device> device=c10::nullopt) {
+inline at::Tensor _pin_memory(const at::Tensor & self, ::std::optional<at::Device> device=::std::nullopt) {
     return at::_ops::_pin_memory::call(self, device);
 }
 
 // aten::_pin_memory.out(Tensor self, Device? device=None, *, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & _pin_memory_out(at::Tensor & out, const at::Tensor & self, c10::optional<at::Device> device=c10::nullopt) {
+inline at::Tensor & _pin_memory_out(at::Tensor & out, const at::Tensor & self, ::std::optional<at::Device> device=::std::nullopt) {
     return at::_ops::_pin_memory_out::call(self, device, out);
 }
 // aten::_pin_memory.out(Tensor self, Device? device=None, *, Tensor(a!) out) -> Tensor(a!)
-inline at::Tensor & _pin_memory_outf(const at::Tensor & self, c10::optional<at::Device> device, at::Tensor & out) {
+inline at::Tensor & _pin_memory_outf(const at::Tensor & self, ::std::optional<at::Device> device, at::Tensor & out) {
     return at::_ops::_pin_memory_out::call(self, device, out);
 }
 

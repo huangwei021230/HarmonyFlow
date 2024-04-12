@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_unsafe_index_put(Tensor self, Tensor?[] indices, Tensor values, bool accumulate=False) -> Tensor
-inline at::Tensor _unsafe_index_put(const at::Tensor & self, const c10::List<c10::optional<at::Tensor>> & indices, const at::Tensor & values, bool accumulate=false) {
+inline at::Tensor _unsafe_index_put(const at::Tensor & self, const c10::List<::std::optional<at::Tensor>> & indices, const at::Tensor & values, bool accumulate=false) {
     return at::_ops::_unsafe_index_put::call(self, indices, values, accumulate);
 }
 

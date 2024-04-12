@@ -20,7 +20,7 @@ namespace meta {
 struct TORCH_API structured_sort_stable : public at::impl::MetaBase {
     
     
-    void meta(const at::Tensor & self, c10::optional<bool> stable, int64_t dim, bool descending);
+    void meta(const at::Tensor & self, ::std::optional<bool> stable, int64_t dim, bool descending);
 };
 
 } // namespace native

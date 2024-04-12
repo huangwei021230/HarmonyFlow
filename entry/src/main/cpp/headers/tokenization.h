@@ -1,77 +1,76 @@
-// Note: This source code is a copy from github: https://gist.github.com/luistung/ace4888cf5fd1bad07844021cb2c7ecf
-#pragma once
+//
+// Created by PC on 2024/4/3.
+//
+
+#ifndef TOKENIZER_TOKENIZATION_H
+#define TOKENIZER_TOKENIZATION_H
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <regex>
 #include <unordered_map>
+#include <unordered_set>
 #include <memory>
 // #include <boost/algorithm/string.hpp>
+// #include <boost/regex.hpp>
 #include <utf8proc.h>
+#include <map>
 
-const std::wstring stripChar = L" \t\n\r\v\f";
+// hash for pair<char,char>
+struct pair_hash {
+    inline std::size_t operator()(const std::pair<std::wstring, std::wstring>& p) const {
+        // 使用 std::hash 计算哈希值
+        std::size_t hash1 = std::hash<std::wstring>{}(p.first);
+        std::size_t hash2 = std::hash<std::wstring>{}(p.second);
+        
+        // 结合哈希值
+        return hash1 ^ (hash2 << 1);
+    }
+};
+// strings
+const std::wstring stripChar = L" \t\n\r\f\v";
+
+// typedef
 using Vocab = std::unordered_map<std::wstring, size_t>;
-using InvVocab = std::unordered_map<size_t, std::wstring>;
+using InvVocab = std::unordered_map<size_t , std::wstring>;
 
-namespace Tokenizer {
+namespace tokenizer {
 
-static std::wstring cleanText(const std::wstring &text);
-static bool isControol(const wchar_t &ch);
-static bool isWhitespace(const wchar_t &ch);
-static bool isPunctuation(const wchar_t &ch);
-static bool isChineseChar(const wchar_t &ch);
-static std::wstring tokenizeChineseChars(const std::wstring &text);
-static bool isStripChar(const wchar_t &ch);
-static std::wstring strip(const std::wstring &text);
+
 static std::vector<std::wstring> split(const std::wstring &text);
-static std::wstring runStripAccents(const std::wstring &text);
-static std::vector<std::wstring> runSplitOnPunc(const std::wstring &text);
-static std::shared_ptr<Vocab> loadVocab(const std::string &vocabFile);
-static std::vector<std::wstring> whitespaceTokenize(const std::wstring &text);
 
-class BasicTokenizer {
+
+class GPT2Tokenizer {
 public:
-    BasicTokenizer(bool doLowerCase = true);
+    GPT2Tokenizer(
+            const std::string &vocab_file,
+            const std::string &merges_file,
+            const size_t &vocab_size,
+            const size_t &n_special,
+            const std::wstring &unk_token,
+            const std::wstring &bos_token = L"<|endoftext|>",
+            const std::wstring &eos_token = L"<|endoftext|>",
+            const std::wstring &pad_token = L"",
+            const bool &add_prefix_space = false,
+            const bool &add_bos_token = false);
     std::vector<std::wstring> tokenize(const std::string &text) const;
-
+    std::wstring bpe(const std::wstring &token);
+    std::unordered_set<std::pair<std::wstring, std::wstring>, pair_hash>get_pairs(const std::vector<std::wstring>&word);
+    size_t getVocabId(const std::wstring &token);
+    std:: vector<size_t> convertTokensToIds(const std::vector<std::wstring> &tokens);
+    std::vector<std::string> convertIdsToTokens(const std::vector<size_t> &ids);
 private:
-    bool mDoLowerCase;
+    std::shared_ptr<Vocab> encoder;
+    std::shared_ptr<InvVocab> decoder;
+    std::map<std::size_t, wchar_t> byte_encoder;
+    std::map<wchar_t, std::size_t> byte_decoder;
+    std::map<std::pair<std::wstring,std::wstring>, std::size_t> bpe_ranks;
+    std::unordered_map<std::wstring, std::wstring> cache;
+    std::regex pat;
 };
-
-class WordpieceTokenizer {
-public:
-    WordpieceTokenizer(std::shared_ptr<Vocab> vocab, const std::wstring &unkToken = L"[UNK]",
-                       size_t maxInputCharsPerWord = 200);
-    std::vector<std::wstring> tokenize(const std::wstring &text) const;
-
-private:
-    std::shared_ptr<Vocab> mVocab;
-    std::wstring mUnkToken;
-    size_t mMaxInputCharsPerWord;
-};
-
-class FullTokenizer {
-public:
-    FullTokenizer(const std::string &vocabFile, bool doLowerCase = true);
-    std::vector<std::wstring> tokenize(const std::string &text) const;
-    std::vector<size_t> convertTokensToIds(const std::vector<std::wstring> &text) const;
-    inline size_t getVocabId(const std::wstring &token) { return (*mVocab)[token]; }
-
-private:
-    std::shared_ptr<Vocab> mVocab;
-    InvVocab mInvVocab;
-    std::string mVocabFile;
-    bool mDoLowerCase;
-    BasicTokenizer mBasicTokenizer;
-    WordpieceTokenizer mWordpieceTokenizer;
-};
-
-// static std::vector<std::wstring> split(const std::wstring& text) {
-//     std::vector<std::wstring>  result;
-//     boost::split(result, text, boost::is_any_of(stripChar));
-//     return result;
-// }
 
 static std::wstring convertToUnicode(const std::string &text) {
     size_t i = 0;
@@ -79,7 +78,7 @@ static std::wstring convertToUnicode(const std::string &text) {
     while (i < text.size()) {
         wchar_t codepoint;
         utf8proc_ssize_t forward =
-            utf8proc_iterate((utf8proc_uint8_t *)&text[i], text.size() - i, (utf8proc_int32_t *)&codepoint);
+                utf8proc_iterate((utf8proc_uint8_t *)&text[i], text.size() - i, (utf8proc_int32_t *)&codepoint);
         if (forward < 0)
             return L"";
         ret += codepoint;
@@ -100,11 +99,9 @@ static std::string convertFromUnicode(const std::wstring &wText) {
     return ret;
 }
 
-static std::wstring tolower(const std::wstring &s) {
-    std::wstring ret(s.size(), L' ');
-    for (size_t i = 0; i < s.size(); i++) {
-        ret[i] = utf8proc_tolower(s[i]);
-    }
-    return ret;
-}
-} // namespace Tokenizer
+
+
+};
+
+
+#endif //TOKENIZER_TOKENIZATION_H

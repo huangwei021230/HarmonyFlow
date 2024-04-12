@@ -16,9 +16,9 @@
 
 namespace at {
 namespace native {
-TORCH_API at::Tensor full(at::IntArrayRef size, const at::Scalar & fill_value, c10::optional<at::DimnameList> names, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
-TORCH_API at::Tensor & full_names_out(at::IntArrayRef size, const at::Scalar & fill_value, c10::optional<at::DimnameList> names, at::Tensor & out);
-TORCH_API at::Tensor full(at::IntArrayRef size, const at::Scalar & fill_value, c10::optional<at::ScalarType> dtype={}, c10::optional<at::Layout> layout={}, c10::optional<at::Device> device={}, c10::optional<bool> pin_memory={});
+TORCH_API at::Tensor full(at::IntArrayRef size, const at::Scalar & fill_value, ::std::optional<at::DimnameList> names, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
+TORCH_API at::Tensor & full_names_out(at::IntArrayRef size, const at::Scalar & fill_value, ::std::optional<at::DimnameList> names, at::Tensor & out);
+TORCH_API at::Tensor full(at::IntArrayRef size, const at::Scalar & fill_value, ::std::optional<at::ScalarType> dtype={}, ::std::optional<at::Layout> layout={}, ::std::optional<at::Device> device={}, ::std::optional<bool> pin_memory={});
 TORCH_API at::Tensor & full_out(at::IntArrayRef size, const at::Scalar & fill_value, at::Tensor & out);
 } // namespace native
 } // namespace at

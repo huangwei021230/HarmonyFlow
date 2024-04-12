@@ -491,7 +491,7 @@ struct TORCH_API AsStridedBackward0 : public Node {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   at::TensorGeometry self_geometry;
   std::vector<c10::SymInt> size;
-  c10::optional<c10::SymInt> storage_offset;
+  ::std::optional<c10::SymInt> storage_offset;
   std::vector<c10::SymInt> stride;
 
 };
@@ -513,7 +513,7 @@ struct TORCH_API AsStridedBackward1 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   at::TensorGeometry self_geometry;
   std::vector<c10::SymInt> size;
-  c10::optional<c10::SymInt> storage_offset;
+  ::std::optional<c10::SymInt> storage_offset;
   std::vector<c10::SymInt> stride;
 
 };
@@ -882,8 +882,8 @@ struct TORCH_API ClampBackward1 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<at::Scalar> max;
-  c10::optional<at::Scalar> min;
+  ::std::optional<at::Scalar> max;
+  ::std::optional<at::Scalar> min;
   SavedVariable self_;
 
 };
@@ -1799,7 +1799,7 @@ struct TORCH_API NativeDropoutBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   double p;
-  c10::optional<bool> train;
+  ::std::optional<bool> train;
   SavedVariable result1_;
 
 };
@@ -4633,6 +4633,111 @@ struct TORCH_API NegBackward0 : public TraceableFunction {
 
 };
 #ifdef _WIN32
+struct BatchNormWithUpdateBackward0 : public TraceableFunction {
+  TORCH_API BatchNormWithUpdateBackward0() = default;
+#else
+struct TORCH_API BatchNormWithUpdateBackward0 : public TraceableFunction {
+#endif
+  using TraceableFunction::TraceableFunction;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "BatchNormWithUpdateBackward0"; }
+  void release_variables() override {
+    std::lock_guard<std::mutex> lock(mutex_);
+    input_.reset_data();
+    running_mean_.reset_data();
+    running_var_.reset_data();
+    weight_.reset_data();
+    result1_.reset_data();
+    result2_.reset_data();
+    result3_.reset_data();
+  }
+  bool retain_variables = true;
+  void will_release_variables() override {
+    retain_variables = false;
+  }
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+  double eps;
+  SavedVariable input_;
+  SavedVariable running_mean_;
+  SavedVariable running_var_;
+  SavedVariable weight_;
+  SavedVariable result1_;
+  SavedVariable result2_;
+  SavedVariable result3_;
+
+};
+#ifdef _WIN32
+struct BatchNormNoUpdateBackward0 : public TraceableFunction {
+  TORCH_API BatchNormNoUpdateBackward0() = default;
+#else
+struct TORCH_API BatchNormNoUpdateBackward0 : public TraceableFunction {
+#endif
+  using TraceableFunction::TraceableFunction;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "BatchNormNoUpdateBackward0"; }
+  void release_variables() override {
+    std::lock_guard<std::mutex> lock(mutex_);
+    input_.reset_data();
+    running_mean_.reset_data();
+    running_var_.reset_data();
+    weight_.reset_data();
+    result1_.reset_data();
+    result2_.reset_data();
+    result3_.reset_data();
+  }
+  bool retain_variables = true;
+  void will_release_variables() override {
+    retain_variables = false;
+  }
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+  double eps;
+  SavedVariable input_;
+  SavedVariable running_mean_;
+  SavedVariable running_var_;
+  SavedVariable weight_;
+  SavedVariable result1_;
+  SavedVariable result2_;
+  SavedVariable result3_;
+
+};
+#ifdef _WIN32
+struct BatchNormBackwardBackward0 : public TraceableFunction {
+  TORCH_API BatchNormBackwardBackward0() = default;
+#else
+struct TORCH_API BatchNormBackwardBackward0 : public TraceableFunction {
+#endif
+  using TraceableFunction::TraceableFunction;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "BatchNormBackwardBackward0"; }
+  void release_variables() override {
+    std::lock_guard<std::mutex> lock(mutex_);
+    grad_out_.reset_data();
+    input_.reset_data();
+    reserve_.reset_data();
+    running_mean_.reset_data();
+    running_var_.reset_data();
+    save_mean_.reset_data();
+    save_var_.reset_data();
+    weight_.reset_data();
+  }
+
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+  double eps;
+  SavedVariable grad_out_;
+  SavedVariable input_;
+  SavedVariable reserve_;
+  SavedVariable running_mean_;
+  SavedVariable running_var_;
+  SavedVariable save_mean_;
+  SavedVariable save_var_;
+  bool update;
+  SavedVariable weight_;
+
+};
+#ifdef _WIN32
 struct NextafterBackward0 : public TraceableFunction {
   TORCH_API NextafterBackward0() = default;
 #else
@@ -4692,7 +4797,7 @@ struct TORCH_API NormBackward1 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<int64_t> dim;
   bool keepdim;
-  c10::optional<at::Scalar> p;
+  ::std::optional<at::Scalar> p;
   SavedVariable self_;
   SavedVariable result_;
 
@@ -4714,7 +4819,7 @@ struct TORCH_API NormBackward2 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<at::Scalar> p;
+  ::std::optional<at::Scalar> p;
   SavedVariable self_;
   SavedVariable result_;
 
@@ -4738,7 +4843,7 @@ struct TORCH_API NormBackward3 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<int64_t> dim;
   bool keepdim;
-  c10::optional<at::Scalar> p;
+  ::std::optional<at::Scalar> p;
   SavedVariable self_;
   SavedVariable result_;
 
@@ -5662,7 +5767,7 @@ struct TORCH_API LogitBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<double> eps;
+  ::std::optional<double> eps;
   SavedVariable self_;
 
 };
@@ -5780,9 +5885,9 @@ struct TORCH_API SliceBackward0 : public Node {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   int64_t dim = 0;
-  c10::optional<c10::SymInt> end;
+  ::std::optional<c10::SymInt> end;
   std::vector<c10::SymInt> self_sym_sizes;
-  c10::optional<c10::SymInt> start;
+  ::std::optional<c10::SymInt> start;
   c10::SymInt step;
 
 };
@@ -5825,9 +5930,9 @@ struct TORCH_API SliceInverseBackward0 : public Node {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   int64_t dim = 0;
-  c10::optional<c10::SymInt> end;
+  ::std::optional<c10::SymInt> end;
   torch::autograd::generated::TypeAndSize self_info;
-  c10::optional<c10::SymInt> start;
+  ::std::optional<c10::SymInt> start;
   c10::SymInt step;
 
 };
@@ -5848,9 +5953,9 @@ struct TORCH_API SliceScatterBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   int64_t dim = 0;
-  c10::optional<c10::SymInt> end;
+  ::std::optional<c10::SymInt> end;
   torch::autograd::generated::TypeAndSize src_info;
-  c10::optional<c10::SymInt> start;
+  ::std::optional<c10::SymInt> start;
   c10::SymInt step;
 
 };
@@ -5916,7 +6021,7 @@ struct TORCH_API AsStridedScatterBackward0 : public TraceableFunction {
   at::TensorGeometry self_geometry;
   std::vector<c10::SymInt> size;
   at::TensorGeometry src_geometry;
-  c10::optional<c10::SymInt> storage_offset;
+  ::std::optional<c10::SymInt> storage_offset;
   std::vector<c10::SymInt> stride;
 
 };
@@ -6291,7 +6396,7 @@ struct TORCH_API StdBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<at::Scalar> correction;
+  ::std::optional<at::Scalar> correction;
   c10::OptionalArray<int64_t> dim;
   bool keepdim;
   SavedVariable self_;
@@ -6315,7 +6420,7 @@ struct TORCH_API StdMeanBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<at::Scalar> correction;
+  ::std::optional<at::Scalar> correction;
   c10::OptionalArray<int64_t> dim;
   bool keepdim;
   SavedVariable self_;
@@ -6913,7 +7018,7 @@ struct TORCH_API ToDenseBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<bool> masked_grad;
+  ::std::optional<bool> masked_grad;
   SavedVariable self_;
 
 };
@@ -7324,7 +7429,7 @@ struct TORCH_API VarBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<at::Scalar> correction;
+  ::std::optional<at::Scalar> correction;
   c10::OptionalArray<int64_t> dim;
   bool keepdim;
   SavedVariable self_;
@@ -7346,7 +7451,7 @@ struct TORCH_API VarMeanBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<at::Scalar> correction;
+  ::std::optional<at::Scalar> correction;
   c10::OptionalArray<int64_t> dim;
   bool keepdim;
   SavedVariable self_;
@@ -8447,7 +8552,7 @@ struct TORCH_API MaskedSoftmaxBackward0 : public TraceableFunction {
 
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
-  c10::optional<int64_t> dim;
+  ::std::optional<int64_t> dim;
   SavedVariable mask_;
   SavedVariable result_;
 
@@ -8831,7 +8936,7 @@ struct TORCH_API UpsampleLinear1DBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales;
+  ::std::optional<double> scales;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8853,8 +8958,8 @@ struct TORCH_API UpsampleBilinear2DBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8876,8 +8981,8 @@ struct TORCH_API UpsampleBilinear2DAaBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8899,8 +9004,8 @@ struct TORCH_API UpsampleBicubic2DBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8922,8 +9027,8 @@ struct TORCH_API UpsampleBicubic2DAaBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8945,9 +9050,9 @@ struct TORCH_API UpsampleTrilinear3DBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_d;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_d;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8968,7 +9073,7 @@ struct TORCH_API UpsampleNearest1DBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales;
+  ::std::optional<double> scales;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -8989,7 +9094,7 @@ struct TORCH_API UpsampleNearestExact1DBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales;
+  ::std::optional<double> scales;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -9010,8 +9115,8 @@ struct TORCH_API UpsampleNearest2DBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -9032,8 +9137,8 @@ struct TORCH_API UpsampleNearestExact2DBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -9054,9 +9159,9 @@ struct TORCH_API UpsampleNearest3DBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_d;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_d;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -9077,9 +9182,9 @@ struct TORCH_API UpsampleNearestExact3DBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_d;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_d;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
   std::vector<c10::SymInt> self_sym_sizes;
 
 };
@@ -9219,7 +9324,7 @@ struct TORCH_API AvgPool2DBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool ceil_mode;
   bool count_include_pad;
-  c10::optional<int64_t> divisor_override;
+  ::std::optional<int64_t> divisor_override;
   std::vector<int64_t> kernel_size;
   std::vector<int64_t> padding;
   SavedVariable self_;
@@ -9244,7 +9349,7 @@ struct TORCH_API AvgPool3DBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool ceil_mode;
   bool count_include_pad;
-  c10::optional<int64_t> divisor_override;
+  ::std::optional<int64_t> divisor_override;
   std::vector<int64_t> kernel_size;
   std::vector<int64_t> padding;
   SavedVariable self_;
@@ -10020,7 +10125,7 @@ struct TORCH_API AvgPool2DBackwardBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool ceil_mode;
   bool count_include_pad;
-  c10::optional<int64_t> divisor_override;
+  ::std::optional<int64_t> divisor_override;
   std::vector<int64_t> kernel_size;
   std::vector<int64_t> padding;
   torch::autograd::generated::TypeAndSize self_info;
@@ -10045,7 +10150,7 @@ struct TORCH_API AvgPool3DBackwardBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool ceil_mode;
   bool count_include_pad;
-  c10::optional<int64_t> divisor_override;
+  ::std::optional<int64_t> divisor_override;
   std::vector<int64_t> kernel_size;
   std::vector<int64_t> padding;
   torch::autograd::generated::TypeAndSize self_info;
@@ -10725,7 +10830,7 @@ struct TORCH_API UpsampleLinear1DBackwardBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales;
+  ::std::optional<double> scales;
 
 };
 #ifdef _WIN32
@@ -10746,8 +10851,8 @@ struct TORCH_API UpsampleBilinear2DBackwardBackward0 : public TraceableFunction 
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10768,8 +10873,8 @@ struct TORCH_API UpsampleBilinear2DAaBackwardBackward0 : public TraceableFunctio
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10790,8 +10895,8 @@ struct TORCH_API UpsampleBicubic2DBackwardBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10812,8 +10917,8 @@ struct TORCH_API UpsampleBicubic2DAaBackwardBackward0 : public TraceableFunction
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10834,9 +10939,9 @@ struct TORCH_API UpsampleTrilinear3DBackwardBackward0 : public TraceableFunction
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   bool align_corners;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_d;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_d;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10856,7 +10961,7 @@ struct TORCH_API UpsampleNearest1DBackwardBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales;
+  ::std::optional<double> scales;
 
 };
 #ifdef _WIN32
@@ -10876,7 +10981,7 @@ struct TORCH_API UpsampleNearestExact1DBackwardBackward0 : public TraceableFunct
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales;
+  ::std::optional<double> scales;
 
 };
 #ifdef _WIN32
@@ -10896,8 +11001,8 @@ struct TORCH_API UpsampleNearest2DBackwardBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10917,8 +11022,8 @@ struct TORCH_API UpsampleNearestExact2DBackwardBackward0 : public TraceableFunct
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10938,9 +11043,9 @@ struct TORCH_API UpsampleNearest3DBackwardBackward0 : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_d;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_d;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -10960,9 +11065,9 @@ struct TORCH_API UpsampleNearestExact3DBackwardBackward0 : public TraceableFunct
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   std::vector<c10::SymInt> output_size;
-  c10::optional<double> scales_d;
-  c10::optional<double> scales_h;
-  c10::optional<double> scales_w;
+  ::std::optional<double> scales_d;
+  ::std::optional<double> scales_h;
+  ::std::optional<double> scales_w;
 
 };
 #ifdef _WIN32
@@ -11845,6 +11950,44 @@ struct TORCH_API NestedViewFromBufferBackward0 : public Node {
 
 };
 #ifdef _WIN32
+struct NestedViewFromJaggedBackward0 : public Node {
+  TORCH_API NestedViewFromJaggedBackward0() = default;
+#else
+struct TORCH_API NestedViewFromJaggedBackward0 : public Node {
+#endif
+  using Node::Node;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "NestedViewFromJaggedBackward0"; }
+  void release_variables() override {
+
+
+  }
+
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+
+
+};
+#ifdef _WIN32
+struct NestedGetValuesBackward0 : public Node {
+  TORCH_API NestedGetValuesBackward0() = default;
+#else
+struct TORCH_API NestedGetValuesBackward0 : public Node {
+#endif
+  using Node::Node;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "NestedGetValuesBackward0"; }
+  void release_variables() override {
+    std::lock_guard<std::mutex> lock(mutex_);
+    self_.reset_data();
+  }
+
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+  SavedVariable self_;
+
+};
+#ifdef _WIN32
 struct ScaledDotProductEfficientAttentionBackward0 : public TraceableFunction {
   TORCH_API ScaledDotProductEfficientAttentionBackward0() = default;
 #else
@@ -11872,7 +12015,7 @@ struct TORCH_API ScaledDotProductEfficientAttentionBackward0 : public TraceableF
   bool is_causal;
   SavedVariable key_;
   SavedVariable query_;
-  c10::optional<double> scale;
+  ::std::optional<double> scale;
   SavedVariable value_;
   SavedVariable log_sumexp_;
   SavedVariable output_;
@@ -11908,7 +12051,7 @@ struct TORCH_API ScaledDotProductFlashAttentionBackward0 : public TraceableFunct
   bool is_causal;
   SavedVariable key_;
   SavedVariable query_;
-  c10::optional<double> scale;
+  ::std::optional<double> scale;
   SavedVariable value_;
   SavedVariable cum_seq_k_;
   SavedVariable cum_seq_q_;
@@ -11946,7 +12089,7 @@ struct TORCH_API ScaledDotProductFlashAttentionForCpuBackward0 : public Traceabl
   bool is_causal;
   SavedVariable key_;
   SavedVariable query_;
-  c10::optional<double> scale;
+  ::std::optional<double> scale;
   SavedVariable value_;
   SavedVariable logsumexp_;
   SavedVariable output_;
@@ -11984,7 +12127,7 @@ struct TORCH_API FlashAttentionBackward0 : public TraceableFunction {
   c10::SymInt max_k;
   c10::SymInt max_q;
   SavedVariable query_;
-  c10::optional<double> scale;
+  ::std::optional<double> scale;
   SavedVariable value_;
   SavedVariable output_;
   SavedVariable philox_offset_;
@@ -12024,7 +12167,7 @@ struct TORCH_API EfficientAttentionBackward0 : public TraceableFunction {
   double dropout_p;
   SavedVariable key_;
   SavedVariable query_;
-  c10::optional<double> scale;
+  ::std::optional<double> scale;
   SavedVariable value_;
   SavedVariable logsumexp_;
   c10::SymInt max_seqlen_batch_k;
@@ -12259,7 +12402,7 @@ struct TORCH_API SegmentReduceBackward0 : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   int64_t axis = 0;
   SavedVariable data_;
-  c10::optional<at::Scalar> initial;
+  ::std::optional<at::Scalar> initial;
   SavedVariable lengths_;
   SavedVariable offsets_;
   std::string reduce;
@@ -12726,7 +12869,7 @@ struct TORCH_API AsStridedBackward0_copy : public TraceableFunction {
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   at::TensorGeometry self_geometry;
   std::vector<c10::SymInt> size;
-  c10::optional<c10::SymInt> storage_offset;
+  ::std::optional<c10::SymInt> storage_offset;
   std::vector<c10::SymInt> stride;
 
 };
@@ -12906,9 +13049,9 @@ struct TORCH_API SliceBackward0_copy : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
   int64_t dim = 0;
-  c10::optional<c10::SymInt> end;
+  ::std::optional<c10::SymInt> end;
   std::vector<c10::SymInt> self_sym_sizes;
-  c10::optional<c10::SymInt> start;
+  ::std::optional<c10::SymInt> start;
   c10::SymInt step;
 
 };
@@ -13306,6 +13449,44 @@ struct TORCH_API NestedViewFromBufferBackward0_copy : public TraceableFunction {
   void compiled_args(CompiledNodeArgs& args) override;
   variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
 
+
+};
+#ifdef _WIN32
+struct NestedViewFromJaggedBackward0_copy : public TraceableFunction {
+  TORCH_API NestedViewFromJaggedBackward0_copy() = default;
+#else
+struct TORCH_API NestedViewFromJaggedBackward0_copy : public TraceableFunction {
+#endif
+  using TraceableFunction::TraceableFunction;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "NestedViewFromJaggedBackward0_copy"; }
+  void release_variables() override {
+
+
+  }
+
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+
+
+};
+#ifdef _WIN32
+struct NestedGetValuesBackward0_copy : public TraceableFunction {
+  TORCH_API NestedGetValuesBackward0_copy() = default;
+#else
+struct TORCH_API NestedGetValuesBackward0_copy : public TraceableFunction {
+#endif
+  using TraceableFunction::TraceableFunction;
+  variable_list apply(variable_list&& grads) override;
+  std::string name() const override { return "NestedGetValuesBackward0_copy"; }
+  void release_variables() override {
+    std::lock_guard<std::mutex> lock(mutex_);
+    self_.reset_data();
+  }
+
+  void compiled_args(CompiledNodeArgs& args) override;
+  variable_list apply_with_saved(const variable_list& inputs, SwapSavedVariables& saved) override;
+  SavedVariable self_;
 
 };
 #ifdef _WIN32

@@ -23,7 +23,7 @@ namespace at {
 
 
 // aten::_mixed_dtypes_linear(Tensor input, Tensor weight, Tensor scale, *, Tensor? bias=None, str? activation=None) -> Tensor
-inline at::Tensor _mixed_dtypes_linear(const at::Tensor & input, const at::Tensor & weight, const at::Tensor & scale, const c10::optional<at::Tensor> & bias={}, c10::optional<c10::string_view> activation=c10::nullopt) {
+inline at::Tensor _mixed_dtypes_linear(const at::Tensor & input, const at::Tensor & weight, const at::Tensor & scale, const ::std::optional<at::Tensor> & bias={}, ::std::optional<c10::string_view> activation=::std::nullopt) {
     return at::_ops::_mixed_dtypes_linear::call(input, weight, scale, bias, activation);
 }
 
