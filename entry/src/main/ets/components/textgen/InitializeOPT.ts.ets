@@ -7,7 +7,7 @@ class InitializeOPT {
 
   async initialize(context: Context)  {
     let filesDir = context.filesDir
-    Log.info("Initializing", filesDir)
+    Log.info("114514", filesDir)
     optNative.initialize(context.filesDir)
     Log.info(this.TAG, 'filesDir: ' + filesDir);
 

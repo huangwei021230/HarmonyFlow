@@ -22,8 +22,9 @@ private:
     static OptInferEngine* instance(){
         std::lock_guard<std::mutex> lock(mutex_);
         if(!instance_){
-            if(file_dir.empty()) return nullptr;
+            if(file_dir == "") return nullptr;
             auto model_path = file_dir + "/traced_opt-125m.pt";
+            
             instance_ = std::make_unique<OptInferEngine>(model_path, file_dir + "/vocab.json", file_dir + "/merge.txt");
         }
         return instance_.get();
