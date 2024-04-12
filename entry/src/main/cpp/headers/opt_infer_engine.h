@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 
 #include <opt_processor.h>
 #include <torch/script.h>

@@ -6,7 +6,7 @@
 int main() {
     OPT::OptInferEngine opt_infer_engine("../traced_opt-125m.pt", "../vocab.json", "../merges.txt");
     std::string text = "Hello, my dog's 2 feet tall.";
-
+    
     std::ofstream outfile("execution_times.txt");
 
     for (int i = 0; i < 50; ++i) {
@@ -19,6 +19,5 @@ int main() {
     }
 
     outfile.close();
-
     return 0;
 }
