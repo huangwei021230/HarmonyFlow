@@ -35,6 +35,7 @@ import { ClipboardMenu } from '../components/clipboard/ClipboardMenu';
 import { store } from '../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore'  ;
 import { ClipboardManager } from '../components/clipboard/ClipboardManager';
+import { TextGenMenu } from '../components/textgen/textGenMenu';
 
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
@@ -78,6 +79,7 @@ export struct Index {
     Stack() {
       Column() {
         TopMenu()
+        TextGenMenu()
         Column() {
           if (this.menuType === MenuType.NORMAL) {
             KeyMenu({ keyList: this.keyList })
