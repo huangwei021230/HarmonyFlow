@@ -7,6 +7,6 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    "liboptnative.so": "./src/main/cpp/types/liboptnative"
+    "liboptnative.so": "file:./src/main/cpp/types/liboptnative"
   }
 }
