@@ -36,7 +36,8 @@ import { store } from '../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore'  ;
 import { ClipboardManager } from '../components/clipboard/ClipboardManager';
 import { TextGenMenu } from '../components/textgen/textGenMenu';
-
+import { initialize } from 'liboptnative.so';
+import InitializeOPT from '../components/textgen/InitializeOPT.ts';
 const DEVICE_TYPE: string = deviceInfo.deviceType;
 const TAG: string = 'index->';
 
@@ -62,6 +63,13 @@ export struct Index {
     InputHandler.getInstance().hideKeyboardSelf();
     return true;
   }
+
+
+  aboutToAppear(){
+    console.log("114514:", getContext(this))
+    InitializeOPT.initialize(getContext(this))
+  }
+
 
   inputPatternChange(): void {
     if (this.inputPattern === InputType.Number || this.inputPattern === InputType.PhoneNumber) {

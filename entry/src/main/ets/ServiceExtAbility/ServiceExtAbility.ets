@@ -28,6 +28,8 @@ import dataShare from '@ohos.data.dataShare';
 import { ClipboardManager } from '../components/clipboard/ClipboardManager';
 import { ClipboardItem } from '../components/clipboard/provider/ClipboardDatabase';
 
+
+
 export enum AppTheme {
   AUTO = "auto",
   AUTO_AMOLED = "auto_amoled",
@@ -54,7 +56,6 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
     this.addLog(`onCreate want: ${want.abilityName}`);
     this.keyboardController = new KeyboardController(this.context);
     this.keyboardController.onCreate();
-
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
       securityLevel: relationalStore.SecurityLevel.S1

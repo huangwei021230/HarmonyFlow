@@ -36,8 +36,9 @@ export struct TextGenMenu {
       .width(this.inputStyle.downMenuWidth)
       .borderRadius(4)
       .height('100%')
-      .onClick(() => {
-        this.menuType = MenuType.NORMAL
+      .onClick(async () => {
+        let returnText = optNative.getReturnString("hello world")
+        console.log("114514: ", returnText)
       })
     }
     .width('100%')
