@@ -32,7 +32,7 @@ if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
 
 
     target_link_libraries(optnative PUBLIC libace_napi.z.so)
-    target_link_libraries(optnative PUBLIC hilog_ndk.z)
+    target_link_libraries(optnative PUBLIC libhilog_ndk.z.so)
 
 
     # torch libs

@@ -51,6 +51,7 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     let context = this.context;
     let pathDir = context.filesDir;
+
   }
   onCreate(want: Want): void {
     this.addLog(`onCreate want: ${want.abilityName}`);
@@ -104,7 +105,7 @@ class ServiceExtAbility extends InputMethodExtensionAbility {
   }
 
   init(){
-    this.initICU(this.context)
+    // this.initICU(this.context)
     // 删除cache文件夹中的所有文件 不可用 this.context.cacheDir.deleteContentRecursively()
   }
 

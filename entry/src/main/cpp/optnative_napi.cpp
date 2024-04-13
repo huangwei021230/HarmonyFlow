@@ -14,15 +14,15 @@ static napi_value Initialize(napi_env env, napi_callback_info info){
     
     napi_valuetype valuetype;
     napi_typeof(env, args[0], &valuetype);
-    
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[OptNative]", "%{public}s", "11");
     bool ok = false;
-    if (valuetype == napi_function) {
+    if (valuetype == napi_string) {
         const size_t MAX_SIZE = 256;
         char buf[MAX_SIZE];
         size_t size = 0;
         napi_get_value_string_utf8(env, args[0], buf, MAX_SIZE, &size);
         std::string file_dir(buf, size);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[CLipNative]", "%{public}s", file_dir.c_str());
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[OptNative]", "%{public}s", file_dir.c_str());
         ok = true;
         OPT::OPTEngineHelper::Initialize(file_dir);
     }
@@ -64,7 +64,7 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 
 
-static napi_module clipNativeModule = {
+static napi_module optNativeModule = {
     .nm_version = 1,
     .nm_flags = 0,
     .nm_filename = nullptr,
@@ -76,5 +76,5 @@ static napi_module clipNativeModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
-    napi_module_register(&clipNativeModule);
+    napi_module_register(&optNativeModule);
 }

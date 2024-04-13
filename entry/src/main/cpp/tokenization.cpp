@@ -18,7 +18,7 @@
 #include <iomanip>
 // #include <boost/regex.hpp>
 #define ll long long
-
+#include <hilog/log.h>
 namespace tokenizer{
     const std::unordered_map<std::wstring, std::wstring> VOCAB_FILES_NAMES = {
             {L"vocab_file",  L"vocab.json"},

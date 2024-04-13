@@ -1,5 +1,5 @@
 #include <opt_infer_engine.h>
-
+#include <hilog/log.h>
 namespace OPT {
     OptInferEngine::OptInferEngine(const std::string& model_path,
                                    const std::string &vocab_file,
@@ -42,8 +42,21 @@ namespace OPT {
 
         torch::Tensor random_indices = torch::randint(0, 10, {4});
         torch::Tensor random_elements = samples.index({torch::arange(4), random_indices});
+    
+    
+        // 将大小转换为字符串并打印出来
+        auto sizes = all_encoder_layers.sizes();
+        std::stringstream ss;
+        ss << "Tensor sizes: [";
+        for (size_t i = 0; i < sizes.size(); ++i) {
+            ss << sizes[i];
+            if (i < sizes.size() - 1) {
+                ss << ", ";
+            }
+        }
+        ss << "]";
 
-
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[OptNative]", "%{public}s", ss.str().c_str());
 
         auto return_vec = processor_.getReturnString(random_elements);
         std::string return_string;
