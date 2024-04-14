@@ -14,22 +14,36 @@
  */
 
 import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
-import { InputHandler } from '../../model/KeyboardController';
+import { InputHandler, inputString } from '../../model/KeyboardController';
 import {  MenuType } from '../../model/KeyboardKeyData';
 import { store } from '../../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore';
 import { ClipboardManager } from '../clipboard/ClipboardManager';
 import optNative from 'liboptnative.so'
+import { textGenItem } from './textGenItem';
+
 @Preview
 @Component
 export struct TextGenMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
-
+  @State items: string[] = [];
+  savedInput: String = "";
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
+      if(this.items.length){
+        Row(){
+          ForEach(this.items, (item: string) => {
+            textGenItem({
+              keyValue: {content: item, upperContent: item, title: item, width: 10},
+              WIDTH: item.length * 10 + 20
+            })
+          })
+        }
+        .width("100%")
+      }
       Stack(){
-        Image($rawfile('ic_back.svg'))
+        Image($rawfile('ic_ai.svg'))
           .width('32vp')
           .height('32vp')
       }
@@ -37,7 +51,10 @@ export struct TextGenMenu {
       .borderRadius(4)
       .height('100%')
       .onClick(async () => {
-        let returnText = optNative.getReturnString("Hello, my dog's 2 feet tall.")
+        let returnText = optNative.getReturnString(inputString)
+        let tokens = returnText.split(' ')
+        tokens = tokens.filter(token => token !== '');
+        this.items = tokens
         console.log("114514: ", returnText)
       })
     }
@@ -49,3 +66,4 @@ export struct TextGenMenu {
     .borderWidth(0.5)
   }
 }
+

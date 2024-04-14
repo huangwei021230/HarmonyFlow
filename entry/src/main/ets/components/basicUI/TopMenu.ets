@@ -30,7 +30,7 @@ export struct TopMenu {
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
       Stack(){
-        Image($rawfile('ic_back.svg'))
+        Image($rawfile('ic_keyboard.svg'))
           .width('32vp')
           .height('32vp')
       }

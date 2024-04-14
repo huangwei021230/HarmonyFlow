@@ -63,6 +63,7 @@ const KEYBOARD_HEIGHT_RATE_BIG: number = 0.3;
 // 定义默认的底部导航栏高度
 const NAVIGATIONBAR_HEIGHT_DEFAULT: number = 72;
 
+export let inputString: string = "initializing...";
 export class InputHandler {
   private mKbController: inputMethodEngine.KeyboardController | undefined;
   private mTextInputClient: inputMethodEngine.InputClient | undefined;
@@ -72,6 +73,7 @@ export class InputHandler {
   private textInfo: string = '';
   private inputInfo: string = '';
   private operatorCheck: OperatorCheck = OperatorCheck.getInstance();
+
   private constructor() {
     this.mKbController = undefined;
     this.mTextInputClient = undefined;
@@ -135,6 +137,7 @@ export class InputHandler {
 
   // 删除光标前固定长度的文本
   public deleteForward(length: number): void {
+    inputString = inputString.substring(0, inputString.length - length);
     this.addLog('deleteForward');
     if (this.mTextInputClient !== undefined) {
       // 向操作栈中压入backSpace操作
@@ -150,6 +153,8 @@ export class InputHandler {
 
   // 插入文本
   public insertText(text: string): void {
+    inputString += text;
+
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
       // 向操作栈中压入操作

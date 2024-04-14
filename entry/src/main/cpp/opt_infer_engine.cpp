@@ -40,8 +40,10 @@ namespace OPT {
         int num_samples = 10;
         torch::Tensor samples = torch::multinomial(input_tensor_reshaped, num_samples, true);
 
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[OptNative]", "%{public}s", std::to_string(static_cast<int>(all_encoder_layers.sizes()[1])).c_str());
+    
         torch::Tensor random_indices = torch::randint(0, 10, {4});
-        torch::Tensor random_elements = samples.index({torch::arange(4), random_indices});
+        torch::Tensor random_elements = samples.index({torch::arange(std::min(4, static_cast<int>(all_encoder_layers.sizes()[1]))), random_indices});
     
     
         // 将大小转换为字符串并打印出来
