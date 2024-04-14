@@ -154,7 +154,9 @@ export class InputHandler {
   // 插入文本
   public insertText(text: string): void {
     inputString += text;
-
+    if (inputString.length > 15) {
+      inputString = inputString.substring(inputString.length - 15);
+    }
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
       // 向操作栈中压入操作

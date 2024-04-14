@@ -51,6 +51,7 @@ export struct TextGenMenu {
       .borderRadius(4)
       .height('100%')
       .onClick(async () => {
+
         let returnText = optNative.getReturnString(inputString)
         let tokens = returnText.split(' ')
         tokens = tokens.filter(token => token !== '');
