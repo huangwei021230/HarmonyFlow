@@ -50,6 +50,26 @@ static napi_value GetReturnString(napi_env env, napi_callback_info info){
     return convertStringToNapiValue(env, gen_text);
 }
 
+static napi_value test(napi_env env, napi_callback_info info){
+    size_t requireArgc = 1;
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+    napi_valuetype valuetype0;
+    napi_typeof(env, args[0], &valuetype0);
+    assert(valuetype0 == napi_string);
+    const size_t MAX_SIZE = 256;
+    char buf[MAX_SIZE];
+    size_t size = 0;
+    napi_get_value_string_utf8(env, args[0], buf, MAX_SIZE, &size);
+    
+    std::string text(buf, size);
+    OPT::OPTEngineHelper::test(text);
+    std::string finish = "finished";
+    return convertStringToNapiValue(env, finish);
+}
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -57,6 +77,7 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         {"initialize", nullptr, Initialize, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getReturnString", nullptr, GetReturnString, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"test", nullptr, test, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

@@ -19,9 +19,13 @@ public:
         auto ret = engine->getReturnString(str);
         return ret;
     }
-    
+    static void test(const std::string& str){
+        auto engine = instance();
+        assert(engine != nullptr);
+        engine->test(file_dir);
+        return;
+    }
 private:
-    
     static OptInferEngine* instance(){
         std::lock_guard<std::mutex> lock(mutex_);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_DOMAIN, "[OptNative]", "%{public}s", file_dir.c_str());

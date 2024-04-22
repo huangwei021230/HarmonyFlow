@@ -154,6 +154,9 @@ export class InputHandler {
   // 插入文本
   public insertText(text: string): void {
     inputString += text;
+    let wordsArray = inputString.split(" ");
+    let lastWord = wordsArray[wordsArray.length - 1];
+    inputString = lastWord
     if (inputString.length > 15) {
       inputString = inputString.substring(inputString.length - 15);
     }
