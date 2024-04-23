@@ -64,6 +64,7 @@ const KEYBOARD_HEIGHT_RATE_BIG: number = 0.3;
 const NAVIGATIONBAR_HEIGHT_DEFAULT: number = 72;
 
 export let inputString: string = "initializing...";
+export let inputToken: string = "initializing...";
 export class InputHandler {
   private mKbController: inputMethodEngine.KeyboardController | undefined;
   private mTextInputClient: inputMethodEngine.InputClient | undefined;
@@ -156,10 +157,12 @@ export class InputHandler {
     inputString += text;
     let wordsArray = inputString.split(" ");
     let lastWord = wordsArray[wordsArray.length - 1];
-    inputString = lastWord
-    if (inputString.length > 15) {
-      inputString = inputString.substring(inputString.length - 15);
+    inputToken = lastWord
+
+    if (inputString.length > 50) {
+      inputString = inputString.substring(inputString.length - 50);
     }
+
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {
       // 向操作栈中压入操作

@@ -80,10 +80,7 @@ namespace OPT {
 // 输出随机选择的索引
         std::cout << "Random Indices: " << top_indices << std::endl;
         std::cout << "Random Indices: " << top_indices.sizes() << std::endl;
-
-
-
-
+    
         // 将大小转换为字符串并打印出来
         auto sizes = all_encoder_layers.sizes();
         std::stringstream ss;
@@ -109,7 +106,6 @@ namespace OPT {
     void OptInferEngine::test(const std::string &text){
         std::string checkString = "t t t";
         std::ofstream outfile(text + "/execution_times.txt");
-
         for(int i = 0; i < 1000; i++){
             checkString += "t ";
             auto start = std::chrono::high_resolution_clock::now();
