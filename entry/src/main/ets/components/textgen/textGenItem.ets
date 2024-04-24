@@ -15,8 +15,9 @@
 
 import { keySourceListType, } from '../../model/KeyboardKeyData';
 import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
-import { InputHandler } from '../../model/KeyboardController';
-
+import { InputHandler,inputString, inputToken } from '../../model/KeyboardController';
+import { TextGenMenu } from './textGenMenu';
+import optNative from 'liboptnative.so'
 @Styles function pressedStyles() {
   .backgroundColor($r('app.color.key_item_normal_pressed'))
 }
@@ -32,6 +33,7 @@ export struct textGenItem {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   public inputWidth: string | undefined = undefined;
   @State public WIDTH: Number = 0;
+  @Consume("items") items_s: string[];
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       if (this.keyValue) {
@@ -45,11 +47,23 @@ export struct textGenItem {
     .width(this.WIDTH +"vp")
     .height(this.inputStyle.downMenuHeight)
     .shadow({ radius: 1, color: $r('app.color.shadow'), offsetY: 3 })
-    .onClick(() => {
+    .onClick(async () => {
       if (this.keyValue) {
-        InputHandler.getInstance().insertText(this.keyValue.content);
+        InputHandler.getInstance().insertText(this.keyValue.content+ ' ');
       }
-    })
+      let returnText = '';
+      if(inputString.charAt(inputString.length - 1) == ' '){
+        returnText = optNative.getReturnString(inputString.substring(0, inputString.length - 1))
+      }else{
+        returnText = optNative.getReturnString(inputString)
+      }
+      let tokens = returnText.split(' ')
+      tokens = tokens.filter(token => token != '');
+      tokens = tokens.filter(token => token != ' ');
+      this.items_s = tokens
+      console.log("114514: ", returnText)
+    }
+    )
     .stateStyles({
       normal: normalStyles, pressed: pressedStyles
     })

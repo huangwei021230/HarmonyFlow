@@ -156,12 +156,16 @@ export class InputHandler {
   public insertText(text: string): void {
     inputString += text;
     let wordsArray = inputString.split(" ");
+    wordsArray = wordsArray.filter(token => token !== '');
+    wordsArray = wordsArray.filter(token => token !== ' ');
+    wordsArray = wordsArray.filter(token => token !== " ");
+    console.log("wordsArray", wordsArray)
     let lastWord = wordsArray[wordsArray.length - 1];
     inputToken = lastWord
 
-    if (inputString.length > 50) {
-      inputString = inputString.substring(inputString.length - 50);
-    }
+    // if (inputString.length > 50) {
+    //   inputString = inputString.substring(inputString.length - 50);
+    // }
 
     this.addLog(`insertText = ${text}`);
     if (this.mTextInputClient !== undefined) {

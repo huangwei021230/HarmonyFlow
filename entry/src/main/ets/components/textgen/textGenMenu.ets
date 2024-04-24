@@ -14,7 +14,7 @@
  */
 
 import { KeyStyle, StyleConfiguration } from '../../common/StyleConfiguration';
-import { InputHandler, inputString } from '../../model/KeyboardController';
+import { InputHandler, inputString, inputToken } from '../../model/KeyboardController';
 import {  MenuType } from '../../model/KeyboardKeyData';
 import { store } from '../../ServiceExtAbility/ServiceExtAbility';
 import relationalStore from '@ohos.data.relationalStore';
@@ -27,7 +27,7 @@ import { textGenItem } from './textGenItem';
 export struct TextGenMenu {
   @StorageLink('inputStyle') inputStyle: KeyStyle = StyleConfiguration.getSavedInputStyle();
   @Consume menuType: number;
-  @State items: string[] = [];
+  @Provide("items") items: string[] = [];
   savedInput: String = "";
   build() {
     Flex({ justifyContent: FlexAlign.End, alignItems: ItemAlign.Center }) {
@@ -36,7 +36,7 @@ export struct TextGenMenu {
           ForEach(this.items, (item: string) => {
             textGenItem({
               keyValue: {content: item, upperContent: item, title: item, width: 10},
-              WIDTH: item.length * 10 + 20
+              WIDTH: item.length * 10 + 20,
             })
           })
         }
@@ -51,9 +51,15 @@ export struct TextGenMenu {
       .borderRadius(4)
       .height('100%')
       .onClick(async () => {
-        let returnText = optNative.getReturnString(inputString)
+        let returnText = '';
+        if(inputString.charAt(inputString.length - 1) == ' '){
+          returnText = optNative.getReturnString(inputString.substring(0, inputString.length - 1))
+        }else{
+          returnText = optNative.getReturnString(inputString)
+        }
         let tokens = returnText.split(' ')
-        tokens = tokens.filter(token => token !== '');
+        tokens = tokens.filter(token => token != '');
+        tokens = tokens.filter(token => token != ' ');
         this.items = tokens
         console.log("114514: ", returnText)
       })
